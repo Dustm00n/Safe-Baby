@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import CardsForo from "../component/cards foro";
+import { Context } from "../store/appContext";
 
-const Foro = () => {
-  return <h1>Foro</h1>;
+export const Foro = () => {
+  return (
+    <>
+      <CardsForo />
+    </>
+  );
 };
-export default Foro;

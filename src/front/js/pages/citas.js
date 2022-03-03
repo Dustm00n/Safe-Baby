@@ -1,8 +1,5 @@
 import React from "react";
 
-export const Citas = () =>{
-    return (
-        <>
-        </>
-    )
-}
+export const Citas = () => {
+  return <></>;
+};
