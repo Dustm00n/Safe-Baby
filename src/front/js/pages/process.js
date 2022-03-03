@@ -27,4 +27,3 @@ Process.propTypes = {
 	match: PropTypes.object
 };
 
-export default Process;
