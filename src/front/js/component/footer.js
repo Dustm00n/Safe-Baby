@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 
-export const Footer = () => (
+export const Footer = () =>{ 
+return(
 	<footer className="footer py-2 text-center">
 		<p>
-		@copyright
+			@copyright
 		</p>
 	</footer>
 );
+}
