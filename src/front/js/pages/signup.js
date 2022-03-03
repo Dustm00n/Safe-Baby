@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import "../../styles/login.css";
+import "../../styles/signup.css";
 import { Context } from "../store/appContext";
 
-export const Login = () => {
+export const SignUp = () => {
   const { store, actions } = useContext(Context);
 
   return (
     <>
       <div className="form-container">
-        <h1 className="title-login">Log in</h1>
+        <h1 className="title-login">Sign Up</h1>
         <form>
           <div class="mb-3">
             <input
@@ -17,7 +17,16 @@ export const Login = () => {
               class="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              placeholder="Nombre de usuario"
+              placeholder="Nombre"
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Apellido"
             />
           </div>
           <div class="mb-3">
@@ -39,9 +48,9 @@ export const Login = () => {
           </div>
           <button
             type="submit"
-            class="btn btn-login d-grid gap-2 col-6 mx-auto"
+            class="btn btn-signup d-grid gap-2 col-6 mx-auto"
           >
-            Log In
+            Sign up
           </button>
         </form>
       </div>
