@@ -6,6 +6,7 @@ import { Home } from "./pages/home";
 import { Citas } from "./pages/citas";
 import { Process } from "./pages/process";
 import { Login } from "./pages/login";
+import { SignUp } from "./pages/signup";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -32,6 +33,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/login" component={Login}>
 							<Login />
+						</Route>
+						<Route exact path="/signup" component={SignUp}>
+							<SignUp />
 						</Route>
 						<Route exact path="/process" component={Process}>
 							<Process />
