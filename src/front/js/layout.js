@@ -2,15 +2,15 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
-import { Home } from "./pages/home";													
-import {Citas} from "./pages/citas";
-import {Process} from "./pages/process";
-import {Login} from "./pages/login";
+import { Home } from "./pages/home";
+import { Citas } from "./pages/citas";
+import { Process } from "./pages/process";
+import { Login } from "./pages/login";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import Foro from "./pages/foro";
+import { Foro } from "./pages/foro";
 
 //create your first component
 const Layout = () => {
@@ -24,19 +24,22 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-						<Route exact path="/login">
-							<Login />
-						</Route>
-						<Route exact path="/home">
+						<Route exact path="/" component={Home}>
 							<Home />
 						</Route>
-						<Route exact path="/process/:process">
+						<Route exact path="/home" component={Home}>
+							<Home />
+						</Route>
+						<Route exact path="/login" component={Login}>
+							<Login />
+						</Route>
+						<Route exact path="/process" component={Process}>
 							<Process />
 						</Route>
-						<Route exact path="/home/:foro">
+						<Route exact path="/foro" component={Foro}>
 							<Foro />
 						</Route>
-						<Route exact path="/home/:citas">
+						<Route exact path="/citas" component={Citas}>
 							<Citas />
 						</Route>
 						<Route>
