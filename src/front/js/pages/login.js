@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
-export const Demo = () => {
+export const Login = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
@@ -39,3 +39,5 @@ export const Demo = () => {
 		</div>
 	);
 };
+
+export default Login;
