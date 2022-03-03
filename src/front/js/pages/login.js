@@ -6,63 +6,24 @@ import { Context } from "../store/appContext";
 export const Login = () => {
   const { store, actions } = useContext(Context);
 
-  return (
-    <>
-      <div className="form-container">
-        <form>
-          <div class="mb-3">
-            <input
-              type="email"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            />
-            <div id="emailHelp" class="form-text-login">
-              We'll never share your email with anyone else.
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">
-              Nombre
-            </label>
-            <input
-              type="email"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            />
-            <div id="emailHelp" class="form-text-login">
-              We'll never share your email with anyone else.
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-            />
-          </div>
-          <div class="mb-3 form-check">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              id="exampleCheck1"
-            />
-            <label class="form-check-label" for="exampleCheck1">
-              Check me out
-            </label>
-          </div>
-          <button
-            type="submit"
-            class="btn btn-primary d-grid gap-2 col-6 mx-auto"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
-    </>
-  );
+
+	return (
+		<>
+			<div className="form-container">
+				<h1 className="title-login">Log in</h1>
+				<form>
+					<div class="mb-3">
+						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre de usuario" />
+					</div>
+					<div class="mb-3">
+						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
+					</div>
+					<div class="mb-3">
+						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+					</div>
+					<button type="submit" class="btn btn-login d-grid gap-2 col-6 mx-auto">Log In</button>
+				</form>
+			</div>
+		</>
+	);
 };

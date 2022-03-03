@@ -1,10 +1,11 @@
 .navbar,
-.footer{
-    background: #8DC1C9;
+.footer {
+  background: #8dc1c9;
 }
 
-.btn{
-    color: #C46F82;
-    background-color: #F0E4E4;
-    border-color: white;
+.btn {
+  color: #c46f82;
+  background-color: #f0e4e4;
+  border-color: white;
+  border: none;
 }

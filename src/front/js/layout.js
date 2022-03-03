@@ -6,6 +6,7 @@ import { Home } from "./pages/home";
 import { Citas } from "./pages/citas";
 import { Process } from "./pages/process";
 import { Login } from "./pages/login";
+import { SignUp } from "./pages/signup";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -18,39 +19,42 @@ const Layout = () => {
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
 
-  return (
-    <div>
-      <BrowserRouter basename={basename}>
-        <ScrollToTop>
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={Home}>
-              <Home />
-            </Route>
-            <Route exact path="/home" component={Home}>
-              <Home />
-            </Route>
-            <Route exact path="/login" component={Login}>
-              <Login />
-            </Route>
-            <Route exact path="/process" component={Process}>
-              <Process />
-            </Route>
-            <Route exact path="/foro" component={Foro}>
-              <Foro />
-            </Route>
-            <Route exact path="/citas" component={Citas}>
-              <Citas />
-            </Route>
-            <Route>
-              <h1>Not found!</h1>
-            </Route>
-          </Switch>
-          <Footer />
-        </ScrollToTop>
-      </BrowserRouter>
-    </div>
-  );
+	return (
+		<div>
+			<BrowserRouter basename={basename}>
+				<ScrollToTop>
+					<Navbar />
+					<Switch>
+						<Route exact path="/" component={Home}>
+							<Home />
+						</Route>
+						<Route exact path="/home" component={Home}>
+							<Home />
+						</Route>
+						<Route exact path="/login" component={Login}>
+							<Login />
+						</Route>
+						<Route exact path="/signup" component={SignUp}>
+							<SignUp />
+						</Route>
+						<Route exact path="/process" component={Process}>
+							<Process />
+						</Route>
+						<Route exact path="/foro" component={Foro}>
+							<Foro />
+						</Route>
+						<Route exact path="/citas" component={Citas}>
+							<Citas />
+						</Route>
+						<Route>
+							<h1>Not found!</h1>
+						</Route>
+					</Switch>
+					<Footer />
+				</ScrollToTop>
+			</BrowserRouter>
+		</div>
+	);
 };
 
 export default injectContext(Layout);
