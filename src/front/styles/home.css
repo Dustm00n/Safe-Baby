@@ -1,10 +1,16 @@
 h5 {
   color: #5e8287;
 }
-
+.card {
+  border-radius: 5px;
+  background-color: #f0e4e4;
+  margin: 20px;
+}
 .card-title {
   color: #904b5b;
+  background-color: white;
 }
+
 div.scrollmenu {
   overflow: auto;
   white-space: nowrap;
