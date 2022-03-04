@@ -1,11 +1,24 @@
-.navbar,
-.footer {
-  background: #8dc1c9;
+.container-button {
+  text-align: center;
 }
-
-.btn {
+.backhome-button {
+  width: 120px;
+  text-align: center;
+  border-radius: 5px;
   color: #c46f82;
   background-color: #f0e4e4;
-  border-color: white;
-  border: none;
+}
+.backhome-button:hover {
+  width: 120px;
+  text-align: center;
+  border-radius: 5px;
+  color: #f0e4e4;
+  background-color: #c46f82;
+}
+.backhome-button:active {
+  width: 120px;
+  text-align: center;
+  border-radius: 5px;
+  color: #fffbfb;
+  background-color: #ee869d;
 }
