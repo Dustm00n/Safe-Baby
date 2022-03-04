@@ -7,6 +7,7 @@ export const Foro = () => {
   return (
     <>
       <CardsForo />
+
     </>
   );
 };

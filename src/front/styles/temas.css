@@ -1,0 +1,10 @@
+.container {
+  background: #8dc1c9;
+  margin-top: 25px;
+  border-radius: 5px;
+}
+
+.caja-favoritos {
+  display: flex;
+  justify-content: center;
+}
