@@ -1,7 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
+import "../../styles/footer.css";
 
-export const Footer = () => (
-  <footer className="footer mb-5 text-center">
-    <p>@copyright</p>
-  </footer>
-);
+export const Footer = () => {
+	return (
+		<footer className="footer text-center">
+			<p className="copyright text-white align-middle py-3">
+				@copyright
+			</p>
+		</footer>
+	);
+}
