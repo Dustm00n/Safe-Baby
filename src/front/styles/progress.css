@@ -1,0 +1,62 @@
+/* .etapa-inicial {
+  padding: 0;
+} */
+ul {
+  width: 650px;
+  height: 210px;
+  padding: 0;
+  overflow: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+ul::-webkit-scrollbar {
+  width: 12px;
+  border: #0a8ca0;
+  background-color: #5bdef571;
+  border-radius: 2px;
+}
+ul::-webkit-scrollbar-thumb {
+  width: 12px;
+  border: #0a8ca0;
+  background-color: #0a8ca02f;
+  border-radius: 2px;
+}
+li {
+  list-style: none;
+}
+.etapa-inicial-items button {
+  text-align: justify;
+  width: 100%;
+  height: 5.2rem;
+  margin: 3px;
+  padding: 10px;
+  background-color: #77d5e6;
+  color: #0a8ca0;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+}
+.etapa-inicial-items button:hover {
+  text-align: justify;
+  width: 100%;
+  height: 5.2rem;
+  margin: 3px;
+  padding: 10px;
+  background-color: #a0e4f0;
+  color: #4c96a1;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+}
+.etapa-inicial-items button:active {
+  text-align: justify;
+  width: 100%;
+  height: 5.2rem;
+  margin: 3px;
+  padding: 10px;
+  background-color: #2bd1ee;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+}
