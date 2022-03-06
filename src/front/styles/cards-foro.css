@@ -47,6 +47,12 @@
   border: 0;
 }
 
+.boton-chat:hover {
+  border-radius: 5px;
+  color: #f0e4e4;
+  background-color: #c46f82;
+}
+
 .card-main {
   max-width: 540px;
   margin-top: 15px;

@@ -1,0 +1,26 @@
+.container-a {
+  background: #8dc1c9;
+  margin-top: 25px;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  box-shadow: 0 2px 5px 2px #5e75796e;
+}
+
+.container-b {
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+}
+
+.card-child {
+  box-shadow: 0 2px 5px 2px #5e75796e;
+}
+
+.titulo {
+  background-color: #f0e4e4;
+  color: #c46f82;
+  margin-top: 15px;
+}
