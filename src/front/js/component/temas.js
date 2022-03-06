@@ -4,24 +4,28 @@ import '../../styles/temas.css';
 
 const Temas = () => {
     return (
-        <div className="container-p">
-            <div className="container">
-                <div className="col-4 caja-favoritos">
+        <div className="container-a">
+            <div className="container-b">
+                <div className="col-10">
                     <div className="row">
-                        <div className="card">
-                            <div className="card-header">
-                                Temas Favoritos
+                        <div className="card-main">
+                            <div className="card-child">
+                                <div className="card-header titulo">
+                                    Temas Favoritos
+                                </div>
+                                <ul className="list-group list-group-flush">
+                                    <li className="list-group-item">An item</li>
+                                    <li className="list-group-item">A second item</li>
+                                    <li className="list-group-item">A third item</li>
+                                    <li className="list-group-item">A third item</li>
+                                    <li className="list-group-item">A third item</li>
+                                    <li className="list-group-item">A third item</li>
+                                    <li className="list-group-item">A third item</li>
+                                </ul>
                             </div>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">An item</li>
-                                <li className="list-group-item">A second item</li>
-                                <li className="list-group-item">A third item</li>
-                            </ul>
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
     )
