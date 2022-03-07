@@ -19,14 +19,14 @@
 }
 
 .btn-navbar:hover {
-  width: 90px;
+  width: 100px;
   color: #f0e4e4;
   background-color: #c46f82;
   border: none;
 }
 
 .btn-navbar:active {
-  width: 90px;
+  width: 100px;
   color: #fffbfb;
   background-color: #ee869d;
   border: none;
