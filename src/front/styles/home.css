@@ -32,3 +32,33 @@ div.scrollmenu-home a {
 div.scrollmenu-home a:hover {
   background-color: #777;
 }
+
+.input-group-text {
+  background-color: #f0e4e4;
+  color: #c46f82;
+}
+
+.input-group-text::placeholder {
+  color: #c46f82;
+}
+
+.tabla-home {
+  border: #884747 8px solid;
+  border-radius: 5px;
+}
+
+.tabla-text-home {
+  color: #904b5b;
+}
+
+.nivel-riesgo {
+  width: 50px;
+}
+.lista-riesgo {
+  display: flex;
+  flex-wrap: wrap;
+}
+.items-riesgo {
+  width: 50px;
+  display: inline-block;
+}
