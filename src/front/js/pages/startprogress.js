@@ -38,10 +38,10 @@ export const StartProgress = (props) => {
           </div>
         </div>
         <div className="col-6">
-          <div class="card w-75">
-            <div class="card-body">
+          <div className="card w-75">
+            <div className="card-body">
               <h1 className="title text-center">Registra a tu bebé</h1>
-              <p class="card-text">Te recomendamos registrar a tu bebé para que puedas tener un mejor control de las actividades que realice tu bebé y acorde a su edad.</p>
+              <p className="card-text">Te recomendamos registrar a tu bebé para que puedas tener un mejor control de las actividades que realice tu bebé y acorde a su edad.</p>
             </div>
           </div>
         </div>
