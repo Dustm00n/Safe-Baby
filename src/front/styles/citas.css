@@ -1,0 +1,15 @@
+.calendar-container {
+  height: 100%;
+  background-color: red;
+}
+table {
+  background-color: rgb(173, 98, 98);
+}
+.form-container-main {
+  margin-bottom: 50px;
+  height: 100%;
+  background-color: rgb(112, 47, 47);
+}
+.frame {
+  height: 100%;
+}
