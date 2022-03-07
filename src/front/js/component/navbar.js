@@ -16,7 +16,7 @@ export const Navbar = () => {
 				</div>
 				<div className="">
 					<Link to="/Progress">
-						<button className="btn btn-navbar">Progeso</button>
+						<button className="btn btn-navbar">Progreso</button>
 					</Link>
 				</div>
 				<div className="">
