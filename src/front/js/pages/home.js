@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import ReactPlayer from "react-player";
+import { BiSearchAlt } from "react-icons/bi";
 import "../../styles/home.css";
 import imageUrl from "../../img/bebe-meses.jpeg"
 import imageUrlMeses from "../../img/bebe-pasos.jpeg"
@@ -202,13 +203,28 @@ export const Home = () => {
         <h5 className="card-title-home">Entretenimiento para tu bebé</h5>
         <div className="row">
           <div className="col md-4">
-            hola
+            <ReactPlayer
+              width="360px"
+              height="310px"
+              controls
+              url="https://www.youtube.com/watch?v=AwpZl39gz7U" />
+
           </div>
           <div className="col md-4">
-            hola
+            <ReactPlayer
+              width="360px"
+              height="310px"
+              controls
+              url="https://www.youtube.com/watch?v=nyrKHQxMxoo" />
+
           </div>
           <div className="col md-4">
-            hola
+            <ReactPlayer
+              width="360px"
+              height="310px"
+              controls
+              url="https://www.youtube.com/watch?v=tlf4h1tiOOs" />
+
           </div>
         </div>
       </div>
@@ -216,17 +232,97 @@ export const Home = () => {
         <h5 className="card-title-home">Música para tu bebé</h5>
         <div className="row">
           <div className="col md-4">
-            hola
+            <ReactPlayer
+              width="360px"
+              height="310px"
+              controls
+              url="https://www.youtube.com/watch?v=lMZzkxszfWE" />
+
           </div>
           <div className="col md-4">
-            hola
+            <ReactPlayer
+              width="360px"
+              height="310px"
+              controls
+              url="https://www.youtube.com/watch?v=azxGmHY6rFQ" />
+
           </div>
           <div className="col md-4">
-            hola
+            <ReactPlayer
+              width="360px"
+              height="310px"
+              controls
+              url="https://www.youtube.com/watch?v=EwZ3KhAh448" />
+
+          </div>
+        </div>
+      </div>
+      <div className="table-home">
+        <div className="row">
+          <div className="col-md-10">
+            <h5 className="titulo-home">Alimentos que puede consumir la mamá durante la etapa de lactancia y su nivel de riesgo</h5>
+          </div>
+          <div className="col-md-2">
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="basic-addon1">
+                <BiSearchAlt /></span>
+              <input type="text" className="form-control" placeholder="Busqueda" aria-label="Busqueda" aria-describedby="basic-addon1" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="tabla-home">
+        <div className="row">
+          <div className="col">
+            <ul className="lista-riesgo">
+              <li className="items-riesgo">
+                <h2 className="tabla-text-home">chocolate</h2>
+                <span className="nivel-riesgo">
+                  A
+                </span>
+                <span className="nivel-riesgo">
+                  B
+                </span>
+                <span className="nivel-riesgo">
+                  C
+                </span>
+                <span className="nivel-riesgo">
+                  D
+                </span>
+              </li>
+            </ul>
+          </div>
+
+
+          <div className="row">
+            <div className="col">
+              <h2 className="tabla-text-home">leche</h2>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <h2 className="tabla-text-home">verduras</h2>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <h2 className="tabla-text-home">comida rapida</h2>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <h2 className="tabla-text-home">bebidas</h2>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <h2 className="tabla-text-home">Butóxido de Piperonilo</h2>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
 
 
   );
