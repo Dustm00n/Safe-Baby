@@ -20,7 +20,7 @@ const Temas = () => {
                                     <li className="list-group-item">A third item</li>
                                     <li className="list-group-item">A third item</li>
                                     <li className="list-group-item">A third item</li>
-                                    <li className="list-group-item">A third itemm</li>
+                                    <li className="list-group-item">A third item</li>
                                 </ul>
                             </div>
                         </div>
