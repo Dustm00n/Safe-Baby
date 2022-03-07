@@ -13,6 +13,7 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Foro } from "./pages/foro";
+import { Foro2 } from "./pages/foro2";
 
 //create your first component
 const Layout = () => {
@@ -46,6 +47,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/foro" component={Foro}>
 							<Foro />
+						</Route>
+						<Route exact path="/foro2" component={Foro2}>
+							<Foro2 />
 						</Route>
 						<Route exact path="/citas" component={Citas}>
 							<Citas />

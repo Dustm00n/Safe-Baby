@@ -1,3 +1,9 @@
+.container-main-foro {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .text-muted {
   color: #8c8c8c;
   margin-bottom: 65px;
@@ -10,22 +16,27 @@
   box-shadow: 0 2px 5px 2px #5e75796e;
 }
 
-.card-body1 {
+.card-text {
+  margin: 0;
+}
+
+.card-body1-foro {
   display: inline-block;
   vertical-align: middle;
   margin-top: 35px;
   margin-left: 25px;
   margin-bottom: 35px;
-  line-height: 10px;
+  line-height: 20px;
+  font-size: medium;
 }
 
-.card-body2 {
+.card-body2-foro {
   margin-top: 35px;
   margin-left: 25px;
   margin-bottom: 35px;
 }
 
-.card-body3 {
+.card-body3-foro {
   display: inline-block;
   vertical-align: middle;
   margin-top: 35px;
@@ -34,26 +45,27 @@
   line-height: 10px;
 }
 
-.boton-chat {
+.button-icon {
   margin-top: 35px;
   margin-left: 25px;
   margin-bottom: 35px;
-  box-shadow: 0 2px 5px 2px #5e75796e;
-  border-radius: 0;
   width: 147px;
   height: 118px;
   left: 55px;
   top: 305px;
-  border: 0;
+  border: none;
+  color: #c46f82;
 }
 
-.boton-chat:hover {
-  border-radius: 5px;
+.button-icon:hover {
   color: #f0e4e4;
-  background-color: #c46f82;
 }
 
-.card-main {
+.button-icon:active {
+  color: #f56584;
+}
+
+.card-main-foro {
   max-width: 540px;
   margin-top: 15px;
 }
