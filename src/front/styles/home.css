@@ -1,31 +1,27 @@
-h5 {
+.titulo-home {
   color: #5e8287;
 }
-.card {
+.card-home {
   border-radius: 5px;
   background-color: #f0e4e4;
   margin: 20px;
 }
-.card-title {
+.card-title-home {
   color: #904b5b;
   background-color: white;
 }
-.card-body {
-  /* background: red; */
-}
-.parrafoA {
+.parrafoA-home {
   text-align: justify;
   height: 210px;
-
   overflow: auto;
   display: block;
 }
 
-div.scrollmenu {
+div.scrollmenu-home {
   overflow: hidden;
 }
 
-div.scrollmenu a {
+div.scrollmenu-home a {
   display: inline-block;
   color: white;
   text-align: center;
@@ -33,6 +29,6 @@ div.scrollmenu a {
   text-decoration: none;
 }
 
-div.scrollmenu a:hover {
+div.scrollmenu-home a:hover {
   background-color: #777;
 }
