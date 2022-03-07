@@ -6,6 +6,7 @@ import { AiFillWechat } from "react-icons/ai";
 export const Foro = () => {
   return (
     <>
+
       <div className="container-main col-12">
         <div className="row">
           <div className="col-8">
@@ -28,7 +29,7 @@ export const Foro = () => {
           </div>
         </div>
       </div>
+      <CardsForo />
     </>
   );
 }
-// lsdjnfd

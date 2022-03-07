@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import "../../styles/signup.css";
 
 export const SignUp = () => {
-    const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
     return (
         <>
@@ -27,9 +27,6 @@ export const SignUp = () => {
                         <button type="submit" class="btn btn-signup d-grid gap-2 col-6 mx-auto">Sign up</button>
                     </form>
                 </div>
-            </div>
-        </>
-    );
+    </>
+  );
 };
-
-
