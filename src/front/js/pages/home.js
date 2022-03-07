@@ -13,14 +13,14 @@ export const Home = () => {
 
   return (
     <div className="mt-5 mx-5">
-      <h5>Recomendaciones para el cuidado de tu bebé</h5>
-      <div className="scrollmenu">
-        <div className="card">
+      <h5 className="titulo-home">Recomendaciones para el cuidado de tu bebé</h5>
+      <div className="scrollmenu-home">
+        <div className="card-home">
           <div className="row">
             <div className="col-md-6">
-              <h5 className="card-title">Recom. Tema A</h5>
-              <div className="card-body">
-                <p className="parrafoA">
+              <h5 className="card-title-home">Recom. Tema A</h5>
+              <div className="card-body-home">
+                <p className="parrafoA-home">
                   Manejar a un recién nacido
                   Si no ha pasado mucho tiempo cerca de recién nacidos, su fragilidad tal vez le resulte intimidante. Aquí se incluyen algunos aspectos básicos para tener en cuenta:
 
@@ -37,12 +37,12 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="card">
+        <div className="card-home">
           <div className="row">
             <div className="col-md-6">
-              <h5 className="card-title">Recom. Tema B</h5>
-              <div className="card-body">
-                <p className="parrafoA">Crear lazos afectivos y tranquilizar al bebé
+              <h5 className="card-title-home">Recom. Tema B</h5>
+              <div className="card-body-home">
+                <p className="parrafoA-home">Crear lazos afectivos y tranquilizar al bebé
                   La creación de lazos afectivos probablemente sea una de las partes más placenteras del cuidado de los bebés y se da en el momento de mayor sensibilidad durante las primeras horas y días posteriores al parto, cuando los padres establecen una profunda conexión con el bebé. La cercanía física puede fomentar la conexión emocional.
 
                   Para los bebés, el apego favorece el crecimiento emocional, lo cual afecta su desarrollo en otras áreas, como el crecimiento físico. Otra forma de crear lazos afectivos es "enamorarse" del bebé. Los niños se desarrollan bien cuando tienen un padre u otro adulto en su vida que los ama incondicionalmente.
@@ -72,12 +72,12 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="card">
+        <div className="card-home">
           <div className="row">
             <div className="col-md-6">
-              <h5 className="card-title">Recom. Tema C</h5>
-              <div className="card-body">
-                <p className="parrafoA">Todo acerca de los pañales
+              <h5 className="card-title-home">Recom. Tema C</h5>
+              <div className="card-body-home">
+                <p className="parrafoA-home">Todo acerca de los pañales
                   Probablemente, antes de volver a casa ya tenga decidido si usará pañales desechables o de tela. Sin importar cuál use, su pequeño ensuciará los pañales unas 10 veces al día, o aproximadamente 70 veces por semana.
 
                   Antes de cambiarle el pañal al bebé, asegúrese de tener todo lo que necesita a su alcance. De esta manera, no tendrá que dejar al bebé sin atención sobre el cambiador. Necesitará lo siguiente:
@@ -108,13 +108,13 @@ export const Home = () => {
         </div>
       </div>
       <h5>Advertencias para el cuidado de tu bebé</h5>
-      <div className="scrollmenu">
-        <div className="card">
+      <div className="scrollmenu-home">
+        <div className="card-home">
           <div className="row">
             <div className="col-md-6">
-              <h5 className="card-title">Adver. Tema A</h5>
-              <div className="card-body">
-                <p className="parrafoA">La seguridad de los hijos es prioritaria para todos los padres, sobre todo para los novatos que acaban de tener un bebé. Es importante saber que a medida que el bebé va creciendo, los riesgos van cambiando, así que es bueno que conozcas qué representa un riesgo para él y sobre todo cómo prevenir accidentes mediante las medidas de seguridad más adecuadas.
+              <h5 className="card-title-home">Adver. Tema A</h5>
+              <div className="card-body-home">
+                <p className="parrafoA-home">La seguridad de los hijos es prioritaria para todos los padres, sobre todo para los novatos que acaban de tener un bebé. Es importante saber que a medida que el bebé va creciendo, los riesgos van cambiando, así que es bueno que conozcas qué representa un riesgo para él y sobre todo cómo prevenir accidentes mediante las medidas de seguridad más adecuadas.
 
                   El recién nacido necesita algunas atenciones particulares y medidas de seguridad fundamentales para su crecimiento y desarrollo. En este sentido, ya en el hospital vas a recibir los primeros consejos por parte de los profesionales que te atiendan.
 
@@ -128,12 +128,12 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="card">
+        <div className="card-home">
           <div className="row">
             <div className="col-md-6">
-              <h5 className="card-title">Adver. Tema B</h5>
-              <div className="card-body">
-                <p className="parrafoA">Además, la seguridad es también necesaria en las actividades cotidianas. De este modo, debes tener especial precaución a la hora de vestirle y desvestirle y saber cómo hacerlo sin poner a tu pequeño en posturas incómodas. Del mismo modo, cuando le bañes, tienes que tener presente una serie de indicaciones, como no dejarlo nunca solo o utilizar una bañera expresamente diseñada para niños pequeños. Puedes completar su higiene con una pera absorbente, para su nariz y sus orejas. Recuerda que se desaconsjea el uso de bastoncillos de algodón.
+              <h5 className="card-title-home">Adver. Tema B</h5>
+              <div className="card-body-home">
+                <p className="parrafoA-home">Además, la seguridad es también necesaria en las actividades cotidianas. De este modo, debes tener especial precaución a la hora de vestirle y desvestirle y saber cómo hacerlo sin poner a tu pequeño en posturas incómodas. Del mismo modo, cuando le bañes, tienes que tener presente una serie de indicaciones, como no dejarlo nunca solo o utilizar una bañera expresamente diseñada para niños pequeños. Puedes completar su higiene con una pera absorbente, para su nariz y sus orejas. Recuerda que se desaconsjea el uso de bastoncillos de algodón.
 
                   Durante los primeros meses de vida del pequeño, es especialmente relevante tener estas otras estas precauciones:
 
@@ -150,12 +150,12 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="card">
+        <div className="card-home">
           <div className="row">
             <div className="col-md-6">
-              <h5 className="card-title">Adver. Tema C</h5>
-              <div className="card-body">
-                <p className="parrafoA">¿Cómo puede evitarse el síndrome de la muerte súbita?
+              <h5 className="card-title-home">Adver. Tema C</h5>
+              <div className="card-body-home">
+                <p className="parrafoA-home">¿Cómo puede evitarse el síndrome de la muerte súbita?
                   El síndrome de la muerte súbita infantil suele ocurrir en los niños menores de un año de edad, y es particularmente frecuente entre los 2 y los 4 meses. Se trata de un trastorno que ocurre de manera repentina e inexplicable, y por lo tanto es muy difícil de prevenir. No obstante, pueden tomarse algunas medidas básicas para prevenirla:
                   Que el bebé duerma siempre boca arriba, en un colchón firme y una cuna segura. Evita las almohadas y la ropa acolchada.
                   Sacar del área donde el pequeño duerme los peluches o cualquier otro objeto blando con el que pueda asfixiarse.
@@ -171,10 +171,10 @@ export const Home = () => {
         </div>
       </div>
       <div className="text-center">
-        <h5>ESPACIO PARA TU BEBÉ</h5>
+        <h5 className="titulo-home">ESPACIO PARA TU BEBÉ</h5>
       </div>
-      <div className="card">
-        <h5 className="card-title">Educacion para tu bebé</h5>
+      <div className="card-home">
+        <h5 className="card-title-home">Educacion para tu bebé</h5>
         <div className="row">
           <div className="col md-4">
             <ReactPlayer
@@ -198,8 +198,8 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="card">
-        <h5 className="card-title">Entretenimiento para tu bebé</h5>
+      <div className="card-home">
+        <h5 className="card-title-home">Entretenimiento para tu bebé</h5>
         <div className="row">
           <div className="col md-4">
             hola
@@ -212,8 +212,8 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="card">
-        <h5 className="card-title">Música para tu bebé</h5>
+      <div className="card-home">
+        <h5 className="card-title-home">Música para tu bebé</h5>
         <div className="row">
           <div className="col md-4">
             hola
