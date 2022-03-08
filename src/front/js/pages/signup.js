@@ -9,14 +9,14 @@ export const SignUp = () => {
     return (
         <>
             <div className="main-signup">
-                <div className="form-container">
-                    <h1 className="title-login">Sign Up</h1>
+                <div className="form-container-signup">
+                    <h1 className="title-signup">Sign Up</h1>
                     <form>
                         <div className="mb-3">
-                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre" />
+                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre" />
                         </div>
                         <div className="mb-3">
-                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Apellido" />
+                            <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Apellido" />
                         </div>
                         <div className="mb-3">
                             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
