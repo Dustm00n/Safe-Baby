@@ -1,4 +1,3 @@
-.container-progress,
 .container-graphic {
   height: 30rem;
   display: flex;
@@ -7,15 +6,28 @@
   align-content: center;
   vertical-align: middle;
 }
-.card-progress {
+.container-progress {
+  height: 50rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  vertical-align: middle;
+}
+.card-graphic {
   border-radius: 5px;
-  background-color: #f0e4e4;
+  /* background-color: #f0e4e4; */
+}
+.card-progress {
+  padding: 20px;
+  border-radius: 5px;
+  /* background-color: #f0e4e4; */
 }
 .progress-list {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  height: 210px;
+  height: 610px;
   padding: 0;
   margin: 0;
   overflow: scroll;
@@ -24,14 +36,14 @@
 }
 .progress-list::-webkit-scrollbar {
   width: 12px;
-  border: #0a8ca0;
-  background-color: #5bdef571;
+  /* border: #0a8ca096; */
+  background-color: #5bdef510;
   border-radius: 2px;
 }
 .progress-list::-webkit-scrollbar-thumb {
   width: 12px;
-  border: #0a8ca0;
-  background-color: #0a8ca02f;
+  /* border: #0a8ca0; */
+  background-color: #0a8ca010;
   border-radius: 2px;
 }
 .items {
@@ -58,8 +70,8 @@
   height: 5.2rem;
   margin: 3px;
   padding: 10px;
-  background-color: #a0e4f0;
-  color: #4c96a1;
+  background-color: #f3d4d4;
+  color: #cf7f91;
   font-weight: bold;
   border: none;
   border-radius: 3px;

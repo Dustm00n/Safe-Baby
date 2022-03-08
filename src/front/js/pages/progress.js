@@ -7,7 +7,6 @@ import { EtapasActividades } from "../component/etapas-actividades";
 // import { Doughnut } from 'react-chartjs-2';
 import "../../styles/progress.css";
 
-
 export const Progress = () => {
     // const { store, actions } = useContext(Context);
     // const params = useParams();
