@@ -2,6 +2,13 @@
   color: #5e8287;
 }
 .card-home {
+  border: #884747 solid 5px;
+  border-radius: 5px;
+  background-color: #f0e4e4;
+  margin: 20px;
+  font-size: 13px;
+}
+.card-videohome {
   border-radius: 5px;
   background-color: #f0e4e4;
   margin: 20px;
@@ -12,9 +19,13 @@
 }
 .parrafoA-home {
   text-align: justify;
-  height: 210px;
+  height: 220px;
   overflow: auto;
   display: block;
+}
+.img-fluid {
+  width: 700px;
+  height: 320px;
 }
 
 div.scrollmenu-home {
@@ -49,16 +60,62 @@ div.scrollmenu-home a:hover {
 
 .tabla-text-home {
   color: #904b5b;
+  font-size: 25px;
 }
 
-.nivel-riesgo {
+.nivel-riesgo h2 {
   width: 50px;
 }
+
 .lista-riesgo {
+  border: red 1px;
+  background-color: #f8f8f8;
+}
+
+.lista-riesgo span {
   display: flex;
   flex-wrap: wrap;
 }
-.items-riesgo {
+.items-riesgo span {
   width: 50px;
   display: inline-block;
+}
+
+.spinning-text-wrapper {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  background-color: #c8cac5;
+  border-radius: 50%;
+}
+
+.spinning-text-wrappe-yellow {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  background-color: #f0bd0a;
+  border-radius: 50%;
+}
+
+.spinning-text-wrapper-orange {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  background-color: #fb8417;
+  border-radius: 50%;
+}
+
+.spinning-text-wrapper-green {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  background-color: #62c15a;
+  border-radius: 50%;
+}
+.spinning-text-wrapper-red {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  background-color: #dd1f1f;
+  border-radius: 50%;
 }
