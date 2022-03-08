@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-import { Context } from "../store/appContext";
+// import { Link } from "react-router-dom";
+// import { Context } from "../store/appContext";
 import "../../styles/login.css";
 export const Login = () => {
-  const { store, actions } = useContext(Context);
+  // const { store, actions } = useContext(Context);
+  // const [username, setUsername] = ('');
+  // const [email, setEmail] = ('');
+  // const [password, setPassword] = ('');
 
   return (
     <>
