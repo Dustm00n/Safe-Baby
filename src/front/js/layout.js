@@ -25,37 +25,36 @@ const Layout = () => {
 		<div>
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar>
-						<Switch>
-							{/* <Route exact path="/" component={LandingPageIntro}>
-								<LandingPageIntro />
-							</Route> */}
-							<Route path="/home" component={Home}>
-								<Home />
-							</Route>
-							<Route path="/login" component={Login}>
-								<Login />
-							</Route>
-							<Route path="/signup" component={SignUp}>
-								<SignUp />
-							</Route>
-							<Route path="/startprogress" component={StartProgress}>
-								<StartProgress />
-							</Route>
-							<Route path="/progress" component={Progress}>
-								<Progress />
-							</Route>
-							<Route path="/foro" component={Foro}>
-								<Foro />
-							</Route>
-							<Route path="/citas" component={Citas}>
-								<Citas />
-							</Route>
-							<Route>
-								<h1>Not found!</h1>
-							</Route>
-						</Switch>
-					</Navbar>
+					<Navbar />
+					<Switch>
+						<Route exact path="/" component={Home}>
+							<Home />
+						</Route>
+						<Route exact path="/home" component={Home}>
+							<Home />
+						</Route>
+						<Route exact path="/login" component={Login}>
+							<Login />
+						</Route>
+						<Route exact path="/signup" component={SignUp}>
+							<SignUp />
+						</Route>
+						<Route exact path="/startprogress" component={StartProgress}>
+							<StartProgress />
+						</Route>
+						<Route exact path="/progress" component={Progress}>
+							<Progress />
+						</Route>
+						<Route exact path="/foro" component={Foro}>
+							<Foro />
+						</Route>
+						<Route path="/citas" component={Citas}>
+							<Citas />
+						</Route>
+						<Route>
+							<h1>Not found!</h1>
+						</Route>
+					</Switch>
 					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>
