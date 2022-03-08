@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import ReactPlayer from "react-player";
+// import propTypes from "prop-types";
 import { BiSearchAlt } from "react-icons/bi";
 import "../../styles/home.css";
 import imageUrl from "../../img/bebe-meses.jpeg"
@@ -9,6 +10,8 @@ import imagePasos from "../../img/bebe-9-meses.jpeg"
 import imageDesarollo from "../../img/desarrollo-bebe.jpeg"
 import imageJUegos from "../../img/juegos_didacticos.jpeg"
 import imageMeses from "../../img/mom-and-baby.jpeg"
+
+
 export const Home = () => {
   const { store, actions } = useContext(Context);
 
@@ -45,7 +48,6 @@ export const Home = () => {
               <div className="card-body-home">
                 <p className="parrafoA-home">Crear lazos afectivos y tranquilizar al bebé
                   La creación de lazos afectivos probablemente sea una de las partes más placenteras del cuidado de los bebés y se da en el momento de mayor sensibilidad durante las primeras horas y días posteriores al parto, cuando los padres establecen una profunda conexión con el bebé. La cercanía física puede fomentar la conexión emocional.
-
                   Para los bebés, el apego favorece el crecimiento emocional, lo cual afecta su desarrollo en otras áreas, como el crecimiento físico. Otra forma de crear lazos afectivos es "enamorarse" del bebé. Los niños se desarrollan bien cuando tienen un padre u otro adulto en su vida que los ama incondicionalmente.
 
                   Comience a crear lazos afectivos acunando a su bebé y acariciándolo suavemente. Tanto usted como su pareja pueden aprovechar la posibilidad de hacer contacto "piel a piel" mientras acunan o alimentan al bebé.
@@ -174,7 +176,7 @@ export const Home = () => {
       <div className="text-center">
         <h5 className="titulo-home">ESPACIO PARA TU BEBÉ</h5>
       </div>
-      <div className="card-home">
+      <div className="card-videohome">
         <h5 className="card-title-home">Educacion para tu bebé</h5>
         <div className="row">
           <div className="col md-4">
@@ -199,7 +201,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="card-home">
+      <div className="card-videohome">
         <h5 className="card-title-home">Entretenimiento para tu bebé</h5>
         <div className="row">
           <div className="col md-4">
@@ -228,7 +230,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="card-home">
+      <div className="card-videohome">
         <h5 className="card-title-home">Música para tu bebé</h5>
         <div className="row">
           <div className="col md-4">
@@ -257,10 +259,10 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="table-home">
+      <div className="table-home mt-5 mx-2">
         <div className="row">
           <div className="col-md-10">
-            <h5 className="titulo-home">Alimentos que puede consumir la mamá durante la etapa de lactancia y su nivel de riesgo</h5>
+            <h5 className="titulo-home ">Alimentos que puede consumir la mamá durante la etapa de lactancia y su nivel de riesgo</h5>
           </div>
           <div className="col-md-2">
             <div className="input-group mb-3">
@@ -272,56 +274,138 @@ export const Home = () => {
         </div>
       </div>
       <div className="tabla-home">
-        <div className="row">
-          <div className="col">
-            <ul className="lista-riesgo">
-              <li className="items-riesgo">
-                <h2 className="tabla-text-home">chocolate</h2>
-                <span className="nivel-riesgo">
-                  A
-                </span>
-                <span className="nivel-riesgo">
-                  B
-                </span>
-                <span className="nivel-riesgo">
-                  C
-                </span>
-                <span className="nivel-riesgo">
-                  D
-                </span>
-              </li>
-            </ul>
-          </div>
-
-
-          <div className="row">
-            <div className="col">
-              <h2 className="tabla-text-home">leche</h2>
+        <ul className="lista-riesgo">
+          <li className="row items-riesgo">
+            <h2 className="col-4 tabla-text-home">Chocolate</h2>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Nivel muy bajo</p>
             </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <h2 className="tabla-text-home">verduras</h2>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrappe-yellow">
+              </p><p className="text-center">Muy bajo</p>
             </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <h2 className="tabla-text-home">comida rapida</h2>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p></p>
+              <p className="text-justify">Nivel alto</p>
             </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <h2 className="tabla-text-home">bebidas</h2>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Nivel muy alto</p>
             </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <h2 className="tabla-text-home">Butóxido de Piperonilo</h2>
+          </li>
+        </ul>
+        <ul className="lista-riesgo">
+          <li className="row items-riesgo">
+            <h2 className="col-4 tabla-text-home">Leche</h2>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Nivel muy bajo</p>
             </div>
-          </div>
-        </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Muy bajo</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper-orange"></p>
+              <p className="">Nivel alto</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Nivel muy alto</p>
+            </div>
+          </li>
+        </ul>
+        <ul className="lista-riesgo">
+          <li className="row items-riesgo">
+            <h2 className="col-4 tabla-text-home">Verduras</h2>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper-green"></p>
+              <p className="">nivel muy bajo</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Muy bajo</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Nivel alto</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Nivel muy alto</p>
+            </div>
+          </li>
+        </ul>
+        <ul className="lista-riesgo">
+          <li className="row items-riesgo">
+            <h2 className="col-4 tabla-text-home">Comida rapida</h2>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">nivel muy bajo</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Muy bajo</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Nivel alto</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper-red"></p>
+              <p className="">Nivel muy alto</p>
+            </div>
+          </li>
+        </ul>
+        <ul className="lista-riesgo">
+          <li className="row items-riesgo">
+            <h2 className="col-4 tabla-text-home">Bebidas</h2>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Nivel muy bajo</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Muy bajo</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Nivel alto</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper-red"></p>
+              <p className="">Nivel muy alto</p>
+            </div>
+          </li>
+        </ul>
+        <ul className="lista-riesgo">
+          <li className="row items-riesgo">
+            <h2 className="col-4 tabla-text-home">Butóxido de Piperonilo</h2>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">nivel muy bajo</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrappe-yellow"></p>
+              <p className="">Muy bajo</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Nivel alto</p>
+            </div>
+            <div className="col-2 nivel-riesgo d-flex">
+              <p className="spinning-text-wrapper"></p>
+              <p className="">Nivel muy alto</p>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
+
+
+
 
 
 
