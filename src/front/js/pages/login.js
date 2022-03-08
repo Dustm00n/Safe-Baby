@@ -8,11 +8,11 @@ export const Login = () => {
   return (
     <>
       <div className="main-login">
-        <div className="form-container">
+        <div className="form-container-login">
           <h1 className="title-login">Log in</h1>
           <form>
             <div className="mb-3">
-              <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre de usuario" />
+              <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre de usuario" />
             </div>
             <div className="mb-3">
               <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />

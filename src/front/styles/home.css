@@ -51,14 +51,14 @@ div.scrollmenu-home a:hover {
   color: #904b5b;
 }
 
-.nivel-riesgo {
+.nivel-riesgo h2 {
   width: 50px;
 }
-.lista-riesgo {
+.lista-riesgo span {
   display: flex;
   flex-wrap: wrap;
 }
-.items-riesgo {
+.items-riesgo span {
   width: 50px;
   display: inline-block;
 }
