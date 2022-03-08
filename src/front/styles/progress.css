@@ -1,10 +1,23 @@
-/* .etapa-inicial {
-  padding: 0;
-} */
+.container-progress,
+.container-graphic {
+  height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  vertical-align: middle;
+}
+.card-progress {
+  border-radius: 5px;
+  background-color: #f0e4e4;
+}
 .progress-list {
-  width: 610px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
   height: 210px;
   padding: 0;
+  margin: 0;
   overflow: scroll;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -23,6 +36,9 @@
 }
 .items {
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 .item-button {
   text-align: justify;
