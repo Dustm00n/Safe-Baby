@@ -1,14 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "../../styles/progress.css";
-
 export const EtapasActividades = (props) => {
     return (
         <>
-            <div className="container-progress col-6 bg-secondary">
-                <div className="card-progress w-75">
-                    <div className="card-body m-0">
+            <div className="container-progress col-6 px-0">
+                <div className="card-progress w-80 my-5">
+                    <div className="card-body-progress">
                         <h1 className="title text-center mb-2">{props.titleStage}</h1>
                         <ul className="progress-list">
                             <li className="items">
