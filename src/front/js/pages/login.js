@@ -1,18 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-import { Context } from "../store/appContext";
+// import { Link } from "react-router-dom";
+// import { Context } from "../store/appContext";
 import "../../styles/login.css";
 export const Login = () => {
-  const { store, actions } = useContext(Context);
+  // const { store, actions } = useContext(Context);
+  // const [username, setUsername] = ('');
+  // const [email, setEmail] = ('');
+  // const [password, setPassword] = ('');
 
   return (
     <>
       <div className="main-login">
-        <div className="form-container">
+        <div className="form-container-login">
           <h1 className="title-login">Log in</h1>
           <form>
             <div className="mb-3">
-              <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre de usuario" />
+              <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre de usuario" />
             </div>
             <div className="mb-3">
               <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
