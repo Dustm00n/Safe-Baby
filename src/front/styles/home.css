@@ -61,6 +61,7 @@ div.scrollmenu-home a:hover {
 .tabla-text-home {
   color: #904b5b;
   font-size: 25px;
+  margin-top: 15px;
 }
 
 .nivel-riesgo h2 {
@@ -87,6 +88,7 @@ div.scrollmenu-home a:hover {
   position: relative;
   background-color: #c8cac5;
   border-radius: 50%;
+  top: 10px;
 }
 
 .spinning-text-wrappe-yellow {
@@ -95,6 +97,7 @@ div.scrollmenu-home a:hover {
   position: relative;
   background-color: #f0bd0a;
   border-radius: 50%;
+  top: 10px;
 }
 
 .spinning-text-wrapper-orange {
@@ -103,6 +106,7 @@ div.scrollmenu-home a:hover {
   position: relative;
   background-color: #fb8417;
   border-radius: 50%;
+  top: 10px;
 }
 
 .spinning-text-wrapper-green {
@@ -111,6 +115,7 @@ div.scrollmenu-home a:hover {
   position: relative;
   background-color: #62c15a;
   border-radius: 50%;
+  top: 10px;
 }
 .spinning-text-wrapper-red {
   width: 40px;
@@ -118,4 +123,11 @@ div.scrollmenu-home a:hover {
   position: relative;
   background-color: #dd1f1f;
   border-radius: 50%;
+  top: 10px;
+}
+
+.text-tabla-home {
+  margin-left: 2px;
+  position: relative;
+  top: 20px;
 }
