@@ -1,3 +1,7 @@
-.profile-img-foro2 {
-  background-color: red;
+.imagen-post {
+  position: absolute;
+  width: 209px;
+  height: 193px;
+  left: 12px;
+  top: 163px;
 }

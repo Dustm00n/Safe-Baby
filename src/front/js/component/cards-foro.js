@@ -27,7 +27,7 @@ const CardsForo = () => {
             <div className="card-body2-foro col-2">
               <img
                 src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                className="imagen"
+                className="imagen-cardforo"
                 alt="..."
               />
             </div>
@@ -56,7 +56,7 @@ const CardsForo = () => {
             <div className="card-body2-foro col-2">
               <img
                 src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                className="imagen"
+                className="imagen-cardforo "
                 alt="..."
               />
             </div>
@@ -85,7 +85,7 @@ const CardsForo = () => {
             <div className="card-body2-foro col-2">
               <img
                 src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                className="imagen"
+                className="imagen-cardforo"
                 alt="..."
               />
             </div>
@@ -114,7 +114,7 @@ const CardsForo = () => {
             <div className="card-body2-foro col-2">
               <img
                 src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                className="imagen"
+                className="imagen-cardoforo"
                 alt="..."
               />
             </div>

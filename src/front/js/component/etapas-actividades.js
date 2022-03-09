@@ -1,48 +1,46 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "../../styles/progress.css";
-
 export const EtapasActividades = (props) => {
     return (
         <>
-            <div className="container-progress col-6 bg-secondary">
-                <div className="card-progress w-75">
-                    <div className="card-body m-0">
+            <div className="container-progress col-6 px-0">
+                <div className="card-progress w-80 my-5">
+                    <div className="card-body-progress">
                         <h1 className="title text-center mb-2">{props.titleStage}</h1>
                         <ul className="progress-list">
                             <li className="items">
-                                <button className="item-button">{props.paragraphA}</button>
+                                <button className="item-button">{props.paragraphOne}</button>
                             </li>
                             <li className="items">
-                                <button className="item-button">{props.paragraphB}</button>
+                                <button className="item-button">{props.paragraphTwo}</button>
                             </li>
                             <li className="items">
-                                <button className="item-button">{props.paragraphC}</button>
+                                <button className="item-button">{props.paragraphThree}</button>
                             </li>
                             <li className="items">
-                                <button className="item-button">E{props.paragraphD}</button>
+                                <button className="item-button">{props.paragraphFour}</button>
                             </li>
                             <li className="items">
-                                <button className="item-button">{props.paragraphE}</button>
+                                <button className="item-button">{props.paragraphFive}</button>
                             </li>
                             <li className="items">
-                                <button className="item-button">{props.paragraphF}</button>
+                                <button className="item-button">{props.paragraphSix}</button>
                             </li>
                             <li className="items">
-                                <button className="item-button">{props.paragraphG}</button>
+                                <button className="item-button">{props.paragraphSeven}</button>
                             </li>
                             <li className="items">
-                                <button className="item-button">{props.paragraphH}</button>
+                                <button className="item-button">{props.paragraphEight}</button>
                             </li>
                             <li className="items">
-                                <button className="item-button">{props.paragraphI}</button>
+                                <button className="item-button">{props.paragraphNine}</button>
                             </li>
                             <li className="items">
-                                <button className="item-button">{props.paragraphJ}</button>
+                                <button className="item-button">{props.paragraphTen}</button>
                             </li>
                             <li className="items">
-                                <button className="item-button">{props.paragraphK}</button>
+                                <button className="item-button">{props.paragraphEleven}</button>
                             </li>
                         </ul>
                     </div>
@@ -55,16 +53,16 @@ export const EtapasActividades = (props) => {
 
 EtapasActividades.propTypes = {
     titleStage: PropTypes.string,
-    paragraphA: PropTypes.string,
-    paragraphB: PropTypes.string,
-    paragraphC: PropTypes.string,
-    paragraphD: PropTypes.string,
-    paragraphE: PropTypes.string,
-    paragraphF: PropTypes.string,
-    paragraphG: PropTypes.string,
-    paragraphH: PropTypes.string,
-    paragraphI: PropTypes.string,
-    paragraphJ: PropTypes.string,
-    paragraphK: PropTypes.string,
+    paragraphOne: PropTypes.string,
+    paragraphTwo: PropTypes.string,
+    paragraphThree: PropTypes.string,
+    paragraphFour: PropTypes.string,
+    paragraphFive: PropTypes.string,
+    paragraphSix: PropTypes.string,
+    paragraphSeven: PropTypes.string,
+    paragraphEight: PropTypes.string,
+    paragraphNine: PropTypes.string,
+    paragraphTen: PropTypes.string,
+    paragraphEleven: PropTypes.string,
 };
 
