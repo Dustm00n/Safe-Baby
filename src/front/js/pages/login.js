@@ -1,27 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
-// import { Link } from "react-router-dom";
-// import { Context } from "../store/appContext";
+import { Context } from "../store/appContext";
 import "../../styles/login.css";
 export const Login = () => {
-  // const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-  const [form, setForm] = useState({
+  const [loginform, setLoginForm] = useState({
     username: "",
     email: "",
     password: ""
   })
 
   const handleChange = (e, item) => {
-    let aux = form;
+    let aux = loginform;
     aux[item] = e.target.value;
-    setForm(aux);
-    console.log(form)
+    setLoginForm(aux);
+    console.log(loginform)
   }
+
   return (
     <>
       <div className="main-login">
         <div className="form-container-login">
-          <h1 className="title-login">Log in</h1>
+          <h1 className="title-login">Login</h1>
           <form>
             <div className="mb-3">
               <input
@@ -49,7 +49,7 @@ export const Login = () => {
                 placeholder="Password"
                 onChange={(e) => { handleChange(e, 'password') }} />
             </div>
-            <button type="submit" className="btn button-login d-grid gap-2 col-6 mx-auto">Log In</button>
+            <button type="submit" className="btn button-login d-grid gap-2 col-6 mx-auto">Login</button>
           </form>
         </div>
       </div>
