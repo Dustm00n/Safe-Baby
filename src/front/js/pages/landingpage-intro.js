@@ -12,7 +12,7 @@ export const LandingPageIntro = () => {
                 <div className="navbar-container-intro gap-4 d-flex justify-content-end">
                     <div className="button-link-login">
                         <Link to="/login">
-                            <button className="btn btn-navbar-intro">Log In</button>
+                            <button className="btn btn-navbar-intro">Login</button>
                         </Link>
                     </div>
                     <div className="button-link-signup">
