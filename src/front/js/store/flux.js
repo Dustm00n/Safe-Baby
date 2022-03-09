@@ -51,8 +51,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       signUp: (setRegisterForm) => {
         setStore({ register: setRegisterForm });
-        console.log("esta llegando");
-      },
+        // console.log("esta llegando");
+      }
       // register: (registerForm) => {
       //   setStore({ register: registerForm })
       // }
