@@ -46,16 +46,16 @@ const getState = ({ getStore, getActions, setStore }) => {
       //reset the global store
       // setStore({ demo: demo });
       // },
-      getLogin: (setLoginform) => {
+      login: (setLoginform) => {
         setStore({ authentication: setLoginform });
       },
-      getSignUp: (setRegisterForm) => {
+      signUp: (setRegisterForm) => {
         setStore({ register: setRegisterForm });
         console.log("esta llegando");
       },
-      register: (registerForm) => {
-        setStore({ register: registerForm })
-      }
+      // register: (registerForm) => {
+      //   setStore({ register: registerForm })
+      // }
     },
   };
 };
