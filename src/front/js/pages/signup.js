@@ -11,7 +11,8 @@ export const SignUp = () => {
         email: "",
         password: ""
     })
-    const [registerErrors, setRegisterErrors] = useState({})
+    const [registerErrors, setRegisterErrors] = useState({});
+
     const handleChange = (e, item) => {
         let aux = registerform;
         aux[item] = e.target.value;
@@ -21,8 +22,9 @@ export const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        actions.register(registerform);
+        actions.signUp(registerform);
         setRegisterErrors(handleValidate(registerform))
+        e.target.reset();
         console.log('store.register', store.register);
 
     }
