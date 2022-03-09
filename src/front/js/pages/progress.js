@@ -71,7 +71,6 @@ export const Progress = () => {
                 <div className="row">
                     <EtapasGraficoActividades />
                     <EtapasActividades
-
                         {...infoActividadesBebe.actividades1.map((item) => { return item })}
                     // titleStage="Etapa Inicial de 0 a 2 meses"
                     // paragraphA="El bebé puede levantar y voltear la cabeza cuando está acostado boca arriba."
@@ -85,6 +84,7 @@ export const Progress = () => {
                     // paragraphI="Reflejo de orientación y succión, voltea la cabeza en busca del pezón cuando se le toca la mejilla y comienza a chupar cuando el pezón toca los labios."
                     // paragraphJ="Reflejo de la marcha, da pasos rápidos cuando ambos pies se colocan sobre una superficie, con el cuerpo sostenido."
                     // paragraphK="Reflejo tónico del cuello, el brazo izquierdo se extiende cuando el bebé mira hacia la izquierda, mientras que el brazo y la pierna derecha se flexionan hacia adentro, y viceversa."
+
                     />
                 </div >
             </div>
@@ -110,12 +110,14 @@ export const Progress = () => {
                     // paragraphA="El bebé es capaz de sentarse solo, sin ayuda, inicialmente por poco tiempo y luego por 30 segundos o más."
                     // paragraphB="El bebé comienza a tomar bloques o cubos usando la técnica de agarre cubital palmar (presiona el bloque en la palma de la mano mientras flexiona o dobla la muñeca hacia adentro), pero todavía no usa el pulgar."
                     // paragraphC="El bebé gira desde la espalda hasta el estómago. Cuando está sobre el estómago, puede empujarse con los brazos para levantar los hombros y la cabeza y mirar alrededor o alcanzar objetos."
+
                     />
                 </div >
             </div>
             <div className="col">
                 <div className="row">
                     <EtapasActividades
+
                     // titleStage="Etapa 4 de 6 a 9 meses"
                     // paragraphA="El gateo puede comenzar."
                     // paragraphB="El bebé puede caminar sosteniéndose de la mano de un adulto."
