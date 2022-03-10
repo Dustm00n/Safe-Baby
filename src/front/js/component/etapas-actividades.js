@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 export const EtapasActividades = (props) => {
     return (
         <>
@@ -9,39 +8,39 @@ export const EtapasActividades = (props) => {
                     <div className="card-body-progress">
                         <h1 className="title text-center mb-2">{props.titleStage}</h1>
                         <ul className="progress-list">
-                            <li className="items">
+                            {props.paragraphOne === undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphOne}</button>
-                            </li>
-                            <li className="items">
+                            </li>}
+                            {props.paragraphTwo == undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphTwo}</button>
-                            </li>
-                            <li className="items">
+                            </li>}
+                            {props.paragraphThree == undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphThree}</button>
-                            </li>
-                            <li className="items">
+                            </li>}
+                            {props.paragraphFour == undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphFour}</button>
-                            </li>
-                            <li className="items">
+                            </li>}
+                            {props.paragraphFive == undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphFive}</button>
-                            </li>
-                            <li className="items">
+                            </li>}
+                            {props.paragraphSix == undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphSix}</button>
-                            </li>
-                            <li className="items">
+                            </li>}
+                            {props.paragraphSeven == undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphSeven}</button>
-                            </li>
-                            <li className="items">
+                            </li>}
+                            {props.paragraphEight == undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphEight}</button>
-                            </li>
-                            <li className="items">
+                            </li>}
+                            {props.paragraphNine == undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphNine}</button>
-                            </li>
-                            <li className="items">
+                            </li>}
+                            {props.paragraphTen == undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphTen}</button>
-                            </li>
-                            <li className="items">
+                            </li>}
+                            {props.paragraphEleven == undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphEleven}</button>
-                            </li>
+                            </li>}
                         </ul>
                     </div>
                 </div>
@@ -63,6 +62,6 @@ EtapasActividades.propTypes = {
     paragraphEight: PropTypes.string,
     paragraphNine: PropTypes.string,
     paragraphTen: PropTypes.string,
-    paragraphEleven: PropTypes.string,
+    paragraphEleven: PropTypes.string
 };
 

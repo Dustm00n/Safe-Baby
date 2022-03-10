@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Datatable } from '../pages/datatable';
 import "../../styles/datatable.css";
 
-require('es6-promise').polyfill();
-require('isomorphic-fetch');
+// require('es6-promise').polyfill();
+// require('isomorphic-fetch');
 
 export function IndexDatatable() {
     const [data, setData] = useState([]);
