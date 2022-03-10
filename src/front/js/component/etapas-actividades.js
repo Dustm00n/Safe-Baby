@@ -14,7 +14,7 @@ export const EtapasActividades = (props) => {
                             {props.paragraphTwo == undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphTwo}</button>
                             </li>}
-                            {props.paragraphOne == undefined ? '' : <li className="items">
+                            {props.paragraphThree == undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphThree}</button>
                             </li>}
                             {props.paragraphFour == undefined ? '' : <li className="items">
