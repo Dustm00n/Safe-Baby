@@ -221,8 +221,6 @@ export const Inicio = (props) => {
                             <p className="text-tabla-home">{props.tablaD}</p>
                         </div>
                     </li>
-                </ul>
-                <ul className="lista-riesgo">
                     <li className="row items-riesgo">
                         <h2 className="col-4 tabla-text-home">Leche</h2>
                         <div className="col-2 nivel-riesgo d-flex">
@@ -242,8 +240,6 @@ export const Inicio = (props) => {
                             <p className="text-tabla-home">{props.tablaD}</p>
                         </div>
                     </li>
-                </ul>
-                <ul className="lista-riesgo">
                     <li className="row items-riesgo">
                         <h2 className="col-4 tabla-text-home">Verduras</h2>
                         <div className="col-2 nivel-riesgo d-flex">
@@ -263,8 +259,6 @@ export const Inicio = (props) => {
                             <p className="text-tabla-home">{props.tablaD}</p>
                         </div>
                     </li>
-                </ul>
-                <ul className="lista-riesgo">
                     <li className="row items-riesgo">
                         <h2 className="col-4 tabla-text-home">Comida rapida</h2>
                         <div className="col-2 nivel-riesgo d-flex">
@@ -284,8 +278,6 @@ export const Inicio = (props) => {
                             <p className="text-tabla-home">{props.tablaD}</p>
                         </div>
                     </li>
-                </ul>
-                <ul className="lista-riesgo">
                     <li className="row items-riesgo">
                         <h2 className="col-4 tabla-text-home">Bebidas</h2>
                         <div className="col-2 nivel-riesgo d-flex">
@@ -305,8 +297,6 @@ export const Inicio = (props) => {
                             <p className="text-tabla-home">{props.tablaD}</p>
                         </div>
                     </li>
-                </ul>
-                <ul className="lista-riesgo">
                     <li className="row items-riesgo">
                         <h2 className="col-4 tabla-text-home">Butóxido de Piperonilo</h2>
                         <div className="col-2 nivel-riesgo d-flex">
@@ -327,13 +317,18 @@ export const Inicio = (props) => {
                         </div>
                     </li>
                 </ul>
+
+
+
+
+
             </div>
         </div>
 
     );
 }
 
-Inicio.PropTypes = {
+Inicio.propTypes = {
     tituloA: PropTypes.string,
     textA: PropTypes.string,
     parrafoA: PropTypes.string,
