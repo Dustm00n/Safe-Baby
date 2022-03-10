@@ -11,7 +11,7 @@ const CardsForo = () => {
           {/* row 2 */}
           <div className="row">
             <a
-              src="https://3000-dustm00n-safebaby-lo7nnlq919o.ws-us34xl.gitpod.io/Foro2"
+              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
               type="button"
               className="button-icon col-2"
             >
