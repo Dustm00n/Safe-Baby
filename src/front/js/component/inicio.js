@@ -333,7 +333,7 @@ export const Inicio = (props) => {
     );
 }
 
-Inicio.PropTypes = {
+Inicio.propTypes = {
     tituloA: PropTypes.string,
     textA: PropTypes.string,
     parrafoA: PropTypes.string,
