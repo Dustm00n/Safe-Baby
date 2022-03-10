@@ -73,7 +73,11 @@
     ]
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
     "chart.js": "^3.7.1",
+    "es6-promise": "^4.2.8",
+    "isomorphic-fetch": "^3.0.0",
+    "material-table": "^1.69.3",
     "prop-types": "^15.6.1",
     "react": "^16.8.4",
     "react-chartjs-2": "^4.0.1",

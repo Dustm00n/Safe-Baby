@@ -56,6 +56,9 @@ div.scrollmenu-home a:hover {
 .tabla-home {
   border: #884747 8px solid;
   border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .tabla-text-home {
@@ -69,14 +72,16 @@ div.scrollmenu-home a:hover {
 }
 
 .lista-riesgo {
-  border: red 1px;
   background-color: #f8f8f8;
+  width: 100%;
+  margin: 0;
 }
 
 .lista-riesgo span {
   display: flex;
   flex-wrap: wrap;
 }
+
 .items-riesgo span {
   width: 50px;
   display: inline-block;
