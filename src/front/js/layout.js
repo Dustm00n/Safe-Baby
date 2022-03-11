@@ -11,6 +11,7 @@ import { SignUp } from "./pages/signup";
 import { StartProgress } from "./pages/startprogress";
 import { Progress } from "./pages/progress";
 import { Citas } from "./pages/citas";
+import { Perfil } from "./pages/perfil";
 import { Foro } from "./pages/foro";
 import { Foro2 } from "./pages/foro2";
 import { Footer } from "./component/footer";
@@ -37,6 +38,7 @@ const Layout = () => {
 						<Route exact path="/foro" component={Foro} />
 						<Route exact path="/foro2" component={Foro2} />
 						<Route path="/citas" component={Citas} />
+						<Route path="/perfil" component={Perfil} />
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
