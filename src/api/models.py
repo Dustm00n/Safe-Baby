@@ -24,7 +24,7 @@ class User(db.Model):
             "email": self.email,
             "is_active":self.is_active,
             "roles_id":self.roles_id,
-            "profile":self.profile,
+            "profile":self.profile.serialize(),
             "role":self.role,
             "datos_babies":self.datos_babies
             # do not serialize the password, its a security breach
