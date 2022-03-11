@@ -3,51 +3,115 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class User(db.Model):
+    __tablename__= 'users'
     id = db.Column(db.Integer, primary_key=True)
+    user_name = db.Column(db.String(120), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    roles_id = db.Column(db.Integer(), db.ForeignKey('roles.id'), nullable=False)
+    profile = db.relationship("Profile", backref="user", uselist=False)
+    role = db.relationship("Role", uselist=False)
+    datos_babies = db.relationship("DatosBaby")
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.user_name
 
     def serialize(self):
         return {
             "id": self.id,
+            "user_name": self.user_name,
             "email": self.email,
+            "is_active":self.is_active,
+            "roles_id":self.roles_id,
+            "profile":self.profile,
+            "role":self.role,
+            "datos_babies":self.datos_babies
             # do not serialize the password, its a security breach
         }
 
+    #definiendo comandos para guardar actualizar y eliminar desde models y usarlo en mis endpoints como ejemplo: user.save()
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def updade(self):
+        db.session.commit(self)
+    
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
 class Role(db.Model):
-    __tablename__: 'user'
+    __tablename__= 'roles'
     id = db.Column(db.Integer, primary_key=True)
-    mama_papa = db.Column(db.String(120), unique=True, nullable=False)
-    niñera_niñero = db.Column(db.String(120), unique=True, nullable=False)
-    user_id - db.Column(db.Integer, db.foreginkey('use.id', nullable=False))
+    name = db.Column(db.String(120), nullable=False)
 
     def __repr__(self):
-        return '<Role %r>' % self.username
+        return '<Role %r>' % self.name
 
     def serialize(self):
         return {
             "id": self.id,
-            "mama_papa": self.mama_papa,
-            "niñera_niñero": self.niñera_niñero
+            "name": self.name
         }
 
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def updade(self):
+        db.session.commit(self)
+    
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+class Profile(db.Model):
+    __tablename__= 'profile'
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(120), nullable=False)
+    apellido = db.Column(db.String(120), nullable=False)
+    avatar = db.Column(db.String(200), nullable=False)
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+
+    def __repr__(self):
+        return '<Profile %r>' % self.nombre
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+            "apellido": self.apellido,
+            "avatar": self.avatar,
+            "users_id": self.users_id
+        }
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def updade(self):
+        db.session.commit(self)
+    
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
 class DatosBaby(db.Model):
-    __tablename__: 'datos_baby'
+    __tablename__= 'datos_baby'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), nullable=False)
     apellido = db.Column(db.String(120), nullable=False)
     edad = db.Column(db.String(120), nullable=False)
-    genero = db.Column(db.Integer(50), nullable=False)
+    genero = db.Column(db.String(120), nullable=False)
     estatura = db.Column(db.String(50), nullable=False)
-    user_id = db.Column(db.Integer, db.foreginkey('use.id', nullable=False))
-    user = db.relationship(User)
-
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    datos_actividades= db.relationship("Actividades", secondary="logros_bebes")
+    user = db.relationship("User")
+    
     def __repr__(self):
-        return '<DatosBaby %r>' % self.username
+        return '<DatosBaby %r>' % self.nombre
 
     def serialize(self):
         return {
@@ -58,216 +122,103 @@ class DatosBaby(db.Model):
             "genero": self.genero,
             "estatura": self.estatura,
             "user_id": self.user_id,
-            "user": self.user
+            "datos_actividades": self.datos_actividades
         }
 
-class Etapa1(db.Model):
-    __tablename__: 'etapa1'
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def updade(self):
+        db.session.commit(self)
+    
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+class Actividades(db.Model):
+    __tablename__= 'actividades'
     id = db.Column(db.Integer, primary_key=True)
-    actividades = db.Column(db.String(200), nullable=False)
-    datos_baby_id = db.Column(db.Integer, db.foreginkey('datosBaby.id', nullable=False))
-    datos_baby = db.relationship(DatosBaby)
+    etapas = db.Column(db.Integer, nullable=False)
+    descripcion = db.Column(db.String(300), nullable=False)
+    datos_babies = db.relationship("DatosBaby", secondary="logros_bebes")
 
     def __repr__(self):
-        return '<Etapa1 %r>' % self.username
+        return '<Actividades %r>' % self.id
 
     def serialize(self):
         return {
             "id": self.id,
+            "etapas": self.etapas,
+            "descripcion": self.descripcion,
+            "datos_babies": self.datos_babies
+        }
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def updade(self):
+        db.session.commit(self)
+    
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+class LogrosBebes(db.Model):
+    __tablename__= 'logros_bebes'    
+    actividades_id = db.Column(db.Integer, db.ForeignKey('actividades.id'), nullable=False, primary_key=True)
+    datos_baby_id = db.Column(db.Integer, db.ForeignKey('datos_baby.id'), nullable=False, primary_key=True)
+    actividades = db.relationship("Actividades")
+    datos_babies = db.relationship("DatosBaby")
+
+    def __repr__(self):
+        return '<LogrosBebe %r>' % self.actividades_id
+
+    def serialize(self):
+        return {
+            "actividades_id": self.actividades_id,
             "actividades": self.actividades,
             "datos_baby_id": self.datos_baby_id,
-            "datos_baby": self.datos_baby
+            "datos_babies": self.datos_babies
         }
 
-class Etapa2(db.Model):
-    __tablename__: 'etapa2'
-    id = db.Column(db.Integer, primary_key=True)
-    actividades = db.Column(db.String(200))
-    datos_baby_id = db.Column(db.Integer, db.foreginkey('datosBaby.id', nullable=False))
-    datos_baby = db.relationship(DatosBaby)
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
 
+    def updade(self):
+        db.session.commit(self)
+    
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+class Etapas(db.Model):
+    __tablename__= 'etapa'    
+    actividades_id = db.Column(db.Integer, db.ForeignKey('actividades.id'), nullable=False, primary_key=True)
+    datos_baby_id = db.Column(db.Integer, db.ForeignKey('datos_baby.id'), nullable=False, primary_key=True)
+    actividades = db.relationship("Actividades")
+    datos_babies = db.relationship("DatosBaby")
 
     def __repr__(self):
-        return '<Etapa2 %r>' % self.username
+        return '<Etapas %r>' % self.actividades_id
 
     def serialize(self):
         return {
-            "id": self.id,
+            "actividades_id": self.actividades_id,
             "actividades": self.actividades,
             "datos_baby_id": self.datos_baby_id,
-            "datos_baby": self.datos_baby
+            "datos_babies": self.datos_babies
         }
 
-class Etapa3(db.Model):
-    __tablename__: 'etapa3'
-    id = db.Column(db.Integer, primary_key=True)
-    actividades = db.Column(db.String(200))
-    datos_baby_id = db.Column(db.Integer, db.foreginkey('datosBaby.id', nullable=False))
-    datos_baby = db.relationship(DatosBaby)
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
 
-
-    def __repr__(self):
-        return '<Etapa3 %r>' % self.username
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "actividades": self.actividades,
-            "datos_baby_id": self.datos_baby_id,
-            "datos_baby": self.datos_baby
-        }
-
-class Etapa4(db.Model):
-    __tablename__: 'etapa4'
-    id = db.Column(db.Integer, primary_key=True)
-    actividades = db.Column(db.String(200))
-    datos_baby_id = db.Column(db.Integer, db.foreginkey('datosBaby.id', nullable=False))
-    datos_baby = db.relationship(DatosBaby)
-
-    def __repr__(self):
-        return '<Etapa4 %r>' % self.username
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "actividades": self.actividades,
-            "datos_baby_id": self.datos_baby_id,
-            "datos_baby": self.datos_baby
-        }
-
-class Etapa5(db.Model):
-    __tablename__: 'etapa5'
-    id = db.Column(db.Integer, primary_key=True)
-    actividades = db.Column(db.String(200))
-    datos_baby_id = db.Column(db.Integer, db.foreginkey('datosBaby.id', nullable=False))
-    datos_baby = db.relationship(DatosBaby)
-
-    def __repr__(self):
-        return '<Etapa5 %r>' % self.username
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "actividades": self.actividades,
-            "datos_baby_id": self.datos_baby_id,
-            "datos_baby": self.datos_baby
-        }
-
-class grafico1(db.Model):
-    __tablename__: 'grafico1'
-    id = db.Column(db.Integer, primary_key=True)
-    etapa_1_id = db.Column(db.Integer, db.foreginkey('etapa1.id', nullable=False))
-    etapa1 = db.relationship(Etapa1)
-    def __repr__(self):
-        return '<grafico1 %r>' % self.username
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "etapa_1_id": self.etapa_1_id,
-            "etapa1": self.etapa1
-        }
-
-class grafico2(db.Model):
-    __tablename__: 'grafico2'
-    id = db.Column(db.Integer, primary_key=True)
-    etapa_1_id = db.Column(db.Integer, db.foreginkey('etapa1.id', nullable=False))
-    etapa1 = db.relationship(Etapa1)
-    etapa_2_id = db.Column(db.Integer, db.foreginkey('etapa2.id', nullable=False))
-    etapa2 = db.relationship(Etapa2)
-
-    def __repr__(self):
-        return '<grafico2 %r>' % self.username
-
-    def serialize(self):
-        return {
-             "id": self.id,
-            "etapa_1_id": self.etapa_1_id,
-            "etapa1": self.etapa1,
-            "etapa_2_id": self.etapa_2_id,
-            "etapa2": self.etapa2
-        }
-
-class grafico3(db.Model):
-    __tablename__: 'grafico3'
-    id = db.Column(db.Integer, primary_key=True)
-    etapa_1_id = db.Column(db.Integer, db.foreginkey('etapa1.id', nullable=False))
-    etapa1 = db.relationship(Etapa1)
-    etapa_2_id = db.Column(db.Integer, db.foreginkey('etapa2.id', nullable=False))
-    etapa2 = db.relationship(Etapa2)
-    etapa_3_id = db.Column(db.Integer, db.foreginkey('etapa3.id', nullable=False))
-    etapa3 = db.relationship(Etapa3)
-
-    def __repr__(self):
-        return '<grafico3 %r>' % self.username
-
-    def serialize(self):
-        return {
-             "id": self.id,
-            "etapa_1_id": self.etapa_1_id,
-            "etapa1": self.etapa1,
-            "etapa_2_id": self.etapa_2_id,
-            "etapa2": self.etapa2,
-            "etapa_3_id": self.etapa_3_id,
-            "etapa3": self.etapa3
-        }
-
-class grafico4(db.Model):
-    __tablename__: 'grafico4'
-    id = db.Column(db.Integer, primary_key=True)
-    etapa_1_id = db.Column(db.Integer, db.foreginkey('etapa1.id', nullable=False))
-    etapa1 = db.relationship(Etapa1)
-    etapa_2_id = db.Column(db.Integer, db.foreginkey('etapa2.id', nullable=False))
-    etapa2 = db.relationship(Etapa2)
-    etapa_3_id = db.Column(db.Integer, db.foreginkey('etapa3.id', nullable=False))
-    etapa3 = db.relationship(Etapa3)
-    etapa_4_id = db.Column(db.Integer, db.foreginkey('etapa4.id', nullable=False))
-    etapa4 = db.relationship(Etapa4)
-
-    def __repr__(self):
-        return '<grafico4 %r>' % self.username
-
-    def serialize(self):
-        return {
-             "id": self.id,
-            "etapa_1_id": self.etapa_1_id,
-            "etapa1": self.etapa1,
-            "etapa_2_id": self.etapa_2_id,
-            "etapa2": self.etapa2,
-            "etapa_3_id": self.etapa_3_id,
-            "etapa3": self.etapa3,
-            "etapa_4_id": self.etapa_4_id,
-            "etapa4": self.etapa4
-        }
-
-class grafico5(db.Model):
-    __tablename__: 'grafico5'
-    id = db.Column(db.Integer, primary_key=True)
-    etapa_1_id = db.Column(db.Integer, db.foreginkey('etapa1.id', nullable=False))
-    etapa1 = db.relationship(Etapa1)
-    etapa_2_id = db.Column(db.Integer, db.foreginkey('etapa2.id', nullable=False))
-    etapa2 = db.relationship(Etapa2)
-    etapa_3_id = db.Column(db.Integer, db.foreginkey('etapa3.id', nullable=False))
-    etapa3 = db.relationship(Etapa3)
-    etapa_4_id = db.Column(db.Integer, db.foreginkey('etapa4.id', nullable=False))
-    etapa4 = db.relationship(Etapa4)
-    etapa_5_id = db.Column(db.Integer, db.foreginkey('etapa5.id', nullable=False))
-    etapa5 = db.relationship(Etapa5)
-
-    def __repr__(self):
-        return '<grafico5 %r>' % self.username
-
-    def serialize(self):
-        return {
-            " "id": self.id,
-            "etapa_1_id": self.etapa_1_id,
-            "etapa1": self.etapa1,
-            "etapa_2_id": self.etapa_2_id,
-            "etapa2": self.etapa2,
-            "etapa_3_id": self.etapa_3_id,
-            "etapa3": self.etapa3,
-            "etapa_4_id": self.etapa_4_id,
-            "etapa4": self.etapa4,
-            "etapa_5_id": self.etapa_5_id,
-            "etapa5": self.etapa5
-        }
+    def updade(self):
+        db.session.commit(self)
+    
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()

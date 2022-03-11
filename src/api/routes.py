@@ -8,11 +8,35 @@ from api.utils import generate_sitemap, APIException
 api = Blueprint('api', __name__)
 
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
+# @api.route('/login', methods=['GET'])
+# def login():
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+#     # user = User()
+#     # user_email = User.query.get('email')
+#     # if user.email == user_request:
+        
 
-    return jsonify(response_body), 200
+
+#     # if user is not None:
+#     response_body = {
+#         "message": "Usuario no encontrado"
+#     }
+#     return jsonify(response_body), 404
+
+
+@api.route('/signup', methods=['POST'])
+def signup():
+
+    user = User()
+    
+    user.user_name = request.json.get('user_name')
+    user.email = request.json.get('email')
+    user.is_active = request.json.get('is_active')
+    user.roles_id = request.json.get('roles_id')
+    user.profile = request.json.get('profile')
+    user.role = request.json.get('role')
+    user.datos_babies = request.json.get('datos_babies')
+
+    user.save()
+
+    return jsonify(user.serialize()), 201
