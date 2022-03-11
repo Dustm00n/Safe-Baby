@@ -1,9 +1,10 @@
 import React from "react";
+import Perfil from "../component/perfil";
 
-export const Perfil = () => {
+export const Profile = () => {
     return (
         <>
-            <h1>Hola mundo</h1>
+            <Perfil />
         </>
     )
 }
