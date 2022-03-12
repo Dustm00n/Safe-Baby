@@ -5,24 +5,22 @@ db = SQLAlchemy()
 class User(db.Model):
     __tablename__= 'users'
     id = db.Column(db.Integer, primary_key=True)
-    user_name = db.Column(db.String(120), unique=False, nullable=False)
+    name = db.Column(db.String(200))
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
     roles_id = db.Column(db.Integer(), db.ForeignKey('roles.id'), nullable=False)
     profile = db.relationship("Profile", backref="user", uselist=False)
     role = db.relationship("Role", uselist=False)
     datos_babies = db.relationship("DatosBaby")
 
     def __repr__(self):
-        return '<User %r>' % self.user_name
+        return '<User %r>' % self.name
 
     def serialize(self):
         return {
             "id": self.id,
-            "user_name": self.user_name,
+            "name": self.name,
             "email": self.email,
-            "is_active":self.is_active,
             "roles_id":self.roles_id,
             "profile":self.profile.serialize(),
             "role":self.role,
