@@ -8,17 +8,21 @@ export const EtapasGraficoActividades = () => {
 
     const data = {
         labels: [
-            'Red',
-            'Blue',
-            'Yellow'
+            'Etapa 1',
+            'Etapa 2',
+            'Etapa 3',
+            'Etapa 4',
+            'Etapa 5'
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [300, 50, 100],
+            data: [300, 50, 100, 20, 10,],
             backgroundColor: [
                 'rgb(207, 73, 73)',
                 'rgb(70, 173, 191)',
-                'rgb(240, 190, 190)'
+                'rgb(255, 152, 60)',
+                'rgb(163, 163, 255)',
+                'rgb(255, 155, 155)'
             ],
             hoverOffset: 5
         }],
@@ -37,3 +41,21 @@ export const EtapasGraficoActividades = () => {
     );
 
 };
+
+// const data = {
+//     labels: [
+//         'Red',
+//         // 'Blue',
+//         // 'Yellow'
+//     ],
+//     datasets: [{
+//         label: 'My First Dataset',
+//         data: [300, 50, 100],
+//         backgroundColor: [
+//             'rgb(207, 73, 73)',
+//             // 'rgb(70, 173, 191)',
+//             // 'rgb(240, 190, 190)'
+//         ],
+//         hoverOffset: 5
+//     }],
+// };
