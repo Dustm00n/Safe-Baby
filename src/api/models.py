@@ -5,21 +5,19 @@ db = SQLAlchemy()
 class User(db.Model):
     __tablename__= 'users'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200))
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
-    roles_id = db.Column(db.Integer(), db.ForeignKey('roles.id'), nullable=False)
+    roles_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
     profile = db.relationship("Profile", backref="user", uselist=False)
-    role = db.relationship("Role", uselist=False)
+    role = db.relationship("Rol", uselist=False)
     datos_babies = db.relationship("DatosBaby")
 
     def __repr__(self):
-        return '<User %r>' % self.name
+        return '<User %r>' % self.email
 
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.name,
             "email": self.email,
             "roles_id":self.roles_id,
             "profile":self.profile.serialize(),
@@ -40,18 +38,18 @@ class User(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-class Role(db.Model):
+class Rol(db.Model):
     __tablename__= 'roles'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120), nullable=False)
+    rol_name = db.Column(db.String(120), nullable=False)
 
     def __repr__(self):
-        return '<Role %r>' % self.name
+        return '<Rol %r>' % self.rol_name
 
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.name
+            "rol_name": self.rol_name
         }
 
     def save(self):
@@ -66,7 +64,7 @@ class Role(db.Model):
         db.session.commit()
 
 class Profile(db.Model):
-    __tablename__= 'profile'
+    __tablename__= 'profiles'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), nullable=False)
     apellido = db.Column(db.String(120), nullable=False)
@@ -105,7 +103,7 @@ class DatosBaby(db.Model):
     genero = db.Column(db.String(120), nullable=False)
     estatura = db.Column(db.String(50), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    datos_actividades= db.relationship("Actividades", secondary="logros_bebes")
+    datos_actividades= db.relationship("Actividad", secondary="logros_bebes")
     user = db.relationship("User")
     
     def __repr__(self):
@@ -134,7 +132,7 @@ class DatosBaby(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-class Actividades(db.Model):
+class Actividad(db.Model):
     __tablename__= 'actividades'
     id = db.Column(db.Integer, primary_key=True)
     etapas = db.Column(db.Integer, nullable=False)
@@ -142,7 +140,7 @@ class Actividades(db.Model):
     datos_babies = db.relationship("DatosBaby", secondary="logros_bebes")
 
     def __repr__(self):
-        return '<Actividades %r>' % self.id
+        return '<Actividad %r>' % self.id
 
     def serialize(self):
         return {
@@ -163,15 +161,15 @@ class Actividades(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-class LogrosBebes(db.Model):
+class LogroBebe(db.Model):
     __tablename__= 'logros_bebes'    
     actividades_id = db.Column(db.Integer, db.ForeignKey('actividades.id'), nullable=False, primary_key=True)
     datos_baby_id = db.Column(db.Integer, db.ForeignKey('datos_baby.id'), nullable=False, primary_key=True)
-    actividades = db.relationship("Actividades")
+    actividades = db.relationship("Actividad")
     datos_babies = db.relationship("DatosBaby")
 
     def __repr__(self):
-        return '<LogrosBebe %r>' % self.actividades_id
+        return '<LogroBebe %r>' % self.actividades_id
 
     def serialize(self):
         return {
@@ -192,15 +190,15 @@ class LogrosBebes(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-class Etapas(db.Model):
-    __tablename__= 'etapa'    
+class Etapa(db.Model):
+    __tablename__= 'etapas'    
     actividades_id = db.Column(db.Integer, db.ForeignKey('actividades.id'), nullable=False, primary_key=True)
     datos_baby_id = db.Column(db.Integer, db.ForeignKey('datos_baby.id'), nullable=False, primary_key=True)
-    actividades = db.relationship("Actividades")
+    actividades = db.relationship("Actividad")
     datos_babies = db.relationship("DatosBaby")
 
     def __repr__(self):
-        return '<Etapas %r>' % self.actividades_id
+        return '<Etapa %r>' % self.actividades_id
 
     def serialize(self):
         return {
