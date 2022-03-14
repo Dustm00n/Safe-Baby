@@ -9,7 +9,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 api = Blueprint('api', __name__)
 
-
 @api.route('/users', methods=['GET','POST'])
 @api.route('/users/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def users():
@@ -21,49 +20,60 @@ def users():
     if request.method == 'POST':
         email = request.json.get('email')
         password = request.json.get('password')
-        # roles_id = request.json.get('roles_id')
-
-        if not email: return jsonify({"msg": "Email del usuario es requerido!"}), 400
-        if not password: return jsonify({"msg": "Password es requerido!"}), 400
-
-        user = User()
-        user.email = email
-        user.password = generate_password_hash(password)
-        # user.roles_id = roles_id
-        user.save()
-
-        # rol = Rol()
-        # rol.rol_name = rol_name
-        # rol.save()
-        
-        if user: return jsonify({"status": "Exitoso", "user": user.serialize(),}), 201
-
-
-@api.route('/signups', methods=['GET','POST'])
-def signup():
-    if request.method == 'GET':
-        all_users = User.query.all()
-        all_users = list(map(lambda x: x.serialize(), all_users))
-        return jsonify(all_users)
-
-    if request.method == 'POST':
-        email = request.json.get('email')
-        password = request.json.get('password')
         roles_id = request.json.get('roles_id')
+        nombre = request.json.get('nombre')
+        apellido = request.json.get('apellido')
+        avatar = request.json.get('avatar')
 
         if not email: return jsonify({"msg": "Email del usuario es requerido!"}), 400
         if not password: return jsonify({"msg": "Password es requerido!"}), 400
-
+        if not nombre: return jsonify({"msg": "nombre es requerido!"}), 400
+        if not apellido: return jsonify({"msg": "apellido es requerido!"}), 400
+        
         user = User()
         user.email = email
         user.password = generate_password_hash(password)
         user.roles_id = roles_id
         user.save()
 
-        rol = Rol()
-        rol.rol_name = rol_name
-        rol.save()
+        profile = Profile()
+        profile.nombre = nombre
+        profile.apellido = apellido
+        profile.avatar = avatar
+        profile.users_id = user.id
+        profile.save()
+
+        if user: return jsonify({"status": "Exitoso", "user": user.serialize(),}), 201
+
+
+@api.route('/signups', methods=['GET','POST'])
+def signup():
+    
+    if request.method == 'POST':
+        email = request.json.get('email')
+        password = request.json.get('password')
+        roles_id = request.json.get('roles_id')
+        nombre = request.json.get('nombre')
+        apellido = request.json.get('apellido')
+        avatar = request.json.get('avatar')
+
+        if not email: return jsonify({"msg": "Email del usuario es requerido!"}), 400
+        if not password: return jsonify({"msg": "Password es requerido!"}), 400
+        if not nombre: return jsonify({"msg": "nombre es requerido!"}), 400
+        if not apellido: return jsonify({"msg": "apellido es requerido!"}), 400
         
+        user = User()
+        user.email = email
+        user.password = generate_password_hash(password)
+        user.save()
+
+        profile = Profile()
+        profile.nombre = nombre
+        profile.apellido = apellido
+        profile.avatar = avatar
+        profile.users_id = user.id
+        profile.save()
+
         if user: return jsonify({"status": "Exitoso", "user": user.serialize(),}), 201
     
     return jsonify({"status": "fallido", "user": {}}), 400
