@@ -1,0 +1,150 @@
+/* .chat-container {
+  background: #f3f3f3;
+}
+
+input {
+  border: 1px solid var(--violet-9);
+  border-radius: var(--size-2);
+  padding: var(--size-2);
+  margin: var(--size-3) 0;
+  width: 100%;
+}
+
+.chat-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+.sidebar {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chat {
+  width: 100%;
+  height: calc(100vh - 5rem);
+  padding: var(--size-1);
+  position: relative;
+  overflow-y: scroll;
+}
+
+.user-chat {
+  background-color: #a47575;
+  border-radius: 0.5rem;
+  min-height: 2rem;
+  width: 100% - 3rem;
+  margin: 8px 0 0 24px;
+  padding: var(--size-1);
+  text-align: right;
+}
+.sender-chat {
+  color: #a47575;
+  border-radius: 0.5rem;
+  min-height: 2rem;
+  width: calc(100% - 3rem);
+  margin: 8px 24px 0 0;
+  padding: var(--size-1);
+  border: 1px solid #a47575;
+  background-color: #c4c4c4;
+}
+
+.chat-container {
+  width: var(--container);
+  margin: var(--center);
+  height: 3rem;
+}
+.chat-input-container {
+  display: flex;
+  align-items: center;
+}
+.chat-input {
+  width: 80%;
+}
+
+.chat-send {
+  width: 20%;
+}
+*/
+
+.tittle-chat {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #c4c4c4;
+  color: #a47575;
+  margin: 20px;
+}
+
+.joinChatContainer {
+  background-image: url("https://i.pinimg.com/originals/9b/6c/55/9b6c55403594f530a08d74380977bbda.jpg");
+  height: 520px;
+  width: 100%;
+}
+
+.text-muted {
+  color: #8c8c8c;
+  margin-bottom: 65px;
+}
+
+.card-body-chat {
+  margin: 50px;
+}
+
+.card-text {
+  margin: 0;
+}
+
+.card-title-chat {
+  color: #8dc1c9;
+}
+
+.card-body1-foro {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 35px;
+  margin-left: 25px;
+  margin-bottom: 35px;
+  line-height: 20px;
+  font-size: medium;
+}
+
+.card-body2-foro {
+  margin-top: 35px;
+  margin-left: 25px;
+  margin-bottom: 35px;
+}
+
+.card-body3-foro {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 35px;
+  margin-right: 60px;
+  margin-bottom: 35px;
+  line-height: 10px;
+}
+
+.button-icon {
+  margin-top: 35px;
+  margin-left: 25px;
+  margin-bottom: 35px;
+  width: 147px;
+  height: 118px;
+  left: 55px;
+  top: 305px;
+  border: none;
+  color: #c46f82;
+}
+
+.button-icon:hover {
+  color: #8dc1c9;
+}
+
+.button-icon:active {
+  color: #8dc1c9;
+}
+
+.card-main-foro {
+  max-width: 540px;
+  margin-top: 15px;
+}
