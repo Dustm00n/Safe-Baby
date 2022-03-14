@@ -28,7 +28,6 @@ def users():
         all_users = User.query.all()
         all_users = list(map(lambda x: x.serialize(), all_users))
         return jsonify(all_users)
-    
 
     if request.method == 'POST':
 
