@@ -23,9 +23,9 @@ export const SignUp = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         actions.signUp(registerform);
-        setRegisterErrors(handleValidate(registerform))
+        setRegisterErrors(handleValidate(registerform));
         e.target.reset();
-        console.log('store.register', store.register);
+        // console.log('store.register', store.register);
 
     }
 
@@ -34,22 +34,17 @@ export const SignUp = () => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         if (!values.nombre) {
             errors.nombre = "Nombre es requerido!";
-            console.log(errors.nombre)
         }
         if (!values.apellido) {
             errors.apellido = "Apellido es requerido!";
-            console.log(errors.apellido)
         }
         if (!values.email) {
             errors.email = "Email es requerido!";
-            console.log(errors.email)
         } else if (!regex.test(values.email)) {
             errors.email = "Tu correo no es valido!";
-            console.log(errors.email)
         }
         if (!values.password) {
             errors.password = "Password es requerido!";
-            console.log(errors.password)
         }
         return errors;
     }

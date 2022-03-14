@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Inicio } from "../component/inicio.js";
+import { Inicio } from "../component/inicio";
 import "../../styles/home.css";
-
 
 
 export const Home = () => {
@@ -96,6 +95,7 @@ export const Home = () => {
             tablaC="Nivel alto"
             tablaD="Nivel muy alto"
           />
+
         </div>
       </div>
     </>

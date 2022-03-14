@@ -190,13 +190,14 @@ export const Inicio = (props) => {
                     <div className="col-md-10">
                         <h5 className="titulo-home ">{props.tituloC}</h5>
                     </div>
-                    <div className="col-md-2">
+                    {/* buscador de alimentos en la tabla, en construccion  */}
+                    {/*  <div className="col-md-2">
                         <div className="input-group mb-3">
                             <span className="input-group-text" id="basic-addon1">
                                 <BiSearchAlt /></span>
                             <input type="text" className="form-control" placeholder="Busqueda" aria-label="Busqueda" aria-describedby="basic-addon1" />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="tabla-home">
@@ -221,8 +222,6 @@ export const Inicio = (props) => {
                             <p className="text-tabla-home">{props.tablaD}</p>
                         </div>
                     </li>
-                </ul>
-                <ul className="lista-riesgo">
                     <li className="row items-riesgo">
                         <h2 className="col-4 tabla-text-home">Leche</h2>
                         <div className="col-2 nivel-riesgo d-flex">
@@ -242,8 +241,6 @@ export const Inicio = (props) => {
                             <p className="text-tabla-home">{props.tablaD}</p>
                         </div>
                     </li>
-                </ul>
-                <ul className="lista-riesgo">
                     <li className="row items-riesgo">
                         <h2 className="col-4 tabla-text-home">Verduras</h2>
                         <div className="col-2 nivel-riesgo d-flex">
@@ -263,8 +260,6 @@ export const Inicio = (props) => {
                             <p className="text-tabla-home">{props.tablaD}</p>
                         </div>
                     </li>
-                </ul>
-                <ul className="lista-riesgo">
                     <li className="row items-riesgo">
                         <h2 className="col-4 tabla-text-home">Comida rapida</h2>
                         <div className="col-2 nivel-riesgo d-flex">
@@ -284,8 +279,6 @@ export const Inicio = (props) => {
                             <p className="text-tabla-home">{props.tablaD}</p>
                         </div>
                     </li>
-                </ul>
-                <ul className="lista-riesgo">
                     <li className="row items-riesgo">
                         <h2 className="col-4 tabla-text-home">Bebidas</h2>
                         <div className="col-2 nivel-riesgo d-flex">
@@ -305,8 +298,6 @@ export const Inicio = (props) => {
                             <p className="text-tabla-home">{props.tablaD}</p>
                         </div>
                     </li>
-                </ul>
-                <ul className="lista-riesgo">
                     <li className="row items-riesgo">
                         <h2 className="col-4 tabla-text-home">Butóxido de Piperonilo</h2>
                         <div className="col-2 nivel-riesgo d-flex">
@@ -327,13 +318,18 @@ export const Inicio = (props) => {
                         </div>
                     </li>
                 </ul>
+
+
+
+
+
             </div>
         </div>
 
     );
 }
 
-Inicio.PropTypes = {
+Inicio.propTypes = {
     tituloA: PropTypes.string,
     textA: PropTypes.string,
     parrafoA: PropTypes.string,

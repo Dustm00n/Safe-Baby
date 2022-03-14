@@ -18,7 +18,7 @@ export const Login = () => {
     let aux = loginform;
     aux[item] = e.target.value;
     setLoginForm(aux);
-    console.log(loginform)
+    // console.log(loginform)
   }
 
   const handleSubmit = (e) => {
@@ -26,7 +26,7 @@ export const Login = () => {
     actions.login(loginform);
     setLoginErrors(handleValidate(loginform))
     e.target.reset();
-    console.log('store.authentication', store.authentication);
+    // console.log('store.authentication', store.authentication);
 
   }
   const handleValidate = (values) => {

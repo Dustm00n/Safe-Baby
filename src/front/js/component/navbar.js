@@ -29,6 +29,11 @@ export const Navbar = () => {
 						<button className="btn btn-navbar">Citas</button>
 					</Link>
 				</div>
+				<div className="">
+					<Link to="/Perfil">
+						<button className="btn btn-navbar">Perfil</button>
+					</Link>
+				</div>
 			</div>
 		</nav>
 	);

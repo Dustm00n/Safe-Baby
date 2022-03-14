@@ -14,6 +14,7 @@ import { Progress } from "./pages/progress";
 import { Citas } from "./pages/citas";
 import { App } from "./pages/App";
 /* import { Foro2 } from "./pages/foro2"; */
+import { Perfil } from "./pages/perfil";
 import { Footer } from "./component/footer";
 import { LandingPageIntro } from "./pages/landingpage-intro";
 
@@ -38,6 +39,7 @@ const Layout = () => {
 						<Route exact path="/foro" component={App} />
 						{/* <Route exact path="/foro2" component={Foro2} /> */}
 						<Route path="/citas" component={Citas} />
+						<Route path="/perfil" component={Perfil} />
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
