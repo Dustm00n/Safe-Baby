@@ -271,3 +271,20 @@ class grafico5(db.Model):
             "etapa_5_id": self.etapa_5_id,
             "etapa5": self.etapa5
         }
+
+class Mainchat(db.Model):
+    __tablename__: 'chat'
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(120), unique=True, nullable=False)
+    numero_sala = db.Column(db.String(120), unique=True, nullable=False)
+    user_id - db.Column(db.Integer, db.foreginkey('use.id', nullable=False))
+
+    def __repr__(self):
+        return '<Role %r>' % self.username
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+            "numero_sala": self.numero_sala
+        }
