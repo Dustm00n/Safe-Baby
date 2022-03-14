@@ -9,15 +9,21 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 api = Blueprint('api', __name__)
 
+#------------------------Ruta de usuarios----------------------------------------#
+
 @api.route('/users', methods=['GET','POST'])
 @api.route('/users/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def users():
+
     if request.method == 'GET':
+
         all_users = User.query.all()
         all_users = list(map(lambda x: x.serialize(), all_users))
         return jsonify(all_users)
     
+
     if request.method == 'POST':
+
         email = request.json.get('email')
         password = request.json.get('password')
         roles_id = request.json.get('roles_id')
@@ -45,22 +51,20 @@ def users():
 
         if user: return jsonify({"status": "Exitoso", "user": user.serialize(),}), 201
 
+#---------------------------Ruta de registro----------------------------------------#
 
-@api.route('/signups', methods=['GET','POST'])
+@api.route('/signups', methods=['POST'])
 def signup():
     
-    if request.method == 'POST':
-        email = request.json.get('email')
-        password = request.json.get('password')
-        roles_id = request.json.get('roles_id')
-        nombre = request.json.get('nombre')
-        apellido = request.json.get('apellido')
-        avatar = request.json.get('avatar')
+        email = request.json.get['email']
+        password = request.json.get['password']
+        nombre = request.json.get['nombre']
+        apellido = request.json.get['apellido']
+        avatar = request.json.get['avatar']
 
-        if not email: return jsonify({"msg": "Email del usuario es requerido!"}), 400
-        if not password: return jsonify({"msg": "Password es requerido!"}), 400
-        if not nombre: return jsonify({"msg": "nombre es requerido!"}), 400
-        if not apellido: return jsonify({"msg": "apellido es requerido!"}), 400
+        user = User.query.filter_by(email=email).first()
+
+        if user: return jsonify({"msg": "Usuario ya existe"}), 400
         
         user = User()
         user.email = email
@@ -70,73 +74,40 @@ def signup():
         profile = Profile()
         profile.nombre = nombre
         profile.apellido = apellido
-        profile.avatar = avatar
         profile.users_id = user.id
         profile.save()
 
-        if user: return jsonify({"status": "Exitoso", "user": user.serialize(),}), 201
+        if user: return jsonify(user.serialize()), 201
     
-    return jsonify({"status": "fallido", "user": {}}), 400
-
-    # if request.method == 'POST':
-
-    #     name = request.json.get('name')
-    #     email = request.json.get('email')
-    #     password = request.json.get('password') 
-    #     roles_id = request.json.get('roles_id')
-    #     # profile = request.json.get('profile')
-    #     role = request.json.get('role')
-    #     datos_babies = request.json.get('datos_babies')
-    #     # nombre = request.json.get('nombre')
-    #     # apellido = request.json.get('apellido')
-    #     # avatar = request.json.get('avatar')
-    #     # users_id = request.json.get('users_id')
-
-    #     if not name: return jsonify({"msg": "Username es requerido!"}), 400
-    #     if not email: return jsonify({"msg": "Email del usuario es requerido!"}), 400
-    #     if not password: return jsonify({"msg": "Password es requerido!"}), 400
-    #     if not roles_id: return jsonify({"msg": "Roles_id es requerido!"}), 400
-    #     # if not profile: return jsonify({"msg": "Perfil del usuario es requerido!"}), 400
-    #     if not role: return jsonify({"msg": "Rol del usuario es requerido!"}), 400
-    #     # if not datos_babies: return jsonify({"msg": "Datos del bebe del usuario es requerido!"}), 400
-    #     # if not nombre: return jsonify({"msg": "Nombre del usuario es requerido!"}), 400
-    #     # if not apellido: return jsonify({"msg": "Apellido del usuario es requerido!"}), 400
-    #     # if not avatar: return jsonify({"msg": "Avatar es requerido!"}), 400
-    #     # if not user_id: return jsonify({"msg": "User_id es requerido!"}), 400
-
-    #     user = User()
-    #     user.name = name
-    #     user.email = email
-    #     user.password = password
-    #     user.roles_id = roles_id 
-    #     # user.profile = profile
-    #     user.role = role
-    #     # user.datos_babies = datos_babies
-    #     user.save()
-
-    #     # profile = Profile()
-    #     # profile.nombre = nombre
-    #     # profile.apellido = apellido
-    #     # profile.avatar = avatar
-    #     # profile.users_id = users_id
-    #     # profile.save()
-
-    #     response_body({"msg": "Usuario registrado"})
-    #     return jsonify(user.serialize(), response_body), 201
+#---------------------------Ruta de login----------------------------------------#
 
 @api.route('/login', methods=['GET', 'POST'])
 def login():
-    
+
+    if request.method == 'GET':
+
+        response_body = {
+            "msg":"Este es mi ruta de REGISTRO DATOS DEL BEBE para guardarlo en DATABASE"
+        }
+        return jsonify(response_body), 200
+
+
     if request.method == 'POST':
+
         email = request.json.get('email')
         password = request.json.get('password')
 
+        if not email: return jsonify({"msg": "Email del usuario es requerido!"}), 400
+        if not password: return jsonify({"msg": "Password es requerido!"}), 400
+        
         user=User()
         user.email = email
         user.password = generate_password_hash(password)
         user.save()
         
         return jsonify(user.serialize()), 201
+
+#---------------------------Ruta de Roles----------------------------------------#
 
 @api.route('/roles', methods=['GET', 'POST'])
 def roles():
@@ -157,14 +128,16 @@ def roles():
 
         return jsonify(roles.serialize()), 201
 
-@api.route('/profiles', methods=['GET', 'POST'])
-def profiles():
+#---------------------------Ruta de Perfil----------------------------------------#
+
+@api.route('/profiles', methods=['GET'])
+@api.route('/profiles/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def profiles(id=None):
 
     if request.method == 'GET':
-        response_body = {
-            "msg":"Este es mi ruta de PERFILES para guardarlo en DATABASE"
-        }
-        return jsonify(response_body), 200
+        all_profiles = Profile.query.all()
+        all_all_profiles = list(map(lambda x: x.serialize(), all_profiles))
+        return jsonify(all_profiles)
     
     if request.method == 'POST':
         
@@ -187,37 +160,65 @@ def profiles():
 
         return(profile.serialize()), 201
 
+#---------------------------Ruta de Datos del Bebé----------------------------------------#
+
 @api.route('/datababies', methods=['GET', 'POST'])
+@api.route('/datababies/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def datababies():
+    
+   if request.method == 'GET':
+        all_profiles = Profile.query.all()
+        all_all_profiles = list(map(lambda x: x.serialize(), all_profiles))
+        return jsonify(all_profiles)   
+
+    # if request.method == 'POST':
+    #     response_body = {
+    #         "msg":"Este es mi ruta de REGISTRO DATOS DEL BEBE para guardarlo en DATABASE"
+    #     }
+    #     return jsonify(response_body), 200
+
+#---------------------------Ruta de Logros del Bebé----------------------------------------#
+
+@api.route('/logrosbebes', methods=['GET', 'POST'])
+@api.route('/logrosbebes/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def logrosbebes():
 
     if request.method == 'GET':
+        all_profiles = Profile.query.all()
+        all_all_profiles = list(map(lambda x: x.serialize(), all_profiles))
+        return jsonify(all_profiles)
+    
+    if request.method == 'POST':
         response_body = {
             "msg":"Este es mi ruta de REGISTRO DATOS DEL BEBE para guardarlo en DATABASE"
         }
         return jsonify(response_body), 200
 
-@api.route('/logrosbebes', methods=['GET', 'POST'])
-def logrosbebes():
-
-    if request.method == 'GET':
-        response_body = {
-            "msg":"Este es mi ruta de PROGRESO O LOGROS DEL BEBE para guardarlo en DATABASE"
-        }
-        return jsonify(response_body), 200
+#---------------------------Ruta de Actividades del Bebé----------------------------------------#
 
 @api.route('/actividades', methods=['GET', 'POST'])
+@api.route('/actividades/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def actividades():
+
     if request.method == 'GET':
-        response_body = {
-            "msg":"Este es mi ruta de ACTIVIDADES QUE REALIZA EL BEBE para guardarlo en DATABASE"
-        }
-        return jsonify(response_body), 200
+        all_profiles = Profile.query.all()
+        all_all_profiles = list(map(lambda x: x.serialize(), all_profiles))
+        return jsonify(all_profiles)
+
+#---------------------------Ruta de Etapas de las actividades----------------------------------------#
 
 @api.route('/etapas', methods=['GET', 'POST'])
+@api.route('/etapas/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def etapas():
     if request.method == 'GET':
         response_body = {
             "msg":"Este es mi ruta de ETAPAS DE ACTIVIDADES SEGUN CRECIMIENTO DEL BEBE para guardarlo en DATABASE"
+        }
+        return jsonify(response_body), 200
+    
+    if request.method == 'POST':
+        response_body = {
+            "msg":"Este es mi ruta de REGISTRO DATOS DEL BEBE para guardarlo en DATABASE"
         }
         return jsonify(response_body), 200
 
