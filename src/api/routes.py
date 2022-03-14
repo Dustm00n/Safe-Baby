@@ -6,6 +6,14 @@ from api.models import db, User, Profile, Rol, DatosBaby, Actividad, LogroBebe, 
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import JWTManager, get_jwt_identity, create_access_token
 from werkzeug.security import generate_password_hash, check_password_hash
+import cloudinary
+
+cloudinary.config( 
+  cloud_name = "sample", 
+  api_key = "874837483274837", 
+  api_secret = "a676b67565c6767a6767d6767f676fe1",
+  secure = True
+)
 
 api = Blueprint('api', __name__)
 
