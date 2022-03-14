@@ -4,6 +4,7 @@ import injectContext from "./store/appContext";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
+
 import { Navbar } from "./component/navbar";
 import { Home } from "./pages/home";
 import { Login } from "./pages/login";
@@ -11,9 +12,15 @@ import { SignUp } from "./pages/signup";
 import { StartProgress } from "./pages/startprogress";
 import { Progress } from "./pages/progress";
 import { Citas } from "./pages/citas";
+<<<<<<< HEAD
 import { Perfil, Profile } from "./pages/perfil";
 import { Foro } from "./pages/foro";
 import { Foro2 } from "./pages/foro2";
+=======
+import { App } from "./pages/App";
+/* import { Foro2 } from "./pages/foro2"; */
+import { Perfil } from "./pages/perfil";
+>>>>>>> bd39664f4940de61e1eb27b40d41a0cca4a752d6
 import { Footer } from "./component/footer";
 import { LandingPageIntro } from "./pages/landingpage-intro";
 
@@ -35,8 +42,8 @@ const Layout = () => {
 						<Route exact path="/signup" component={SignUp} />
 						<Route exact path="/startprogress" component={StartProgress} />
 						<Route exact path="/progress" component={Progress} />
-						<Route exact path="/foro" component={Foro} />
-						<Route exact path="/foro2" component={Foro2} />
+						<Route exact path="/foro" component={App} />
+						{/* <Route exact path="/foro2" component={Foro2} /> */}
 						<Route path="/citas" component={Citas} />
 						<Route path="/perfil" component={Profile} />
 						<Route>

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Inicio } from "../component/inicio";
 import "../../styles/home.css";
-import { IndexDatatable } from "../component/indexDatatable";
+
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -95,7 +95,7 @@ export const Home = () => {
             tablaC="Nivel alto"
             tablaD="Nivel muy alto"
           />
-          <IndexDatatable />
+
         </div>
       </div>
     </>

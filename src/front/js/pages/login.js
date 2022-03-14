@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/login.css";
+/* import { firebaseConfig } from "../component/firebase"; */
+
 export const Login = () => {
   const { store, actions } = useContext(Context);
 
