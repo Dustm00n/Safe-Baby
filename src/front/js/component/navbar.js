@@ -21,7 +21,7 @@ export const Navbar = () => {
 				</div>
 				<div className="">
 					<Link to="/Foro">
-						<button className="btn btn-navbar">Foro</button>
+						<button className="btn btn-navbar">Chat</button>
 					</Link>
 				</div>
 				<div className="">

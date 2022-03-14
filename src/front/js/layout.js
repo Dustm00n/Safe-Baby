@@ -12,8 +12,7 @@ import { SignUp } from "./pages/signup";
 import { StartProgress } from "./pages/startprogress";
 import { Progress } from "./pages/progress";
 import { Citas } from "./pages/citas";
-import { App } from "./pages/App";
-/* import { Foro2 } from "./pages/foro2"; */
+import { Mainchat } from "./pages/Mainchat";
 import { Perfil } from "./pages/perfil";
 import { Footer } from "./component/footer";
 import { LandingPageIntro } from "./pages/landingpage-intro";
@@ -36,8 +35,8 @@ const Layout = () => {
 						<Route exact path="/signup" component={SignUp} />
 						<Route exact path="/startprogress" component={StartProgress} />
 						<Route exact path="/progress" component={Progress} />
-						<Route exact path="/foro" component={App} />
-						{/* <Route exact path="/foro2" component={Foro2} /> */}
+						<Route exact path="/foro" component={Mainchat} />
+
 						<Route path="/citas" component={Citas} />
 						<Route path="/perfil" component={Perfil} />
 						<Route>

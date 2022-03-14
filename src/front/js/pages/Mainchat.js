@@ -1,7 +1,7 @@
 import React from "react";
-import io from "socket.io-client";
+import { io } from "socket.io-client";
 import { useState } from "react";
-import { Chat } from "./chat";
+import { Chat } from "../component/chat";
 import "../../styles/chat.css"
 import { AiFillWechat } from "react-icons/ai";
 
@@ -9,7 +9,7 @@ import { AiFillWechat } from "react-icons/ai";
 
 const socket = io.connect("http://localhost:3001");
 
-export function App() {
+export function Mainchat() {
     const [username, setUsername] = useState("");
     const [room, setRoom] = useState("");
     const [showChat, setShowChat] = useState(false);
@@ -22,11 +22,12 @@ export function App() {
     };
 
     return (
-        <div className="App">
+        <div className="Mainchat">
             {!showChat ? (
                 <div className="joinChatContainer">
-                    <h3 className="tittle-chat">Comparte tu experiencia</h3>
+                    <img className="fondo-titulo-chat" src="https://i.pinimg.com/originals/9b/6c/55/9b6c55403594f530a08d74380977bbda.jpg" />
                     <div className="container-fluid container-main-foro col-12">
+                        <h3 className="tittle-chat">Comparte tu experiencia</h3>
                         {/* row 1 */}
                         <div className="row">
                             <div className="col-2">
@@ -38,7 +39,7 @@ export function App() {
                                     {<AiFillWechat size={150} />}
                                 </a>
                             </div>
-                            <div className="card-body-chat col-6">
+                            <div className="card-body-chat col-8">
                                 <h4 className="card-title-chat">Recomendaciones de Usuarios para tu bebé</h4>
                                 <p className="card-text">Aca puedes compartir tu experiencia cuidando a un bebé, y leer recomendaciones de otros usuarios.</p>
                                 <p className="card-text">
@@ -46,24 +47,25 @@ export function App() {
                                 </p>
                             </div>
                         </div>
+                        <div className="container-chat">
+                            <input className="input-chat"
+                                type="text"
+                                placeholder="Nombre..."
+                                onChange={(event) => {
+                                    setUsername(event.target.value);
+                                }}
+                            />
+                            <input className="input-chat"
+                                type="text"
+                                placeholder="Numero de sala..."
+                                onChange={(event) => {
+                                    setRoom(event.target.value);
+                                }}
+                            />
+                        </div>
+                        <button className="button-chat"
+                            onClick={joinRoom}>Entrar a la Sala</button>
                     </div>
-                    <div className="option">
-                        <input
-                            type="text"
-                            placeholder="Nombre..."
-                            onChange={(event) => {
-                                setUsername(event.target.value);
-                            }}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Numero de sala..."
-                            onChange={(event) => {
-                                setRoom(event.target.value);
-                            }}
-                        />
-                    </div>
-                    <button onClick={joinRoom}>Entrar a la Sala</button>
                 </div>
             ) : (
                 <Chat socket={socket} username={username} room={room} />
