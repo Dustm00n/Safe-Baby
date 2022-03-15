@@ -50,14 +50,14 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ authentication: setLoginform });
       },
       signUp: (formData) => {
-        fetch('https://3001-dustm00n-safebaby-qw0pdpg3e8l.ws-us34.gitpod.io/api/signups', {
+        fetch('https://3001-dustm00n-safebaby-ahvi40pv5ls.ws-us34.gitpod.io/api/signup', {
           method: 'POST',
           body: formData,
         })
           .then(response => response.json())
           .then(data => {
             console.log(data)
-            setUser({ register: data })
+            setStore({ register: data })
           })
 
       }

@@ -12,7 +12,9 @@ from api.routes import api
 from api.admin import setup_admin
 #from models import Person
 from flask_jwt_extended import JWTManager, get_jwt_identity, create_access_token, jwt_required
+import cloudinary
 
+# load_dotenv()
 
 ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
@@ -34,6 +36,13 @@ db.init_app(app)
 
 # Allow CORS requests to this API
 CORS(app)
+
+cloudinary.config( 
+  cloud_name = os.getenv("CLOUD_NAME"), 
+  api_key = os.getenv("CLOUDIARY_API_KEY"), 
+  api_secret = os.getenv("CLOUDIARY_API_SECRET"),
+  secure = True
+)
 
 # add the admin
 setup_admin(app)
