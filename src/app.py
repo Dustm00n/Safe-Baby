@@ -11,12 +11,16 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 #from models import Person
+from flask_jwt_extended import JWTManager, get_jwt_identity, create_access_token, jwt_required
+
 
 ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
-
+#-------------codigo agregado ---------------------------------------------------------------------------#
+app.config['JWT_SECRET_KEY'] = '33b9b3de94a42d19f47df7021954eaa8' #palara 'secret-key' generado como hash
+jwt = JWTManager(app)
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
 if db_url is not None:
