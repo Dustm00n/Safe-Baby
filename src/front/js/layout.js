@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { Context } from "./store/appContext";
 import injectContext from "./store/appContext";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
+import LogoBebe from "../img/logo-bebe.png";
 
 
 import { Navbar } from "./component/navbar";
@@ -27,7 +28,23 @@ const Layout = () => {
 		<div>
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
+					{
+						sessionStorage.getItem('logeado') == 'false' ? <Navbar /> : <nav className="navbar py-3">
+							<img className="navbar-brand-intro" src={LogoBebe} />
+							<div className="navbar-container-intro gap-4 d-flex justify-content-end">
+								<div className="button-link-login">
+									<Link to="/login">
+										<button className="btn btn-navbar-intro">Login</button>
+									</Link>
+								</div>
+								<div className="button-link-signup">
+									<Link to="/signup">
+										<button className="btn btn-navbar-intro">Sign Up</button>
+									</Link>
+								</div>
+							</div>
+						</nav>
+					}
 					<Switch>
 						<Route exact path="/" component={LandingPageIntro} />
 						<Route exact path="/home" component={Home} />

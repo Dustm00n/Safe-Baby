@@ -8,6 +8,18 @@ export const StartProgress = (props) => {
   const { store, actions } = useContext(Context);
   const params = useParams();
 
+  // const [state, setState] = useState({
+  //   nombre: "",
+  //   apellido: "",
+  //   edad: "",
+  //   genero: "",
+  //   estatura: ""
+  // })
+
+  // const handlesubmit = (e) => {
+
+  // }
+
   return (
     <>
       <div className="row">
@@ -15,7 +27,7 @@ export const StartProgress = (props) => {
           <div className="register-baby">
             <div className="form-container-baby">
               <h1 className="title-baby text-center">Ingresa los datos de tu bebé</h1>
-              <form>
+              <form onSubmit={(e) => handlesubmit(e)}>
                 <div className="mb-3">
                   <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre" />
                 </div>
