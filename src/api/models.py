@@ -29,7 +29,7 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-    #definiendo comandos para guardar actualizar y eliminar desde models y usarlo en mis endpoints como ejemplo: user.save()
+    #definiendo comandos para guardar actualizar y eliminar desde models y usarlo en mis endpoints como ejemplo: user.save() #Probando
     def save(self):
         db.session.add(self)
         db.session.commit()
@@ -215,3 +215,4 @@ class Etapa(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
