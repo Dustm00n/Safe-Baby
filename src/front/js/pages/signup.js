@@ -9,7 +9,8 @@ export const SignUp = () => {
         nombre: "",
         apellido: "",
         email: "",
-        password: ""
+        password: "",
+        avatar: null
     })
     const [registerErrors, setRegisterErrors] = useState({});
 
@@ -18,15 +19,35 @@ export const SignUp = () => {
         aux[item] = e.target.value;
         setRegisterForm(aux);
         console.log(registerform)
+        const { name, value } = e.target;
+        const newState = { ...registerform };
+        newState[name] = value;
+        setRegisterForm(newState);
+    }
+
+    const handleChangeFile = (e, item) => {
+        let aux = registerform;
+        aux[item] = e.target.value;
+        setRegisterForm(aux);
+        console.log(registerform)
+        const { name, files } = e.target;
+        const newState = { ...registerform };
+        newState[name] = files[0];
+        setRegisterForm(newState);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        actions.signUp(registerform);
-        setRegisterErrors(handleValidate(registerform));
+        actions.signUp(formData);
+        setRegisterErrors(handleValidate(formData));
         e.target.reset();
         // console.log('store.register', store.register);
-
+        let formData = new FormData();
+        formData.append('nombre', state.nombre)
+        formData.append('apellido', state.apellido)
+        formData.append('email', state.email)
+        formData.append('password', state.password)
+        formData.append('avatar', state.avatar)
     }
 
     const handleValidate = (values) => {
@@ -64,7 +85,7 @@ export const SignUp = () => {
                                 placeholder="Nombre"
                                 onChange={(e) => { handleChange(e, 'nombre') }} />
                         </div>
-                        <p>{registerErrors.nombre}</p>
+                        <p className="errors-signup">{registerErrors.nombre}</p>
                         <div className="mb-3">
                             <input
                                 type="text"
@@ -74,7 +95,7 @@ export const SignUp = () => {
                                 placeholder="Apellido"
                                 onChange={(e) => { handleChange(e, 'apellido') }} />
                         </div>
-                        <p>{registerErrors.apellido}</p>
+                        <p className="errors-signup">{registerErrors.apellido}</p>
                         <div className="mb-3">
                             <input
                                 type="email"
@@ -84,7 +105,7 @@ export const SignUp = () => {
                                 placeholder="Email"
                                 onChange={(e) => { handleChange(e, 'email') }} />
                         </div>
-                        <p>{registerErrors.email}</p>
+                        <p className="errors-signup">{registerErrors.email}</p>
                         <div className="mb-3">
                             <input
                                 type="password"
@@ -93,7 +114,15 @@ export const SignUp = () => {
                                 placeholder="Password"
                                 onChange={(e) => { handleChange(e, 'password') }} />
                         </div>
-                        <p>{registerErrors.password}</p>
+                        <p className="errors-signup">{registerErrors.password}</p>
+                        <div className="mb-3">
+                            <input
+                                type="file"
+                                className="form-control"
+                                id="exampleInputPassword1"
+                                placeholder="Subir imagen"
+                                onChange={(e) => { handleChangeFile(e, 'avatar') }} />
+                        </div>
                         <button type="submit" className="btn btn-signup d-grid gap-2 col-6 mx-auto">Sign up</button>
                     </form>
                 </div>

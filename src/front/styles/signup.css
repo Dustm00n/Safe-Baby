@@ -12,7 +12,7 @@
   flex-wrap: wrap;
   margin: 11em auto;
   padding: 20px;
-  width: 300px;
+  width: 400px;
   height: 100%;
   background-color: #8dc1c9;
   border-radius: 10px;
@@ -32,6 +32,10 @@
 .form-control {
   background-color: #f0e4e4;
   color: #c46f82;
+}
+.errors-signup {
+  margin: 15px 15px 15px 0px;
+  color: #d1022f;
 }
 
 .form-control::placeholder {
