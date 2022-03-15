@@ -209,26 +209,12 @@ class Etapa(db.Model):
         db.session.add(self)
         db.session.commit()
 
-
-    def serialize(self):
-        return {
-            " "id": self.id,
-            "etapa_1_id": self.etapa_1_id,
-            "etapa1": self.etapa1,
-            "etapa_2_id": self.etapa_2_id,
-            "etapa2": self.etapa2,
-            "etapa_3_id": self.etapa_3_id,
-            "etapa3": self.etapa3,
-            "etapa_4_id": self.etapa_4_id,
-            "etapa4": self.etapa4,
-            "etapa_5_id": self.etapa_5_id,
-            "etapa5": self.etapa5
-        }
-
     def updade(self):
         db.session.commit(self)
     
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+
 
