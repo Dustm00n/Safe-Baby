@@ -5170,10 +5170,10 @@
     "redux" "^4.0.4"
     "use-memo-one" "^1.1.1"
 
-"react-big-calendar@^0.39.2":
-  "integrity" "sha512-SfgGQZGDfnbPSbYPQPJmZM8Oc6e+uOh6jkFLEs1+n4CV1ksJ5wpgHMYKVRIC3vwQTYNx4NKSjuc4sg4wQr+aWg=="
-  "resolved" "https://registry.npmjs.org/react-big-calendar/-/react-big-calendar-0.39.2.tgz"
-  "version" "0.39.2"
+"react-big-calendar@^0.39.3":
+  "integrity" "sha512-RLymspfoBeYNBMvKnpMSpHtUAsJhv1Cbp1sE6aE7huQ92xT0mgnFDxUSoWc//C5J8WbYWLtlld521eisNJSjNw=="
+  "resolved" "https://registry.npmjs.org/react-big-calendar/-/react-big-calendar-0.39.3.tgz"
+  "version" "0.39.3"
   dependencies:
     "@babel/runtime" "^7.1.5"
     "clsx" "^1.0.4"

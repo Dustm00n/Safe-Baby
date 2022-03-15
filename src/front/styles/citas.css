@@ -13,3 +13,33 @@ table {
 .frame {
   height: 100%;
 }
+
+.Calendario {
+  margin: 0 auto;
+  width: 100rem;
+  height: auto;
+}
+.contenedor-evento {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.agregar-titulo,
+.boton-agregar-evento,
+.start-date-picker,
+.end-date-picker {
+  margin: 10px;
+  height: 35px;
+  width: 23.8em;
+  background-color: #ee869d;
+  border: none;
+  border-radius: 3px;
+  color: #8b3c4d;
+}
+.titulo-calendario,
+.subtitulo-calendario {
+  margin: 2rem;
+  text-align: center;
+  color: rgb(148, 53, 53);
+}
