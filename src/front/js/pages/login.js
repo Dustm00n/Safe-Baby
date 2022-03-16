@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/login.css";
 /* import { firebaseConfig } from "../component/firebase"; */
+import { NavbarLoginSignup } from '../component/navbar-login-signup';
+
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -52,6 +54,7 @@ export const Login = () => {
 
   return (
     <>
+      <NavbarLoginSignup />
       <div className="main-login">
         <div className="form-container-login">
           <h1 className="title-login">Login</h1>

@@ -88,7 +88,25 @@ api = Blueprint('api', __name__)
 #             return jsonify({"msg": "Todos los usuarios han sido eliminados"}, {}), 200
 
 #---------------------------Ruta de registro----------------------------------------#
+# @api.route('/signup', methods=['GET'])
+# def get_all_users():
+
+#     user = User.query.all()
+#     user = list(map(lambda x: x.serialize(), user))
+
+#     return jsonify(user), 200
+
+# @api.route('/signup/<int:id>', methods=['GET'])
+# def get_user_signuped(id = None):
+
+#     user = User.query.get(id)
+
+#     if not user: return jsonify({"msg": "Usuario no encontrado"}), 404
+
+#     return jsonify(user), 200
+    
 @api.route('/signup', methods=['POST'])
+# @jwt_required()
 def signup():
     
         email = request.form['email']
@@ -96,13 +114,12 @@ def signup():
         nombre = request.form['nombre']
         apellido = request.form['apellido']
         avatar = request.files['avatar']
-        rol_name = request.form['rol_name']
-        roles_id = request.form['roles_id']
+        # roles_id = request.form['roles_id']
 
         user = User.query.filter_by(email=email).first()
 
         if user: return jsonify({"msg": "Usuario ya existe"}), 400
-        if not roles_id: return jsonify({"msg": "El rol-id es requerido!"}), 400
+        # if not roles_id: return jsonify({"msg": "El rol-id es requerido!"}), 400
         
         upload = cloudinary.uploader.upload(avatar,
             folder = "avatars", 
@@ -112,7 +129,7 @@ def signup():
         )
 
         user = User()
-        user.roles_id = roles_id
+        # user.roles_id = roles_id
         user.email = email
         user.password = generate_password_hash(password)
         user.save()
