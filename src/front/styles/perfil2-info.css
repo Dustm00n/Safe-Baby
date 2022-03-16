@@ -1,19 +1,22 @@
 .card-InfoBB {
   margin: 179px auto;
   padding: 20px;
-  width: 300px;
+  width: 350px;
   height: 100%;
-  background-color: #8dc1c9;
+  background-color: #6c757d;
   border-radius: 10px;
   line-height: 10px;
   box-shadow: 0 4px 6px 2px #5e757946;
+  margin-left: 35px;
+  margin-top: 15px;
 }
 
-.title-login {
-  display: flex;
-  margin-top: 10px;
-  margin-bottom: 40px;
-  justify-content: center;
-  font-weight: bold;
-  color: white;
+.boton-InfoBB {
+  margin-left: 75px;
+  margin-top: 15px;
+}
+
+.imagen-boton {
+  height: 80px;
+  width: 100px;
 }
