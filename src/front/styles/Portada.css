@@ -1,0 +1,25 @@
+.container-profile {
+  display: flex;
+  justify-content: center;
+  background-image: url("https://media.giphy.com/media/TxVVB6PfWMjE4/giphy.gif");
+  background-size: cover;
+  background-attachment: fixed;
+  align-items: center;
+}
+.card-profile {
+  width: 200px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  margin-left: 600px;
+}
+
+.card-nombre {
+  margin-left: 85px;
+}
+
+.Foto-Perfil {
+  border-radius: 350px;
+  max-width: 250px;
+  max-height: 250px;
+}
