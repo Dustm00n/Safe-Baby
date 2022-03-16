@@ -36,7 +36,6 @@ export const SignUp = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         e.target.reset();
-        // console.log('store.register', store.register);
         let formData = new FormData();
         formData.append('nombre', registerform.nombre)
         formData.append('apellido', registerform.apellido)
@@ -45,6 +44,7 @@ export const SignUp = () => {
         formData.append('avatar', registerform.avatar)
         setRegisterErrors(handleValidate(formData));
         actions.signUp(formData);
+        console.log('actions.signUp', actions.signUp);
     }
 
     const handleValidate = (registerform) => {
