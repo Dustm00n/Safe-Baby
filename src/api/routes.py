@@ -6,99 +6,89 @@ from api.models import db, User, Profile, Rol, DatosBaby, Actividad, LogroBebe, 
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import JWTManager, get_jwt_identity, create_access_token, jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from dotenv import load_dotenv
-import cloudinary
+# import cloudinary
 import cloudinary.uploader
-import os
 
-load_dotenv()
-
-cloudinary.config( 
-  cloud_name = os.getenv("CLOUD_NAME"), 
-  api_key = os.getenv("CLOUDIARY_API_KEY"), 
-  api_secret = os.getenv("CLOUDIARY_API_SECRET"),
-  secure = True
-)
 
 api = Blueprint('api', __name__)
 
 #------------------------Ruta de usuarios----------------------------------------#
-@api.route('/users', methods=['GET','POST'])
-@api.route('/users/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-# @jwt_required()
-def users(id=None):
+# @api.route('/users', methods=['GET','POST'])
+# @api.route('/users/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# # @jwt_required()
+# def users(id=None):
 
-    if request.method == 'GET':
-        if id is not None:
-            user = User.query.get(id)
-            if not user: return jsonify({"msg": "Usuario no encontrado"}), 404
-        else:
-            user = User.query.all()
-            user = list(map(lambda x: x.serialize(), user))
-            return jsonify(user), 200
+#     if request.method == 'GET':
+#         if id is not None:
+#             user = User.query.get(id)
+#             if not user: return jsonify({"msg": "Usuario no encontrado"}), 404
+#         else:
+#             user = User.query.all()
+#             user = list(map(lambda x: x.serialize(), user))
+#             return jsonify(user), 200
 
-    if request.method == 'POST':
-        if id is None:
-            # email = request.json.get('email')
-            # password = request.json.get('password')
-            # roles_id = request.json.get('roles_id')
-            # nombre = request.json.get('nombre')
-            # apellido = request.json.get('apellido')
-            # avatar = request.json.get('avatar')
+#     if request.method == 'POST':
+#         if id is None:
+#             # email = request.json.get('email')
+#             # password = request.json.get('password')
+#             # roles_id = request.json.get('roles_id')
+#             # nombre = request.json.get('nombre')
+#             # apellido = request.json.get('apellido')
+#             # avatar = request.json.get('avatar')
 
-            email = request.form['email']
-            password = request.form['password']
-            roles_id = request.form['roles_id']
-            nombre = request.form['nombre']
-            apellido = request.form['apellido']
-            avatar = request.files['avatar']
+#             email = request.form['email']
+#             password = request.form['password']
+#             roles_id = request.form['roles_id']
+#             nombre = request.form['nombre']
+#             apellido = request.form['apellido']
+#             avatar = request.files['avatar']
 
-            cloudinary.uploader.upload(avatar,
-                folder = "avatars", 
-                public_id = nombre + "_" + avatar.filename,
-                overwrite = True, 
-                resource_type = "image"
-            )
+#             cloudinary.uploader.upload(avatar,
+#                 folder = "avatars", 
+#                 public_id = nombre + "_" + avatar.filename,
+#                 overwrite = True, 
+#                 resource_type = "image"
+#             )
 
-            user = User.query.filter_by(email=email).first()
+#             user = User.query.filter_by(email=email).first()
 
-            if not email: return jsonify({"msg": "Email del usuario es requerido!"}), 400
-            if not password: return jsonify({"msg": "Password es requerido!"}), 400
-            if not nombre: return jsonify({"msg": "nombre es requerido!"}), 400
-            if not apellido: return jsonify({"msg": "apellido es requerido!"}), 400
-            if not roles_id: return jsonify({"msg": "roles_id es requerido!"}), 400
-            if not avatar: return jsonify({"msg": "Avatar es requerido!"}), 400
+#             if not email: return jsonify({"msg": "Email del usuario es requerido!"}), 400
+#             if not password: return jsonify({"msg": "Password es requerido!"}), 400
+#             if not nombre: return jsonify({"msg": "nombre es requerido!"}), 400
+#             if not apellido: return jsonify({"msg": "apellido es requerido!"}), 400
+#             if not roles_id: return jsonify({"msg": "roles_id es requerido!"}), 400
+#             if not avatar: return jsonify({"msg": "Avatar es requerido!"}), 400
             
-            user = User()
-            user.email = email
-            user.password = generate_password_hash(password)
-            user.roles_id = roles_id
-            user.save()
+#             user = User()
+#             user.email = email
+#             user.password = generate_password_hash(password)
+#             user.roles_id = roles_id
+#             user.save()
 
-            profile = Profile()
-            profile.nombre = nombre
-            profile.apellido = apellido
-            profile.avatar = upload["url"]
-            profile.users_id = user.id
-            profile.save()
+#             profile = Profile()
+#             profile.nombre = nombre
+#             profile.apellido = apellido
+#             profile.avatar = upload["url"]
+#             profile.users_id = user.id
+#             profile.save()
 
-            if user: return jsonify({"status": "Exitoso", "user": user.serialize(),}), 201
+#             if user: return jsonify({"status": "Exitoso", "user": user.serialize(),}), 201
     
-    if request.method == 'DELETE':
-        if id is not None:
-            user = User.query.get(id)
-            user.delete()
-            user.save()
-            return jsonify({"msg": "El usuario ha sido eliminado"}, {}), 200
+#     if request.method == 'DELETE':
+#         if id is not None:
+#             user = User.query.get(id)
+#             user.delete()
+#             user.save()
+#             return jsonify({"msg": "El usuario ha sido eliminado"}, {}), 200
 
-        else:
-            user = User.query.all()
-            user.delete()
-            user.save()
-            return jsonify({"msg": "Todos los usuarios han sido eliminados"}, {}), 200
+#         else:
+#             user = User.query.all()
+#             user.delete()
+#             user.save()
+#             return jsonify({"msg": "Todos los usuarios han sido eliminados"}, {}), 200
 
 #---------------------------Ruta de registro----------------------------------------#
-@api.route('/signups', methods=['POST'])
+@api.route('/signup', methods=['POST'])
 def signup():
     
         email = request.form['email']
@@ -107,33 +97,31 @@ def signup():
         apellido = request.form['apellido']
         avatar = request.files['avatar']
         rol_name = request.form['rol_name']
+        roles_id = request.form['roles_id']
 
-        cloudinary.uploader.upload(avatar,
+        user = User.query.filter_by(email=email).first()
+
+        if user: return jsonify({"msg": "Usuario ya existe"}), 400
+        if not roles_id: return jsonify({"msg": "El rol-id es requerido!"}), 400
+        
+        upload = cloudinary.uploader.upload(avatar,
             folder = "avatars", 
             public_id = nombre + "_" + avatar.filename,
             overwrite = True, 
             resource_type = "image"
         )
 
-        user = User.query.filter_by(email=email).first()
-
-        if user: return jsonify({"msg": "Usuario ya existe"}), 400
-        if not rol_name: return jsonify({"msg": "Nombre del ROL es requerido!"}), 400
-        
         user = User()
+        user.roles_id = roles_id
         user.email = email
         user.password = generate_password_hash(password)
         user.save()
-
-        roles=Rol()
-        roles.rol_name = rol_name
-        roles.save()
 
         profile = Profile()
         profile.nombre = nombre
         profile.apellido = apellido
         profile.users_id = user.id
-        profile.avatar = upload["url"]
+        profile.avatar = upload["secure_url"]
         profile.save()
         
         # if user: return jsonify({"form": request.form, "files": avatar.filename}), 201

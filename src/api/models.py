@@ -8,13 +8,13 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
     roles_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
-    profile = db.relationship("Profile", backref="user", uselist=False)
+    profile = db.relationship("Profile", backref="users", uselist=False)
     role = db.relationship("Rol")
     datos_babies = db.relationship("DatosBaby")
 
     def __repr__(self):
         return '<User %r>' % self.email
-
+    
     def get_datos_babies(self):
         return list(map(lambda x:x.serialize(), self.datos_babies))
         
@@ -23,7 +23,7 @@ class User(db.Model):
             "id": self.id,
             "email": self.email,
             "roles_id":self.roles_id,
-            "profile":self.profile, #antes era self.proile.serialize()
+            "profile":self.profile.serialize(), #antes era self.proile.serialize()
             "role":self.role.serialize(),  #antes era self.role.serialize()
             "datos_babies":self.get_datos_babies()
             # do not serialize the password, its a security breach
@@ -105,7 +105,7 @@ class DatosBaby(db.Model):
     edad = db.Column(db.String(120), nullable=False)
     genero = db.Column(db.String(120), nullable=False)
     estatura = db.Column(db.String(50), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     datos_actividades= db.relationship("Actividad", secondary="logros_bebes")
     
     def __repr__(self):
@@ -119,7 +119,7 @@ class DatosBaby(db.Model):
             "edad": self.edad,
             "genero": self.genero,
             "estatura": self.estatura,
-            "user_id": self.user_id,
+            "users_id": self.users_id,
             "datos_actividades": self.datos_actividades
         }
 
