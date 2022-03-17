@@ -2,11 +2,13 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Profile, Rol, DatosBaby, Actividad, LogroBebe, Etapa
+from api.models import db, User, Profile, Rol, DatosBaby, Actividad, LogroBebe, Etapa, Participante, Chat, Mensaje
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import JWTManager, get_jwt_identity, create_access_token
 from werkzeug.security import generate_password_hash, check_password_hash
 import cloudinary
+import socketio
+
 
 cloudinary.config( 
   cloud_name = "sample", 
@@ -229,3 +231,21 @@ def etapas():
         }
         return jsonify(response_body), 200
 
+#----------------------------------------Chat----------------------------------------#
+
+@api.route('/chats', methods=['GET'])
+def get_chats():
+    chats = Chat.query.all()
+    chats = list(map(lambda x: x.serialize(), chats))
+    return jsonify(chats), 200
+    
+@api.route('/send-message/<int:user_id>', methods=['GET'])
+def send_message(user_id):
+    user = User.query.get(user_id)
+    newMessage = Message()
+    newMessage.message = "Hola mundo " + str(len(Message.query.all()))
+    newMessage.users_id = user.id
+    user.chats[0].messages.append(newMessage)
+    user.save()
+    return jsonify(user.serialize()), 201
+    
