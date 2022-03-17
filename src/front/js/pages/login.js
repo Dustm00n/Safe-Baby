@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/login.css";
 /* import { firebaseConfig } from "../component/firebase"; */
+import { NavbarLoginSignup } from '../component/navbar-login-signup';
+
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -52,6 +54,7 @@ export const Login = () => {
 
   return (
     <>
+      <NavbarLoginSignup />
       <div className="main-login">
         <div className="form-container-login">
           <h1 className="title-login">Login</h1>
@@ -65,7 +68,7 @@ export const Login = () => {
                 placeholder="Nombre de usuario"
                 onChange={(e) => { handleChange(e, 'username') }} />
             </div>
-            <p>{loginErrors.username}</p>
+            <p className="errors-login">{loginErrors.username}</p>
             <div className="mb-3">
               <input
                 type="email"
@@ -75,7 +78,7 @@ export const Login = () => {
                 placeholder="Email"
                 onChange={(e) => { handleChange(e, 'email') }} />
             </div>
-            <p>{loginErrors.email}</p>
+            <p className="errors-login">{loginErrors.email}</p>
             <div className="mb-3">
               <input
                 type="password"
@@ -83,7 +86,7 @@ export const Login = () => {
                 id="exampleInputPassword1"
                 placeholder="Password"
                 onChange={(e) => { handleChange(e, 'password') }} />
-              <p>{loginErrors.password}</p>
+              <p className="errors-login">{loginErrors.password}</p>
             </div>
             <button type="submit" className="btn button-login d-grid gap-2 col-6 mx-auto">Login</button>
           </form>

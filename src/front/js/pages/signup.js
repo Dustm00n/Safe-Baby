@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 // import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { NavbarLoginSignup } from '../component/navbar-login-signup';
+
 import "../../styles/signup.css";
+import { Link } from "react-router-dom";
 
 export const SignUp = () => {
     const { store, actions } = useContext(Context);
@@ -9,48 +12,68 @@ export const SignUp = () => {
         nombre: "",
         apellido: "",
         email: "",
-        password: ""
+        password: "",
+        avatar: null
     })
     const [registerErrors, setRegisterErrors] = useState({});
 
-    const handleChange = (e, item) => {
-        let aux = registerform;
-        aux[item] = e.target.value;
-        setRegisterForm(aux);
-        console.log(registerform)
+    const handleChange = (e) => {
+        // let aux = registerform;
+        // aux[item] = e.target.value;
+        // setRegisterForm(aux);
+        const { name, value } = e.target;
+        const newState = { ...registerform };
+        newState[name] = value;
+        setRegisterForm(newState);
+        console.log(newState)
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        actions.signUp(registerform);
-        setRegisterErrors(handleValidate(registerform));
-        e.target.reset();
-        // console.log('store.register', store.register);
-
+    const handleChangeFile = (e) => {
+        // console.log(registerform)
+        const { name, files } = e.target;
+        const newState = { ...registerform };
+        newState[name] = files[0];
+        setRegisterForm(newState);
+        console.log(newState)
     }
 
-    const handleValidate = (values) => {
+    const handleValidate = (registerform) => {
         const errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        if (!values.nombre) {
+        if (registerform.nombre == "") {
             errors.nombre = "Nombre es requerido!";
         }
-        if (!values.apellido) {
+        if (registerform.apellido == "") {
             errors.apellido = "Apellido es requerido!";
         }
-        if (!values.email) {
+        if (registerform.email == "") {
             errors.email = "Email es requerido!";
-        } else if (!regex.test(values.email)) {
+        } else if (regex.test(registerform.email)) {
             errors.email = "Tu correo no es valido!";
         }
-        if (!values.password) {
+        if (registerform.password == "") {
             errors.password = "Password es requerido!";
         }
         return errors;
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        e.target.reset();
+        let formData = new FormData();
+        formData.append('nombre', registerform.nombre)
+        formData.append('apellido', registerform.apellido)
+        formData.append('email', registerform.email)
+        formData.append('password', registerform.password)
+        formData.append('avatar', registerform.avatar)
+        setRegisterErrors(handleValidate(formData));
+        actions.signUp(formData);
+        console.log(formData);
+    }
+
     return (
         <>
+            <NavbarLoginSignup />
             <div className="main-signup">
                 <div className="form-container-signup">
                     <h1 className="title-signup">Sign Up</h1>
@@ -59,42 +82,57 @@ export const SignUp = () => {
                             <input
                                 type="text"
                                 className="form-control"
-                                id="exampleInputEmail1"
                                 aria-describedby="emailHelp"
+                                id="nombre"
+                                name="nombre"
                                 placeholder="Nombre"
-                                onChange={(e) => { handleChange(e, 'nombre') }} />
+                                onChange={(e) => { handleChange(e) }} />
                         </div>
-                        <p>{registerErrors.nombre}</p>
+                        <p className="errors-signup">{registerErrors.nombre}</p>
                         <div className="mb-3">
                             <input
                                 type="text"
                                 className="form-control"
-                                id="exampleInputEmail1"
                                 aria-describedby="emailHelp"
+                                id="apellido"
+                                name="apellido"
                                 placeholder="Apellido"
-                                onChange={(e) => { handleChange(e, 'apellido') }} />
+                                onChange={(e) => { handleChange(e) }} />
                         </div>
-                        <p>{registerErrors.apellido}</p>
+                        <p className="errors-signup">{registerErrors.apellido}</p>
                         <div className="mb-3">
                             <input
                                 type="email"
                                 className="form-control"
-                                id="exampleInputEmail1"
                                 aria-describedby="emailHelp"
+                                id="email"
+                                name="email"
                                 placeholder="Email"
-                                onChange={(e) => { handleChange(e, 'email') }} />
+                                onChange={(e) => { handleChange(e) }} />
                         </div>
-                        <p>{registerErrors.email}</p>
+                        <p className="errors-signup">{registerErrors.email}</p>
                         <div className="mb-3">
                             <input
                                 type="password"
                                 className="form-control"
-                                id="exampleInputPassword1"
+                                id="password"
+                                name="password"
                                 placeholder="Password"
-                                onChange={(e) => { handleChange(e, 'password') }} />
+                                onChange={(e) => { handleChange(e) }} />
                         </div>
-                        <p>{registerErrors.password}</p>
+                        <p className="errors-signup">{registerErrors.password}</p>
+                        <div className="mb-3">
+                            <input
+                                type="file"
+                                className="form-control"
+                                id="avatar"
+                                name="avatar"
+                                placeholder="avatar"
+                                onChange={(e) => { handleChangeFile(e) }} />
+                        </div>
+                        {/* <Link to="/home"> */}
                         <button type="submit" className="btn btn-signup d-grid gap-2 col-6 mx-auto">Sign up</button>
+                        {/* </Link> */}
                     </form>
                 </div>
             </div>

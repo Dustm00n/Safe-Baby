@@ -20,7 +20,7 @@
 .title-login {
   display: flex;
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   justify-content: center;
   font-weight: bold;
   color: white;
@@ -33,6 +33,10 @@
 
 .form-control::placeholder {
   color: #c46f82;
+}
+.errors-login {
+  margin: 15px 15px 15px 0px;
+  color: #d1022f;
 }
 
 .button-login {

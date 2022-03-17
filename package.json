@@ -79,7 +79,7 @@
     "material-table": "^1.69.3",
     "prop-types": "^15.6.1",
     "react": "^16.8.4",
-    "react-big-calendar": "^0.39.2",
+    "react-big-calendar": "^0.39.3",
     "react-chartjs-2": "^4.0.1",
     "react-datepicker": "^4.7.0",
     "react-dom": "^16.8.4",

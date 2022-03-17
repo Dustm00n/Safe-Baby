@@ -28,3 +28,13 @@
   color: #fffbfb;
   background-color: #ee869d;
 }
+
+body {
+  background: rgb(251, 237, 246);
+  background: linear-gradient(
+    90deg,
+    rgba(251, 237, 246, 0.55) 0%,
+    rgba(255, 242, 250, 0.3) 53%,
+    rgba(251, 237, 246, 0.5522584033613445) 100%
+  );
+}

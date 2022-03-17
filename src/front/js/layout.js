@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { Context } from "./store/appContext";
 import injectContext from "./store/appContext";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
+import LogoBebe from "../img/logo-bebe.png";
 
 
 import { Navbar } from "./component/navbar";
@@ -16,6 +17,7 @@ import { Mainchat } from "./pages/Mainchat";
 import { Perfil } from "./pages/perfil";
 import { Footer } from "./component/footer";
 import { LandingPageIntro } from "./pages/landingpage-intro";
+import { Agenda } from "./pages/agenda";
 
 //create your first component
 const Layout = () => {
@@ -27,21 +29,21 @@ const Layout = () => {
 		<div>
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
+					<Route exact path="/login" component={Login} />
+					<Route exact path="/signup" component={SignUp} />
 					<Navbar />
 					<Switch>
 						<Route exact path="/" component={LandingPageIntro} />
 						<Route exact path="/home" component={Home} />
-						<Route exact path="/login" component={Login} />
-						<Route exact path="/signup" component={SignUp} />
 						<Route exact path="/startprogress" component={StartProgress} />
 						<Route exact path="/progress" component={Progress} />
 						<Route exact path="/foro" component={Mainchat} />
-
+						<Route exact path="/Agenda" component={Agenda} />
 						<Route path="/citas" component={Citas} />
 						<Route path="/perfil" component={Perfil} />
-						<Route>
+						{/* <Route>
 							<h1>Not found!</h1>
-						</Route>
+						</Route> */}
 					</Switch>
 					<Footer />
 				</ScrollToTop>

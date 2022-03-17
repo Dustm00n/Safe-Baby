@@ -1,0 +1,7 @@
+.fotiko {
+  background-image: url("https://media.giphy.com/media/Yj6d4OMmDV3bnYtOow/giphy.gif");
+  background-size: cover;
+  background-attachment: fixed;
+  align-items: center;
+  width: 100%;
+}

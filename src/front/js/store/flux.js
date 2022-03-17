@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      authentication: null,
+      logged: false,
       register: null
       //   message: null,
       //   demo: [
@@ -46,13 +46,32 @@ const getState = ({ getStore, getActions, setStore }) => {
       //reset the global store
       // setStore({ demo: demo });
       // },
-      login: (setLoginform) => {
-        setStore({ authentication: setLoginform });
+      login: (formData) => {
+        fetch('https://3001-dustm00n-safebaby-ahvi40pv5ls.ws-us38.gitpod.io/api/login', {
+          body: formData
+        })
+
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+            sessionStorage.getItem("token", data.token)
+            setStore({ logged: true })
+          })
       },
-      signUp: (setRegisterForm) => {
-        setStore({ register: setRegisterForm });
-        // console.log("esta llegando");
+      signUp: (formData) => {
+        fetch('https://3001-dustm00n-safebaby-ahvi40pv5ls.ws-us38.gitpod.io/api/signup', {
+          method: 'POST',
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+            setStore({ register: data })
+          })
+          .catch(error => console.log("HA OCURRIDO UN ERROR", error))
       }
+      // setStore({ register: setRegisterForm });
+      // console.log("esta llegando");
       // register: (registerForm) => {
       //   setStore({ register: registerForm })
       // }

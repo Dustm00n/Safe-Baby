@@ -7,9 +7,9 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
-    roles_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
-    profile = db.relationship("Profile", backref="user", uselist=False)
-    role = db.relationship("Rol", backref="user", uselist=False)
+    profile = db.relationship("Profile", backref="users", uselist=False)
+    # roles_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
+    # role = db.relationship("Rol")
     datos_babies = db.relationship("DatosBaby")
     chats = db.relationship('Chat', secondary="participantes_chats")
     messages = db.relationship('Message', backref="user", lazy=True)
@@ -17,17 +17,20 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.email
-
+    
     def get_datos_babies(self):
         return list(map(lambda x:x.serialize(), self.datos_babies))
+    
+    # def get_roles(self):
+    #     return list(map(lambda x:x.serialize(), self.roles_id))
         
     def serialize(self):
         return {
             "id": self.id,
             "email": self.email,
-            "roles_id":self.roles_id,
-            "profile":self.profile.serialize(),
-            "role":self.role.serialize(),
+            # "roles_id":self.roles_id,
+            "profile":self.profile.serialize(), #antes era self.proile.serialize()
+            # "role":self.role.serialize(),  #antes era self.role.serialize()
             "datos_babies":self.get_datos_babies()
             #"chats": self.get_chats()
             #"messages": self.get_messages() 
@@ -35,7 +38,7 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-    #definiendo comandos para guardar actualizar y eliminar desde models y usarlo en mis endpoints como ejemplo: user.save()
+    #definiendo comandos para guardar actualizar y eliminar desde models y usarlo en mis endpoints como ejemplo: user.save() #Probando
     def save(self):
         db.session.add(self)
         db.session.commit()
@@ -217,6 +220,7 @@ class Etapa(db.Model):
 
     def updade(self):
         db.session.commit(self)
+
     
     def delete(self):
         db.session.delete(self)
@@ -273,6 +277,7 @@ class Message(db.Model):
     chats_id =  db.Column(db.Integer, db.ForeignKey('chats.id'), nullable=False)
     users_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     message = db.Column(db.String(120), unique=True, nullable=False)
+
     
     def serialize(self):
         return {
@@ -291,4 +296,3 @@ class Message(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
-

@@ -1,9 +1,12 @@
 import React from "react";
+import Profile from "../component/perfil";
+import InfoBB from "../component/perfil2-informacioon"
 
 export const Perfil = () => {
     return (
         <>
-            <h1>Hola mundo</h1>
+            <Profile />
+            <InfoBB />
         </>
     )
 }
