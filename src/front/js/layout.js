@@ -17,6 +17,7 @@ import { Mainchat } from "./pages/Mainchat";
 import { Perfil } from "./pages/perfil";
 import { Footer } from "./component/footer";
 import { LandingPageIntro } from "./pages/landingpage-intro";
+import { Agenda } from "./pages/agenda";
 
 //create your first component
 const Layout = () => {
@@ -37,6 +38,7 @@ const Layout = () => {
 						<Route exact path="/startprogress" component={StartProgress} />
 						<Route exact path="/progress" component={Progress} />
 						<Route exact path="/foro" component={Mainchat} />
+						<Route exact path="/Agenda" component={Agenda} />
 						<Route path="/citas" component={Citas} />
 						<Route path="/perfil" component={Perfil} />
 						{/* <Route>
