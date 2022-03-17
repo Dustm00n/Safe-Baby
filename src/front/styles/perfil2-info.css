@@ -1,15 +1,20 @@
-.btn-neon {
-  margin-left: 65px;
-  margin-top: 15px;
+.boton-neon {
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  color: #fff;
+  letter-spacing: 4px;
+  text-decoration: none;
+  font-size: 24px;
+  overflow: hidden;
+  transition: 0.2s;
 }
-
-.btn-neon:hover {
-  border: 0;
+.boton-neon:hover {
   background: #a945c7;
   box-shadow: 0 0 10px #a945c7, 0 0 40px #a945c7, 0 0 80px #a945c7;
   transition-delay: 1s;
 }
-.btn-neon span {
+.boton-neon span {
   position: absolute;
   display: block;
 }
@@ -20,7 +25,7 @@
   height: 2px;
   background: linear-gradient(90deg, transparent, #a945c7);
 }
-.btn-neon:hover #span1 {
+.boton-neon:hover #span1 {
   left: 100%;
   transition: 1s;
 }
@@ -31,7 +36,7 @@
   height: 2px;
   background: linear-gradient(270deg, transparent, #a945c7);
 }
-.btn-neon:hover #span3 {
+.boton-neon:hover #span3 {
   right: 100%;
   transition: 1s;
   transition-delay: 0.5s;
@@ -43,7 +48,7 @@
   height: 100%;
   background: linear-gradient(180deg, transparent, #a945c7);
 }
-.btn-neon:hover #span2 {
+.boton-neon:hover #span2 {
   top: 100%;
   transition: 1s;
   transition-delay: 0.25s;
@@ -55,30 +60,22 @@
   height: 100%;
   background: linear-gradient(360deg, transparent, #a945c7);
 }
-.btn-neon:hover #span4 {
+.boton-neon:hover #span4 {
   bottom: 100%;
   transition: 1s;
   transition-delay: 0.75s;
 }
-
-/* @keyframes shadow-pulse { */
-/* 0% { */
-/* box-shadow: 0 0 0 0 rgba(32, 226, 215, 0.6); */
-/* } */
-/* 100% { */
-/* box-shadow: 0 0 8px 16px rgba(32, 226, 215, 0); */
-/* } */
-/* } */
-
 .card-InfoBB {
+  display: flex;
+  justify-content: center;
   margin: 179px auto;
   padding: 20px;
   width: 350px;
   height: 100%;
-  background-color: #6c757d;
+  background-color: #5f2670;
   border-radius: 10px;
   line-height: 10px;
-  box-shadow: 0 4px 6px 2px #5e757946;
+  box-shadow: 0 4px 6px 2px #2d103671;
   margin-left: 35px;
   margin-top: 15px;
 }
@@ -88,6 +85,9 @@
 }
 
 .card-text-color {
+  color: white;
+}
+.card-text-boton {
   color: white;
 }
 

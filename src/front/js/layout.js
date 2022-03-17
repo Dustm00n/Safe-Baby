@@ -29,37 +29,21 @@ const Layout = () => {
 		<div>
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					{
-						sessionStorage.getItem('logeado') == 'false' ? <Navbar /> : <nav className="navbar py-3">
-							<img className="navbar-brand-intro" src={LogoBebe} />
-							<div className="navbar-container-intro gap-4 d-flex justify-content-end">
-								<div className="button-link-login">
-									<Link to="/login">
-										<button className="btn btn-navbar-intro">Login</button>
-									</Link>
-								</div>
-								<div className="button-link-signup">
-									<Link to="/signup">
-										<button className="btn btn-navbar-intro">Sign Up</button>
-									</Link>
-								</div>
-							</div>
-						</nav>
-					}
+					<Route exact path="/login" component={Login} />
+					<Route exact path="/signup" component={SignUp} />
+					<Navbar />
 					<Switch>
 						<Route exact path="/" component={LandingPageIntro} />
 						<Route exact path="/home" component={Home} />
-						<Route exact path="/login" component={Login} />
-						<Route exact path="/signup" component={SignUp} />
 						<Route exact path="/startprogress" component={StartProgress} />
 						<Route exact path="/progress" component={Progress} />
 						<Route exact path="/foro" component={Mainchat} />
 						<Route exact path="/Agenda" component={Agenda} />
 						<Route path="/citas" component={Citas} />
 						<Route path="/perfil" component={Perfil} />
-						<Route>
+						{/* <Route>
 							<h1>Not found!</h1>
-						</Route>
+						</Route> */}
 					</Switch>
 					<Footer />
 				</ScrollToTop>
