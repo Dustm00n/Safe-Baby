@@ -5,6 +5,7 @@
   background-size: cover;
   background-attachment: fixed;
   align-items: center;
+  height: 300px;
 }
 .card-profile {
   width: 200px;
