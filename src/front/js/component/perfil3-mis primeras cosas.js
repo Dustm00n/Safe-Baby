@@ -3,10 +3,10 @@ import Liston from "../../img/Liston-baby.png";
 
 
 
-const misPrimerascosas = () => {
+const Misprimerascosas = () => {
     return (
         <>
-            <div className="card text-center">
+            <div className="card text-center  p-cosas">
                 <div className="card-header">
                     <img src={Liston} className="liston-a" />
                 </div>
@@ -16,11 +16,10 @@ const misPrimerascosas = () => {
                     <a href="#" className="btn btn-primary">Go somewhere</a>
                 </div>
                 <div className="card-footer text-muted">
-                    2 days ago
                 </div>
             </div>
         </>
     )
 }
 
-export default misPrimerascosas
+export default Misprimerascosas
