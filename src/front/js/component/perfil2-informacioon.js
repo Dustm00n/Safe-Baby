@@ -9,7 +9,11 @@ const InfoBB = () => {
                 <h5 className="card-title-InfoBB">Nombre de tu Bebé</h5>
                 <p className="card-text-color">Matteo serrano orellana</p>
                 <Link to='/Agenda' >
-                    <button type="button" className="btn btn-secondary btn-sm btn-neon">
+                    <button type="button" className="btn boton-neon">
+                        <span id="span1"></span>
+                        <span id="span2"></span>
+                        <span id="span3"></span>
+                        <span id="span4"></span>
                         <img
                             src="https://i0.wp.com/i.blogs.es/c51839/gateo/450_1000.gif"
                             className="imagen-boton"

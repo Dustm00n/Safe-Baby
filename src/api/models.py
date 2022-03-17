@@ -7,9 +7,9 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
-    roles_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
     profile = db.relationship("Profile", backref="users", uselist=False)
-    role = db.relationship("Rol")
+    # roles_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
+    # role = db.relationship("Rol")
     datos_babies = db.relationship("DatosBaby")
 
     def __repr__(self):
@@ -17,6 +17,9 @@ class User(db.Model):
     
     def get_datos_babies(self):
         return list(map(lambda x:x.serialize(), self.datos_babies))
+    
+    # def get_roles(self):
+    #     return list(map(lambda x:x.serialize(), self.roles_id))
         
     def serialize(self):
         return {
@@ -24,7 +27,7 @@ class User(db.Model):
             "email": self.email,
             "roles_id":self.roles_id,
             "profile":self.profile.serialize(), #antes era self.proile.serialize()
-            "role":self.role.serialize(),  #antes era self.role.serialize()
+            # "role":self.role.serialize(),  #antes era self.role.serialize()
             "datos_babies":self.get_datos_babies()
             # do not serialize the password, its a security breach
         }

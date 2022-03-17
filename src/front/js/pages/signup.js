@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 // import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { NavbarLoginSignup } from '../component/navbar-login-signup';
+
 import "../../styles/signup.css";
+import { Link } from "react-router-dom";
 
 export const SignUp = () => {
     const { store, actions } = useContext(Context);
@@ -31,20 +34,7 @@ export const SignUp = () => {
         const newState = { ...registerform };
         newState[name] = files[0];
         setRegisterForm(newState);
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        e.target.reset();
-        let formData = new FormData();
-        formData.append('nombre', registerform.nombre)
-        formData.append('apellido', registerform.apellido)
-        formData.append('email', registerform.email)
-        formData.append('password', registerform.password)
-        formData.append('avatar', registerform.avatar)
-        setRegisterErrors(handleValidate(formData));
-        actions.signUp(formData);
-        console.log('actions.signUp', actions.signUp);
+        console.log(newState)
     }
 
     const handleValidate = (registerform) => {
@@ -67,8 +57,23 @@ export const SignUp = () => {
         return errors;
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        e.target.reset();
+        let formData = new FormData();
+        formData.append('nombre', registerform.nombre)
+        formData.append('apellido', registerform.apellido)
+        formData.append('email', registerform.email)
+        formData.append('password', registerform.password)
+        formData.append('avatar', registerform.avatar)
+        setRegisterErrors(handleValidate(formData));
+        actions.signUp(formData);
+        console.log(formData);
+    }
+
     return (
         <>
+            <NavbarLoginSignup />
             <div className="main-signup">
                 <div className="form-container-signup">
                     <h1 className="title-signup">Sign Up</h1>
@@ -125,7 +130,9 @@ export const SignUp = () => {
                                 placeholder="avatar"
                                 onChange={(e) => { handleChangeFile(e) }} />
                         </div>
-                        <button type="submit" className="btn btn-signup d-grid gap-2 col-6 mx-auto">Sign up</button>
+                        <Link to="/home">
+                            <button type="submit" className="btn btn-signup d-grid gap-2 col-6 mx-auto">Sign up</button>
+                        </Link>
                     </form>
                 </div>
             </div>

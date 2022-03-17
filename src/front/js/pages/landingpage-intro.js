@@ -1,13 +1,11 @@
 import React from 'react';
-import LogoBebe from "../../img/logo-bebe.png";
-import { Link } from "react-router-dom";
-
+import { NavbarLoginSignup } from '../component/navbar-login-signup';
 import "../../styles/landingpage-intro.css";
 
 export const LandingPageIntro = () => {
     return (
         <>
-
+            <NavbarLoginSignup />
             <section>
                 <div className="content-explanation">
                     <h1 className="project-title">Safe Baby</h1>
