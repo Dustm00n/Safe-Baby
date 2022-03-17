@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 import { NavbarLoginSignup } from '../component/navbar-login-signup';
 
 import "../../styles/signup.css";
+import { Link } from "react-router-dom";
 
 export const SignUp = () => {
     const { store, actions } = useContext(Context);
@@ -129,7 +130,9 @@ export const SignUp = () => {
                                 placeholder="avatar"
                                 onChange={(e) => { handleChangeFile(e) }} />
                         </div>
-                        <button type="submit" className="btn btn-signup d-grid gap-2 col-6 mx-auto">Sign up</button>
+                        <Link to="/home">
+                            <button type="submit" className="btn btn-signup d-grid gap-2 col-6 mx-auto">Sign up</button>
+                        </Link>
                     </form>
                 </div>
             </div>

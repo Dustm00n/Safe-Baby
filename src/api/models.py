@@ -18,14 +18,14 @@ class User(db.Model):
     def get_datos_babies(self):
         return list(map(lambda x:x.serialize(), self.datos_babies))
     
-    def get_roles(self):
-        return list(map(lambda x:x.serialize(), self.roles_id))
+    # def get_roles(self):
+    #     return list(map(lambda x:x.serialize(), self.roles_id))
         
     def serialize(self):
         return {
             "id": self.id,
             "email": self.email,
-            # "roles_id":self.roles_id,
+            "roles_id":self.roles_id,
             "profile":self.profile.serialize(), #antes era self.proile.serialize()
             # "role":self.role.serialize(),  #antes era self.role.serialize()
             "datos_babies":self.get_datos_babies()
