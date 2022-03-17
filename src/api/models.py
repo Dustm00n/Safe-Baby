@@ -25,7 +25,7 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
-            "roles_id":self.roles_id,
+            # "roles_id":self.roles_id,
             "profile":self.profile.serialize(), #antes era self.proile.serialize()
             # "role":self.role.serialize(),  #antes era self.role.serialize()
             "datos_babies":self.get_datos_babies()
@@ -219,5 +219,6 @@ class Etapa(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+#-------------------------------------Aqui falta que Ale integre las tablas del chat-----------------------------------#
 
 

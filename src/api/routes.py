@@ -88,13 +88,13 @@ api = Blueprint('api', __name__)
 #             return jsonify({"msg": "Todos los usuarios han sido eliminados"}, {}), 200
 
 #---------------------------Ruta de registro----------------------------------------#
-# @api.route('/signup', methods=['GET'])
-# def get_all_users():
+@api.route('/signup', methods=['GET'])
+def get_all_users():
 
-#     user = User.query.all()
-#     user = list(map(lambda x: x.serialize(), user))
+    user = User.query.all()
+    user = list(map(lambda x: x.serialize(), user))
 
-#     return jsonify(user), 200
+    return jsonify(user), 200
 
 # @api.route('/signup/<int:id>', methods=['GET'])
 # def get_user_signuped(id = None):
@@ -297,7 +297,7 @@ def datababies(id=None):
             edad = request.form['edad']
             genero = request.form['genero']
             estatura = request.form['estatura']
-            user_id = request.form['user_id']
+            users_id = request.form['users_id']
 
             if not nombre: return jsonify({"msg": "Nombre del bebé es requerido!"}), 400
             if not apellido: return jsonify({"msg": "Apellido del bebé requerido!"}), 400
@@ -311,7 +311,7 @@ def datababies(id=None):
             data_bebes.edad = edad
             data_bebes.genero = genero
             data_bebes.estatura = estatura
-            data_bebes.user_id = user_id
+            data_bebes.users_id = users_id
             data_bebes.save()
             
             return jsonify(data_bebes.serialize()), 200
@@ -323,7 +323,7 @@ def datababies(id=None):
             edad = request.json('edad')
             genero = request.json('genero')
             estatura = request.json('estatura')
-            user_id = request.json('user_id')
+            users_id = request.json('users_id')
 
             data_bebes = DatosBaby()
             data_bebes.nombre = nombre
@@ -331,7 +331,7 @@ def datababies(id=None):
             data_bebes.edad = edad
             data_bebes.genero = genero
             data_bebes.estatura = estatura
-            data_bebes.user_id = user_id
+            data_bebes.users_id = users_id
             data_bebes.update()
             
             return jsonify(data_bebes.serialize()), 200

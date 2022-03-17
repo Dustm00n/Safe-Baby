@@ -47,7 +47,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       // setStore({ demo: demo });
       // },
       login: (formData) => {
-        fetch('https://3001-dustm00n-safebaby-ahvi40pv5ls.ws-us34.gitpod.io/api/signup', {
+        fetch('https://3001-dustm00n-safebaby-ahvi40pv5ls.ws-us38.gitpod.io/api/login', {
           body: formData
         })
 
@@ -59,7 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
       },
       signUp: (formData) => {
-        fetch('https://3001-dustm00n-safebaby-ahvi40pv5ls.ws-us34.gitpod.io/api/signup', {
+        fetch('https://3001-dustm00n-safebaby-ahvi40pv5ls.ws-us38.gitpod.io/api/signup', {
           method: 'POST',
           body: formData
         })
@@ -68,7 +68,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log(data)
             setStore({ register: data })
           })
-          .catch(error => console.log("error", error))
+          .catch(error => console.log("HA OCURRIDO UN ERROR", error))
       }
       // setStore({ register: setRegisterForm });
       // console.log("esta llegando");
