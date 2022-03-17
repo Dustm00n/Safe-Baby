@@ -11,6 +11,9 @@ class User(db.Model):
     # roles_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
     # role = db.relationship("Rol")
     datos_babies = db.relationship("DatosBaby")
+    chats = db.relationship('Chat', secondary="participantes_chats")
+    messages = db.relationship('Message', backref="user", lazy=True)
+
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -25,10 +28,13 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
-            "roles_id":self.roles_id,
+            # "roles_id":self.roles_id,
             "profile":self.profile.serialize(), #antes era self.proile.serialize()
             # "role":self.role.serialize(),  #antes era self.role.serialize()
             "datos_babies":self.get_datos_babies()
+            #"chats": self.get_chats()
+            #"messages": self.get_messages() 
+            
             # do not serialize the password, its a security breach
         }
 
@@ -214,10 +220,79 @@ class Etapa(db.Model):
 
     def updade(self):
         db.session.commit(self)
+
     
     def delete(self):
         db.session.delete(self)
         db.session.commit()
 
 
+class Chat(db.Model):
+    __tablename__= 'chats'
+    id = db.Column(db.Integer, primary_key=True)
+    nombre_sala = db.Column(db.String(120), unique=True, nullable=False)
+    participantes = db.relationship('User', secondary="participantes_chats")
+    Message = db.relationship('Message', backref="chat", lazy=True)
 
+  
+
+    def __repr__(self):
+        return '<Chat %r>' % self.nombre_sala
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre_sala": self.nombre_sala,
+            "participantes": self.participantes,
+            "Message": self.Message
+        }
+
+    def get_participantes(self):
+        return list(map(lambda x: x.serialize(), self.participantes))
+
+    def get_messages(self):
+        return list(map(lambda x: x.serialize(), self.messages))
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+        
+class ParticipanteChat(db.Model):
+    __tablename__= 'participantes_chats'
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    chat_id = db.Column(db.Integer, db.ForeignKey('chats.id'), nullable=False)
+
+ 
+class Message(db.Model):
+    __tablename__= 'messages'
+    id = db.Column(db.Integer, primary_key=True)
+    chats_id =  db.Column(db.Integer, db.ForeignKey('chats.id'), nullable=False)
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    message = db.Column(db.String(120), unique=True, nullable=False)
+
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "message": self.message,
+            "user": self.user.name
+        }
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()

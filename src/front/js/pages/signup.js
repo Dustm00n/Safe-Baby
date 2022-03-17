@@ -40,18 +40,18 @@ export const SignUp = () => {
     const handleValidate = (registerform) => {
         const errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        if (!registerform.nombre) {
+        if (registerform.nombre == "") {
             errors.nombre = "Nombre es requerido!";
         }
-        if (!registerform.apellido) {
+        if (registerform.apellido == "") {
             errors.apellido = "Apellido es requerido!";
         }
-        if (!registerform.email) {
+        if (registerform.email == "") {
             errors.email = "Email es requerido!";
-        } else if (!regex.test(registerform.email)) {
+        } else if (regex.test(registerform.email)) {
             errors.email = "Tu correo no es valido!";
         }
-        if (!registerform.password) {
+        if (registerform.password == "") {
             errors.password = "Password es requerido!";
         }
         return errors;
@@ -130,9 +130,9 @@ export const SignUp = () => {
                                 placeholder="avatar"
                                 onChange={(e) => { handleChangeFile(e) }} />
                         </div>
-                        <Link to="/home">
-                            <button type="submit" className="btn btn-signup d-grid gap-2 col-6 mx-auto">Sign up</button>
-                        </Link>
+                        {/* <Link to="/home"> */}
+                        <button type="submit" className="btn btn-signup d-grid gap-2 col-6 mx-auto">Sign up</button>
+                        {/* </Link> */}
                     </form>
                 </div>
             </div>
