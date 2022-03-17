@@ -1,7 +1,7 @@
 .container-profile {
   display: flex;
   justify-content: center;
-  background-image: url("https://media.giphy.com/media/TxVVB6PfWMjE4/giphy.gif");
+  background-image: url(../img/portada-babys.jpg);
   background-size: cover;
   background-attachment: fixed;
   align-items: center;
