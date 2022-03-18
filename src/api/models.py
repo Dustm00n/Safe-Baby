@@ -10,7 +10,7 @@ class User(db.Model):
     profile = db.relationship("Profile", cascade="all, delete", backref="users", uselist=False)
     # roles_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
     # role = db.relationship("Rol")
-    datos_babies = db.relationship("DatosBaby", cascade="all, delete")
+    datos_babies = db.relationship("DatosBaby", cascade="all, delete") #actualizado
     chats = db.relationship('Chat', secondary="participantes_chats")
     messages = db.relationship('Message', backref="user", lazy=True)
 
