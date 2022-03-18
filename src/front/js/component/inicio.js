@@ -8,14 +8,14 @@ import imagePasos from "../../img/bebe-9-meses.jpeg"
 import imageDesarollo from "../../img/desarrollo-bebe.jpeg"
 import imageJUegos from "../../img/juegos_didacticos.jpeg"
 import imageMeses from "../../img/mom-and-baby.jpeg"
-import { BiSearchAlt } from "react-icons/bi";
+// import { BiSearchAlt } from "react-icons/bi";
 
 
 export const Inicio = (props) => {
     return (
         <div className="mt-5 mx-5">
-            <h5 className="titulo-home">{props.tituloA}</h5>
             <div className="scrollmenu-home">
+                <h5 className="titulo-home">{props.tituloA}</h5>
                 <div className="card-home">
                     <div className="row">
                         <div className="col-md-6">
@@ -24,7 +24,7 @@ export const Inicio = (props) => {
                                 <p className="parrafoA-home">{props.parrafoA}</p>
                             </div>
                         </div>
-                        <div className="col-md-6 gap-4 d-flex justify-content-end">
+                        <div className="col-md-6 gap-4 d-flex justify-content-center">
                             <img src={imageUrl} className="img-fluid rounded-start" alt="..." />
                         </div>
                     </div>
@@ -36,7 +36,7 @@ export const Inicio = (props) => {
                             <div className="card-body-home">
                                 <p className="parrafoA-home">{props.parrafoB}</p></div>
                         </div>
-                        <div className="col-md-6 gap-4 d-flex justify-content-end">
+                        <div className="col-md-6 gap-4 d-flex justify-content-center">
                             <img src={imageUrlMeses} className="img-fluid rounded-start" alt="..." />
                         </div>
                     </div>
@@ -50,14 +50,14 @@ export const Inicio = (props) => {
                                 </p>
                             </div>
                         </div>
-                        <div className="col-md-6 gap-4 d-flex justify-content-end">
+                        <div className="col-md-6 gap-4 d-flex justify-content-center">
                             <img src={imagePasos} className="img-fluid rounded-start" alt="..." />
                         </div>
                     </div>
                 </div>
             </div>
-            <h5>{props.tituloB}</h5>
             <div className="scrollmenu-home">
+                <h5 className="titulo-home">{props.tituloB}</h5>
                 <div className="card-home">
                     <div className="row">
                         <div className="col-md-6">
@@ -66,7 +66,7 @@ export const Inicio = (props) => {
                                 <p className="parrafoA-home">{props.parrafoD}</p>
                             </div>
                         </div>
-                        <div className="col-md-6 gap-4 d-flex justify-content-end">
+                        <div className="col-md-6 gap-4 d-flex justify-content-center">
                             <img src={imageDesarollo} className="img-fluid rounded-start" alt="..." />
                         </div>
                     </div>
@@ -80,7 +80,7 @@ export const Inicio = (props) => {
                                 </p>
                             </div>
                         </div>
-                        <div className="col-md-6 gap-4 d-flex justify-content-end">
+                        <div className="col-md-6 gap-4 d-flex justify-content-center">
                             <img src={imageJUegos} className="img-fluid rounded-start" alt="..." />
                         </div>
                     </div>
@@ -93,7 +93,7 @@ export const Inicio = (props) => {
                                 <p className="parrafoA-home">{props.parrafoF} </p>
                             </div>
                         </div>
-                        <div className="col-md-6 gap-4 d-flex justify-content-end">
+                        <div className="col-md-6 gap-4 d-flex justify-content-center">
                             <img src={imageMeses} className="img-fluid rounded-start" alt="..." />
                         </div>
                     </div>
@@ -102,93 +102,95 @@ export const Inicio = (props) => {
             <div className="text-center">
                 <h5 className="titulo-home">ESPACIO PARA TU BEBÉ</h5>
             </div>
-            <div className="card-videohome">
-                <h5 className="card-title-home">Educacion para tu bebé</h5>
-                <div className="row">
-                    <div className="col md-4">
-                        <ReactPlayer
-                            width="360px"
-                            height="310px"
-                            controls
-                            url="https://www.youtube.com/watch?v=vNAAwojkQtM" />
+            <div className="card-video-group">
+                <div className="card-video-home">
+                    <h5 className="card-title-video-home">Educacion para tu bebé</h5>
+                    <div className="row">
+                        <div className="col md-4 d-flex justify-content-center">
+                            <ReactPlayer
+                                width="100%"
+                                height="300px"
+                                controls
+                                url="https://www.youtube.com/watch?v=vNAAwojkQtM" />
 
-                    </div>
-                    <div className="col md-4">
-                        <ReactPlayer
-                            width="360px"
-                            height="310px"
-                            url="https://www.youtube.com/watch?v=sOG8xJPxYqw" />
-                    </div>
-                    <div className="col md-4">
-                        <ReactPlayer
-                            width="360px"
-                            height="310px"
-                            url="https://www.youtube.com/watch?v=UYkmRoTpCPs" />
+                        </div>
+                        <div className="col md-4 d-flex justify-content-center">
+                            <ReactPlayer
+                                width="100%"
+                                height="300px"
+                                url="https://www.youtube.com/watch?v=sOG8xJPxYqw" />
+                        </div>
+                        <div className="col md-4 d-flex justify-content-center">
+                            <ReactPlayer
+                                width="100%"
+                                height="300px"
+                                url="https://www.youtube.com/watch?v=UYkmRoTpCPs" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="card-videohome">
-                <h5 className="card-title-home">Entretenimiento para tu bebé</h5>
-                <div className="row">
-                    <div className="col md-4">
-                        <ReactPlayer
-                            width="360px"
-                            height="310px"
-                            controls
-                            url="https://www.youtube.com/watch?v=AwpZl39gz7U" />
+                <div className="card-video-home">
+                    <h5 className="card-title-video-home">Entretenimiento para tu bebé</h5>
+                    <div className="row">
+                        <div className="col md-4 d-flex justify-content-center">
+                            <ReactPlayer
+                                width="100%"
+                                height="300px"
+                                controls
+                                url="https://www.youtube.com/watch?v=AwpZl39gz7U" />
 
-                    </div>
-                    <div className="col md-4">
-                        <ReactPlayer
-                            width="360px"
-                            height="310px"
-                            controls
-                            url="https://www.youtube.com/watch?v=nyrKHQxMxoo" />
+                        </div>
+                        <div className="col md-4 d-flex justify-content-center">
+                            <ReactPlayer
+                                width="100%"
+                                height="300px"
+                                controls
+                                url="https://www.youtube.com/watch?v=nyrKHQxMxoo" />
 
-                    </div>
-                    <div className="col md-4">
-                        <ReactPlayer
-                            width="360px"
-                            height="310px"
-                            controls
-                            url="https://www.youtube.com/watch?v=tlf4h1tiOOs" />
+                        </div>
+                        <div className="col md-4 d-flex justify-content-center">
+                            <ReactPlayer
+                                width="100%"
+                                height="300px"
+                                controls
+                                url="https://www.youtube.com/watch?v=tlf4h1tiOOs" />
 
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="card-videohome">
-                <h5 className="card-title-home">Música para tu bebé</h5>
-                <div className="row">
-                    <div className="col md-4">
-                        <ReactPlayer
-                            width="360px"
-                            height="310px"
-                            controls
-                            url="https://www.youtube.com/watch?v=lMZzkxszfWE" />
+                <div className="card-video-home">
+                    <h5 className="card-title-video-home">Música para tu bebé</h5>
+                    <div className="row">
+                        <div className="col md-4 d-flex justify-content-center">
+                            <ReactPlayer
+                                width="100%"
+                                height="310px"
+                                controls
+                                url="https://www.youtube.com/watch?v=lMZzkxszfWE" />
 
-                    </div>
-                    <div className="col md-4">
-                        <ReactPlayer
-                            width="360px"
-                            height="310px"
-                            controls
-                            url="https://www.youtube.com/watch?v=azxGmHY6rFQ" />
+                        </div>
+                        <div className="col md-4 d-flex justify-content-center">
+                            <ReactPlayer
+                                width="100%"
+                                height="310px"
+                                controls
+                                url="https://www.youtube.com/watch?v=azxGmHY6rFQ" />
 
-                    </div>
-                    <div className="col md-4">
-                        <ReactPlayer
-                            width="360px"
-                            height="310px"
-                            controls
-                            url="https://www.youtube.com/watch?v=EwZ3KhAh448" />
+                        </div>
+                        <div className="col md-4 d-flex justify-content-center">
+                            <ReactPlayer
+                                width="100%"
+                                height="310px"
+                                controls
+                                url="https://www.youtube.com/watch?v=EwZ3KhAh448" />
 
+                        </div>
                     </div>
                 </div>
             </div>
             <div className="table-home mt-5 mx-2">
                 <div className="row">
-                    <div className="col-md-10">
-                        <h5 className="titulo-home ">{props.tituloC}</h5>
+                    <div className="col">
+                        <h5 className="titulo-home-riesgos">{props.tituloC}</h5>
                     </div>
                     {/* buscador de alimentos en la tabla, en construccion  */}
                     {/*  <div className="col-md-2">
@@ -318,11 +320,6 @@ export const Inicio = (props) => {
                         </div>
                     </li>
                 </ul>
-
-
-
-
-
             </div>
         </div>
 

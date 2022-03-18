@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/navbar.css";
-import LogoBebe from "../../img/logo-bebe.png"
+import LogoBebe from "../../img/logo-nuevo-safe baby.png";
 export const Navbar = () => {
 	return (
 		<nav className="navbar navbar py-3">
