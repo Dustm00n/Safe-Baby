@@ -88,13 +88,22 @@ api = Blueprint('api', __name__)
 #             return jsonify({"msg": "Todos los usuarios han sido eliminados"}, {}), 200
 
 #---------------------------Ruta de registro----------------------------------------#
-@api.route('/signup', methods=['GET'])
-def get_all_users():
+@api.route('/users/delete', methods=['DELETE'])
+def delete_all_users():
 
-    user = User.query.all()
-    user = list(map(lambda x: x.serialize(), user))
+    #  data_babies = DatosBaby.query.all()
+    # for datosbaby in data_babies:
+    #     datosbaby.delete()
 
-    return jsonify(user), 200
+    # profiles = Profile.query.all()
+    # for profile in profiles:
+    #     profile.delete()
+
+    users = User.query.all()
+    for user in users:
+        user.delete()
+
+    return jsonify({"msg": "Usuarios han sido eliminados"}), 200
 
 # @api.route('/signup/<int:id>', methods=['GET'])
 # def get_user_signuped(id = None):
@@ -106,7 +115,6 @@ def get_all_users():
 #     return jsonify(user), 200
     
 @api.route('/signup', methods=['POST'])
-# @jwt_required()
 def signup():
     
         email = request.form['email']
@@ -159,8 +167,8 @@ def login():
 
         user = User.query.filter_by(email=email).first()
 
-        if not user: return jsonify({"msg": "email/password son incorrectos"}), 401
-        if not check_password_hash(user.password, password): return jsonify({"msg": "email/password son incorrectos"}), 401
+        if not user: return jsonify({"msg": "email/password son incorrectos"}), 40
+        if not check_password_hash(user.password, password): return jsonify({"msg": "email/password son incorrectos"}), 40
 
         create_access_token = create_access_token(identity=user.id)
 
@@ -177,6 +185,7 @@ def login():
 #---------------------------Ruta de Roles----------------------------------------#
 @api.route('/roles', methods=['GET', 'POST'])
 @api.route('/roles/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# @jwt_required()
 def roles(id = None):
 
     if request.method == 'GET':
@@ -282,6 +291,7 @@ def profiles(id=None):
 #---------------------------Ruta de Datos del Bebé----------------------------------------#
 @api.route('/datababies', methods=['GET', 'POST'])
 @api.route('/datababies/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# @jwt_required()
 def datababies(id=None):
     
     if request.method == 'GET':
@@ -342,6 +352,7 @@ def datababies(id=None):
 #---------------------------Ruta de Logros del Bebé----------------------------------------#
 @api.route('/logrosbebes', methods=['GET', 'POST'])
 @api.route('/logrosbebes/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# @jwt_required()
 def logrosbebes(id=None):
 
     if request.method == 'GET':
@@ -371,6 +382,7 @@ def logrosbebes(id=None):
 #---------------------------Ruta de Actividades del Bebé----------------------------------------#
 @api.route('/actividades', methods=['GET', 'POST'])
 @api.route('/actividades/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# @jwt_required()
 def actividades(id=None):
 
     if request.method == 'GET':
@@ -399,6 +411,7 @@ def actividades(id=None):
 #---------------------------Ruta de Etapas de las actividades----------------------------------------#
 @api.route('/etapas', methods=['GET', 'POST'])
 @api.route('/etapas/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# @jwt_required()
 def etapas(id=None):
     if request.method == 'GET':
         if id is not None:
@@ -419,5 +432,6 @@ def etapas(id=None):
             return jsonify(numero_etapas)
     else:
         return jsonify({"msg": "No existen etapas"}), 400
+
 #---------------------------Agrega una Ruta si es necesario----------------------------------------#
 

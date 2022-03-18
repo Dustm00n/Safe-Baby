@@ -7,10 +7,10 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
-    profile = db.relationship("Profile", backref="users", uselist=False)
+    profile = db.relationship("Profile", cascade="all, delete", backref="users", uselist=False)
     # roles_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
     # role = db.relationship("Rol")
-    datos_babies = db.relationship("DatosBaby")
+    datos_babies = db.relationship("DatosBaby", cascade="all, delete")
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -75,7 +75,7 @@ class Profile(db.Model):
     nombre = db.Column(db.String(120), nullable=False)
     apellido = db.Column(db.String(120), nullable=False)
     avatar = db.Column(db.String(200), nullable=False)
-    users_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"), nullable=False)
 
     def __repr__(self):
         return '<Profile %r>' % self.nombre
@@ -108,7 +108,7 @@ class DatosBaby(db.Model):
     edad = db.Column(db.String(120), nullable=False)
     genero = db.Column(db.String(120), nullable=False)
     estatura = db.Column(db.String(50), nullable=False)
-    users_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"), nullable=False)
     datos_actividades= db.relationship("Actividad", secondary="logros_bebes")
     
     def __repr__(self):

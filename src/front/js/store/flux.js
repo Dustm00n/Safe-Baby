@@ -1,8 +1,10 @@
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       logged: false,
-      register: null
+      register: null,
+      url: "https://3001-dustm00n-safebaby-ahvi40pv5ls.ws-us38.gitpod.io"
       //   message: null,
       //   demo: [
       //     {
@@ -46,20 +48,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       //reset the global store
       // setStore({ demo: demo });
       // },
-      login: (formData) => {
-        fetch('https://3001-dustm00n-safebaby-ahvi40pv5ls.ws-us38.gitpod.io/api/login', {
-          body: formData
-        })
-
-          .then(response => response.json())
-          .then(data => {
-            console.log(data)
-            sessionStorage.getItem("token", data.token)
-            setStore({ logged: true })
-          })
-      },
       signUp: (formData) => {
-        fetch('https://3001-dustm00n-safebaby-ahvi40pv5ls.ws-us38.gitpod.io/api/signup', {
+        const { url } = getStore()
+        fetch(`${url}/api/signup`, {
           method: 'POST',
           body: formData
         })
@@ -69,13 +60,36 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({ register: data })
           })
           .catch(error => console.log("HA OCURRIDO UN ERROR", error))
+      },
+      login: () => {
+        const { url } = getStore()
+        fetch(`${url}/api/login`, {
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+            sessionStorage.getItem("token", data.token)
+            setStore({ logged: true })
+          })
+      },
+      logout: (formData) => {
+        const { url } = getStore()
+        fetch(`${url}/api/login`, {
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+            sessionStorage.removeItem("token", data.token)
+            setStore({ logged: false })
+          })
       }
       // setStore({ register: setRegisterForm });
       // console.log("esta llegando");
       // register: (registerForm) => {
       //   setStore({ register: registerForm })
       // }
-    },
+    }
   };
 };
 
