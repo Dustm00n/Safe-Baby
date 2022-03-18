@@ -11,7 +11,7 @@ const PublicRoute = ({ component: Component, restricted, ...rest }) => {
         // restricted = false meaning public route
         // restricted = true meaning restricted route
         <Route {...rest} render={props => (
-            isLogin() && registered == false ?
+            isLogin() && registered ?
                 <Redirect to="/" />
                 : <Component {...props} />
         )} />

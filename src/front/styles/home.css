@@ -1,136 +1,187 @@
-.titulo-home {
-  color: #5e8287;
-}
-.card-home {
-  border: #884747 solid 5px;
-  border-radius: 5px;
-  background-color: #f0e4e4;
-  margin: 20px;
-  font-size: 13px;
-}
-.card-videohome {
-  border-radius: 5px;
-  background-color: #f0e4e4;
-  margin: 20px;
-}
-.card-title-home {
-  color: #904b5b;
-  background-color: white;
-}
-.parrafoA-home {
-  text-align: justify;
-  height: 220px;
-  overflow: auto;
-  display: block;
-}
-.img-fluid {
-  width: 700px;
-  height: 320px;
-}
-
 div.scrollmenu-home {
+  margin-bottom: 10rem;
   overflow: hidden;
 }
-
 div.scrollmenu-home a {
-  display: inline-block;
-  color: white;
-  text-align: center;
   padding: 14px;
+  display: inline-block;
+  text-align: center;
   text-decoration: none;
+  color: white;
 }
-
 div.scrollmenu-home a:hover {
   background-color: #777;
 }
-
+.titulo-home {
+  /* margin: 10px 10px 0px 20px; */
+  /* color: #5e8287; */
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: #2a93bd;
+  font-size: 1.5rem;
+}
+.titulo-home-riesgos {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #2a93bd;
+}
+.card-home {
+  margin: 20px 0 20px 0;
+  font-size: 13px;
+  border: #e9d7d7 solid 5px;
+  border-radius: 5px;
+  background-color: #f0e4e4;
+}
+.card-home:hover {
+  margin: 20px 0 20px 0;
+  font-size: 13px;
+  position: relative;
+  top: -5px;
+  border: #fadcdc solid 5px;
+  border-radius: 5px;
+  background-color: #f0e4e4;
+  box-shadow: 0px 5px 10px 1px #b4a1a1;
+  transition: 0.25s;
+}
+.card-video-group {
+  margin-bottom: 10rem;
+}
+.card-video-home {
+  margin: 20px 0 20px 0;
+  padding: 0 20px 20px 20px;
+  border: #e9d7d7 solid 5px;
+  background-color: #f0e4e4;
+}
+.card-video-home:hover {
+  margin: 20px 0 20px 0;
+  padding: 0 20px 20px 20px;
+  position: relative;
+  top: -5px;
+  border: #e9d7d7 solid 5px;
+  background-color: #f0e4e4;
+  box-shadow: 0px 5px 10px 1px #b4a1a1;
+  transition: 0.25s;
+}
+.card-title-home {
+  padding: 10px 10px 10px 0;
+  margin: 15px;
+  font-size: 1.3rem;
+  color: #904b5b;
+  background-color: #f0e4e4;
+}
+.card-title-video-home {
+  padding: 10px 10px 10px 0;
+  margin: 0;
+  font-size: 1.3rem;
+  color: #904b5b;
+  background-color: #f0e4e4;
+}
+.parrafoA-home {
+  margin-left: 16px;
+  height: 220px;
+  font-size: 1rem;
+  display: block;
+  text-align: justify;
+  overflow: auto;
+  color: #a05163;
+}
+.parrafoA-home::-webkit-scrollbar {
+  width: 12px;
+  /* border: #0a8ca096; */
+  background-color: #f55b5b10;
+  border-radius: 2px;
+}
+.parrafoA-home::-webkit-scrollbar-thumb {
+  width: 12px;
+  /* border: #0a8ca0; */
+  background-color: #a00a0a10;
+  border-radius: 2px;
+}
+.img-fluid {
+  padding: 10px;
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
 .input-group-text {
   background-color: #f0e4e4;
   color: #c46f82;
 }
-
 .input-group-text::placeholder {
   color: #c46f82;
 }
-
 .tabla-home {
-  border: #884747 8px solid;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 5rem;
   display: flex;
   flex-wrap: wrap;
+  border-radius: 5px;
 }
-
 .tabla-text-home {
-  color: #904b5b;
-  font-size: 25px;
   margin-top: 15px;
+  font-size: 25px;
+  color: #904b5b;
 }
-
 .nivel-riesgo h2 {
   width: 50px;
 }
-
 .lista-riesgo {
-  background-color: #f8f8f8;
-  width: 100%;
   margin: 0;
+  padding: 12px;
+  background-color: #f0e4e457;
+  border: #f0e4e4 5px solid;
+  border-radius: 5px;
+  width: 100%;
 }
-
 .lista-riesgo span {
   display: flex;
   flex-wrap: wrap;
 }
-
 .items-riesgo span {
   width: 50px;
   display: inline-block;
 }
-
 .spinning-text-wrapper {
   width: 40px;
   height: 40px;
   position: relative;
-  background-color: #c8cac5;
-  border-radius: 50%;
   top: 10px;
+  border-radius: 50%;
+  background-color: #c8cac5;
 }
-
 .spinning-text-wrappe-yellow {
   width: 40px;
   height: 40px;
   position: relative;
-  background-color: #f0bd0a;
-  border-radius: 50%;
   top: 10px;
+  border-radius: 50%;
+  background-color: #f0bd0a;
 }
-
 .spinning-text-wrapper-orange {
   width: 40px;
   height: 40px;
   position: relative;
-  background-color: #fb8417;
-  border-radius: 50%;
   top: 10px;
+  border-radius: 50%;
+  background-color: #fb8417;
 }
-
 .spinning-text-wrapper-green {
   width: 40px;
   height: 40px;
   position: relative;
+  top: 10px;
   background-color: #62c15a;
   border-radius: 50%;
-  top: 10px;
 }
 .spinning-text-wrapper-red {
   width: 40px;
   height: 40px;
   position: relative;
-  background-color: #dd1f1f;
-  border-radius: 50%;
   top: 10px;
+  border-radius: 50%;
+  background-color: #dd1f1f;
 }
-
 .text-tabla-home {
   margin-left: 2px;
   position: relative;

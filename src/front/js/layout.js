@@ -33,18 +33,18 @@ const Layout = () => {
 		<div>
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<PublicRoute exact path="/" component={LandingPageIntro} />
-					<PublicRoute exact path="/login" component={Login} />
-					<PublicRoute exact path="/signup" component={SignUp} />
+					<Route exact path="/" component={LandingPageIntro} />
+					<Route exact path="/login" component={Login} />
+					<Route exact path="/signup" component={SignUp} />
 					<Navbar />
 					<Switch>
-						<PrivateRoute exact path="/home" component={Home} />
-						<PrivateRoute exact path="/startprogress" component={StartProgress} />
-						<PrivateRoute exact path="/progress" component={Progress} />
-						<PrivateRoute exact path="/foro" component={Mainchat} />
-						<PrivateRoute exact path="/Agenda" component={Agenda} />
-						<PrivateRoute path="/citas" component={Citas} />
-						<PrivateRoute path="/perfil" component={Perfil} />
+						<Route exact path="/home" component={Home} />
+						<Route exact path="/startprogress" component={StartProgress} />
+						<Route exact path="/progress" component={Progress} />
+						<Route exact path="/foro" component={Mainchat} />
+						<Route exact path="/Agenda" component={Agenda} />
+						<Route path="/citas" component={Citas} />
+						<Route path="/perfil" component={Perfil} />
 						{/* <Route>
 							<h1>Not found!</h1>
 						</Route> */}
