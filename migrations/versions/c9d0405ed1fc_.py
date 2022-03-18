@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 3afb55798b8d
+Revision ID: c9d0405ed1fc
 Revises: 
-Create Date: 2022-03-17 01:37:24.351368
+Create Date: 2022-03-17 13:19:06.390446
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3afb55798b8d'
+revision = 'c9d0405ed1fc'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -44,7 +44,7 @@ def upgrade():
     sa.Column('genero', sa.String(length=120), nullable=False),
     sa.Column('estatura', sa.String(length=50), nullable=False),
     sa.Column('users_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['users_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['users_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('profiles',
@@ -53,7 +53,7 @@ def upgrade():
     sa.Column('apellido', sa.String(length=120), nullable=False),
     sa.Column('avatar', sa.String(length=200), nullable=False),
     sa.Column('users_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['users_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['users_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('etapas',
