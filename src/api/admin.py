@@ -8,6 +8,9 @@ from .models import db, DatosBaby
 from .models import db, LogroBebe
 from .models import db, Actividad
 from .models import db, Etapa
+from .models import db, Participante
+from .models import db, Chat
+from .models import db, Mensaje
 
 from flask_admin.contrib.sqla import ModelView
 
@@ -25,6 +28,9 @@ def setup_admin(app):
     admin.add_view(ModelView(LogroBebe, db.session))
     admin.add_view(ModelView(Actividad, db.session))
     admin.add_view(ModelView(Etapa, db.session))
+    admin.add_view(ModelView(Participante, db.session))
+    admin.add_view(ModelView(Chat, db.session))
+    admin.add_view(ModelView(Mensaje, db.session))
 
     # You can duplicate that line to add mew models
     # admin.add_view(ModelView(YourModelName, db.session)) 
