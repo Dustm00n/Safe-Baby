@@ -2,22 +2,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      logged: false,
       register: null,
-      url: "https://3001-dustm00n-safebaby-ahvi40pv5ls.ws-us38.gitpod.io"
-      //   message: null,
-      //   demo: [
-      //     {
-      //       title: "FIRST",
-      //       background: "white",
-      //       initial: "white",
-      //     },
-      //     {
-      //       title: "SECOND",
-      //       background: "white",
-      //       initial: "white",
-      //     },
-      //   ],
+      url: "https://3001-dustm00n-safebaby-38b27hfp9tt.ws-us38.gitpod.io"
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -48,7 +34,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       //reset the global store
       // setStore({ demo: demo });
       // },
-      signUp: (formData) => {
+
+      //-----------------funciones Fetch Inicio ---------------//
+      signUp: (formData, history) => {
         const { url } = getStore()
         fetch(`${url}/api/signup`, {
           method: 'POST',
@@ -56,39 +44,32 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
           .then(response => response.json())
           .then(data => {
-            console.log(data)
+            console.log("FLUX DATA", data)
+            localStorage.setItem("token", data.access_token)
             setStore({ register: data })
+            history.push("/home")
           })
           .catch(error => console.log("HA OCURRIDO UN ERROR", error))
       },
-      login: () => {
+      login: (formData, history) => {
         const { url } = getStore()
         fetch(`${url}/api/login`, {
-        })
-          .then(response => response.json())
-          .then(data => {
-            console.log(data)
-            sessionStorage.getItem("token", data.token)
-            setStore({ logged: true })
-          })
-      },
-      logout: (formData) => {
-        const { url } = getStore()
-        fetch(`${url}/api/login`, {
+          method: 'POST',
           body: formData
         })
           .then(response => response.json())
           .then(data => {
             console.log(data)
-            sessionStorage.removeItem("token", data.token)
-            setStore({ logged: false })
+            localStorage.setItem("token", data.access_token)
+            history.push("/home")
           })
+          .catch(error => console.log("HA OCURRIDO UN ERROR", error))
+      },
+      logOut: (history) => {
+        localStorage.removeItem("token")
+        history.push("/")
       }
-      // setStore({ register: setRegisterForm });
-      // console.log("esta llegando");
-      // register: (registerForm) => {
-      //   setStore({ register: registerForm })
-      // }
+      //-----------------funciones Fetch Fin---------------//
     }
   };
 };

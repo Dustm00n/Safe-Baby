@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
 import "../../styles/login.css";
 /* import { firebaseConfig } from "../component/firebase"; */
 import { NavbarLoginSignup } from '../component/navbar-login-signup';
@@ -8,50 +9,45 @@ import { NavbarLoginSignup } from '../component/navbar-login-signup';
 export const Login = () => {
   const { store, actions } = useContext(Context);
 
+  const history = useHistory();
+
   const [loginform, setLoginForm] = useState({
-    username: "",
     email: "",
     password: ""
   })
 
   const [loginErrors, setLoginErrors] = useState({})
 
-  const handleChange = (e, item) => {
-    let aux = loginform;
-    aux[item] = e.target.value;
-    setLoginForm(aux);
-    // console.log(loginform)
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const newState = { ...loginform };
+    newState[name] = value;
+    setLoginForm(newState);
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    actions.login(loginform);
-    setLoginErrors(handleValidate(loginform))
-    e.target.reset();
-    // console.log('store.authentication', store.authentication);
-
-  }
-  const handleValidate = (values) => {
+  const handleValidate = (loginform) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.username) {
-      errors.username = "Username es requerido!";
-      console.log(errors.username)
-    }
-    if (!values.email) {
+    if (!loginform.email) {
       errors.email = "Email es requerido!";
-      console.log(errors.email)
-    } else if (!regex.test(values.email)) {
+    } else if (!regex.test(loginform.email)) {
       errors.email = "Tu correo no es valido!";
-      console.log(errors.email)
     }
-    if (!values.password) {
+    if (!loginform.password) {
       errors.password = "Password es requerido!";
-      console.log(errors.password)
     }
     return errors;
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoginErrors(handleValidate(loginform))
+    let formData = new FormData();
+    formData.append('email', loginform.email)
+    formData.append('password', loginform.password)
+    actions.login(formData, history);
+    e.target.reset();
+  }
   return (
     <>
       <NavbarLoginSignup />
@@ -59,33 +55,26 @@ export const Login = () => {
         <div className="form-container-login">
           <h1 className="title-login">Login</h1>
           <form className="form-login" onSubmit={(e) => handleSubmit(e)}>
-            <div className="mb-3">
-              <input
-                type="text"
-                className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="Nombre de usuario"
-                onChange={(e) => { handleChange(e, 'username') }} />
-            </div>
             <p className="errors-login">{loginErrors.username}</p>
             <div className="mb-3">
               <input
                 type="email"
                 className="form-control"
-                id="exampleInputEmail1"
                 aria-describedby="emailHelp"
+                id="email"
+                name="email"
                 placeholder="Email"
-                onChange={(e) => { handleChange(e, 'email') }} />
+                onChange={(e) => { handleChange(e) }} />
             </div>
             <p className="errors-login">{loginErrors.email}</p>
             <div className="mb-3">
               <input
                 type="password"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="password"
+                name="password"
                 placeholder="Password"
-                onChange={(e) => { handleChange(e, 'password') }} />
+                onChange={(e) => { handleChange(e) }} />
               <p className="errors-login">{loginErrors.password}</p>
             </div>
             <button type="submit" className="btn button-login d-grid gap-2 col-6 mx-auto">Login</button>

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 // import { Context } from "../store/appContext";
 import { Inicio } from "../component/inicio";
+import { Navbar } from "../component/navbar";
 import "../../styles/home.css";
 
 
@@ -9,6 +10,7 @@ export const Home = () => {
 
   return (
     <>
+      <Navbar />
       <div className="row mx-0">
         <div className="col px-0">
           <Inicio

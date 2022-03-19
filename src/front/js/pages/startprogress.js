@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/startprogress.css";
+import { Navbar } from "../component/navbar";
 
 export const StartProgress = (props) => {
   const { store, actions } = useContext(Context);
@@ -21,6 +22,7 @@ export const StartProgress = (props) => {
 
   return (
     <>
+      <Navbar />
       <div className="row">
         <div className="col-6">
           <div className="register-baby">
