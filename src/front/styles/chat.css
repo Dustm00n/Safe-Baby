@@ -21,6 +21,7 @@
   height: 550px;
   width: 100%;
   opacity: 0.2;
+  object-fit: cover;
 }
 
 .text-muted {

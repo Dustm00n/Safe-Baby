@@ -7,6 +7,7 @@ import LogoBebe from "../img/logo-bebe.png";
 import PublicRoute from './component/public-routes';
 import PrivateRoute from './component/private-routes';
 
+import { NotFound } from './pages/not-found';
 import { Navbar } from "./component/navbar";
 import { Home } from "./pages/home";
 import { Login } from "./pages/login";
@@ -45,9 +46,9 @@ const Layout = () => {
 						<Route exact path="/Agenda" component={Agenda} />
 						<Route path="/citas" component={Citas} />
 						<Route path="/perfil" component={Perfil} />
-						{/* <Route>
-							<h1>Not found!</h1>
-						</Route> */}
+						<Route>
+							<NotFound />
+						</Route>
 					</Switch>
 					<Footer />
 				</ScrollToTop>
