@@ -6,7 +6,27 @@
   margin-left: 40px;
   padding: 5px;
   border-radius: 100%;
-  box-shadow: 0 0 10px 1px #314e5338;
+  background-color: #4b97bb9f;
+  box-shadow: 0 0 10px 1px #19a6be83;
+}
+.navbar-brand-intro:hover {
+  width: 60px;
+  margin-left: 40px;
+  padding: 5px;
+  border-radius: 100%;
+  transition: 0.25s;
+  background-color: #ee869d;
+  box-shadow: 0 0 10px 1px #19a6be83;
+}
+.navbar-brand-intro:active {
+  width: 60px;
+  margin-left: 40px;
+  padding: 5px;
+  border-radius: 100%;
+  transition: 0.25s;
+  background-color: #ff93ab;
+  box-shadow: 0 0 10px 1px #19a6be83;
+  transition: 0.001s;
 }
 .navbar-container-intro {
   margin-right: 50px;

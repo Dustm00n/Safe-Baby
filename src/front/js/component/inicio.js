@@ -109,7 +109,7 @@ export const Inicio = (props) => {
                         <div className="col md-4 d-flex justify-content-center">
                             <ReactPlayer
                                 width="100%"
-                                height="300px"
+                                height="250px"
                                 controls
                                 url="https://www.youtube.com/watch?v=vNAAwojkQtM" />
 
@@ -117,13 +117,13 @@ export const Inicio = (props) => {
                         <div className="col md-4 d-flex justify-content-center">
                             <ReactPlayer
                                 width="100%"
-                                height="300px"
+                                height="250px"
                                 url="https://www.youtube.com/watch?v=sOG8xJPxYqw" />
                         </div>
                         <div className="col md-4 d-flex justify-content-center">
                             <ReactPlayer
                                 width="100%"
-                                height="300px"
+                                height="250px"
                                 url="https://www.youtube.com/watch?v=UYkmRoTpCPs" />
                         </div>
                     </div>
@@ -134,7 +134,7 @@ export const Inicio = (props) => {
                         <div className="col md-4 d-flex justify-content-center">
                             <ReactPlayer
                                 width="100%"
-                                height="300px"
+                                height="250px"
                                 controls
                                 url="https://www.youtube.com/watch?v=AwpZl39gz7U" />
 
@@ -142,7 +142,7 @@ export const Inicio = (props) => {
                         <div className="col md-4 d-flex justify-content-center">
                             <ReactPlayer
                                 width="100%"
-                                height="300px"
+                                height="250px"
                                 controls
                                 url="https://www.youtube.com/watch?v=nyrKHQxMxoo" />
 
@@ -150,7 +150,7 @@ export const Inicio = (props) => {
                         <div className="col md-4 d-flex justify-content-center">
                             <ReactPlayer
                                 width="100%"
-                                height="300px"
+                                height="250px"
                                 controls
                                 url="https://www.youtube.com/watch?v=tlf4h1tiOOs" />
 
