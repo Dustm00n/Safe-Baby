@@ -12,8 +12,8 @@ class User(db.Model):
     # roles_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
     # role = db.relationship("Rol")
     datos_babies = db.relationship("DatosBaby", cascade="all, delete") #actualizado
-    chats = db.relationship('Chat', secondary="participantes_chats")
-    messages = db.relationship('Message', backref="user", lazy=True)
+    # chats = db.relationship('Chat', secondary="participantes_chats")
+    # messages = db.relationship('Message', backref="user", lazy=True)
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -178,14 +178,14 @@ class Actividad(db.Model):
 
 class LogroBebe(db.Model):
     __tablename__= 'logros_bebes'    
-    actividades_id = db.Column(db.Integer, db.ForeignKey('actividades.id'), nullable=False, primary_key=True)
-    datos_baby_id = db.Column(db.Integer, db.ForeignKey('datos_baby.id'), nullable=False, primary_key=True)
+    actividades_id = db.Column(db.Integer, db.ForeignKey('actividades.id'), primary_key=True, nullable=False)
+    datos_baby_id = db.Column(db.Integer, db.ForeignKey('datos_baby.id'), primary_key=True, nullable=False)
 
 #---------------------------------------- Model Etapa --------------------------#
 class Etapa(db.Model):
     __tablename__= 'etapas'    
-    actividades_id = db.Column(db.Integer, db.ForeignKey('actividades.id'), nullable=False, primary_key=True)
-    datos_baby_id = db.Column(db.Integer, db.ForeignKey('datos_baby.id'), nullable=False, primary_key=True)
+    actividades_id = db.Column(db.Integer, db.ForeignKey('actividades.id'), primary_key=True, nullable=False)
+    datos_baby_id = db.Column(db.Integer, db.ForeignKey('datos_baby.id'), primary_key=True, nullable=False)
     actividades = db.relationship("Actividad")
     datos_babies = db.relationship("DatosBaby")
 
@@ -213,73 +213,73 @@ class Etapa(db.Model):
         db.session.commit()
 
 #---------------------------------------- Model Chat --------------------------#
-class Chat(db.Model):
-    __tablename__= 'chats'
-    id = db.Column(db.Integer, primary_key=True)
-    nombre_sala = db.Column(db.String(120), unique=True, nullable=False)
-    participantes = db.relationship('User', secondary="participantes_chats")
-    Message = db.relationship('Message', backref="chat", lazy=True)
+# class Chat(db.Model):
+#     __tablename__= 'chats'
+#     id = db.Column(db.Integer, primary_key=True)
+#     nombre_sala = db.Column(db.String(120), unique=True, nullable=False)
+#     participantes = db.relationship('User')
+#     Message = db.relationship('Message', backref="chat", lazy=True)
 
-    def __repr__(self):
-        return '<Chat %r>' % self.nombre_sala
+#     def __repr__(self):
+#         return '<Chat %r>' % self.nombre_sala
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "nombre_sala": self.nombre_sala,
-            "participantes": self.participantes,
-            "Message": self.Message
-        }
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "nombre_sala": self.nombre_sala,
+#             "participantes": self.participantes,
+#             "Message": self.Message
+#         }
 
-    def get_participantes(self):
-        return list(map(lambda x: x.serialize(), self.participantes))
+#     def get_participantes(self):
+#         return list(map(lambda x: x.serialize(), self.participantes))
 
-    def get_messages(self):
-        return list(map(lambda x: x.serialize(), self.messages))
+#     def get_messages(self):
+#         return list(map(lambda x: x.serialize(), self.messages))
 
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
+#     def save(self):
+#         db.session.add(self)
+#         db.session.commit()
 
-    def update(self):
-        db.session.commit()
+#     def update(self):
+#         db.session.commit()
 
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
+#     def delete(self):
+#         db.session.delete(self)
+#         db.session.commit()
 
-#---------------------------------------- Model ParticipanteChat --------------------------#      
-class ParticipanteChat(db.Model):
-    __tablename__= 'participantes_chats'
-    users_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    chat_id = db.Column(db.Integer, db.ForeignKey('chats.id'), nullable=False)
+# #---------------------------------------- Model ParticipanteChat --------------------------#      
+# class ParticipanteChat(db.Model):
+#     __tablename__= 'participantes_chats'
+#     users_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True, nullable=False)
+#     chat_id = db.Column(db.Integer, db.ForeignKey('chats.id'), primary_key=True, nullable=False)
 
-#---------------------------------------- Model Message --------------------------#
-class Message(db.Model):
-    __tablename__= 'messages'
-    id = db.Column(db.Integer, primary_key=True)
-    message = db.Column(db.String(120), unique=True, nullable=False)
-    chats_id =  db.Column(db.Integer, db.ForeignKey('chats.id'), nullable=False)
-    users_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+# #---------------------------------------- Model Message --------------------------#
+# class Message(db.Model):
+#     __tablename__= 'messages'
+#     id = db.Column(db.Integer, primary_key=True)
+#     message = db.Column(db.String(120), unique=True, nullable=False)
+#     chats_id =  db.Column(db.Integer, db.ForeignKey('chats.id'), nullable=False)
+#     users_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    def __repr__(self):
-        return '<Message %r>' % self.message
+#     def __repr__(self):
+#         return '<Message %r>' % self.message
     
-    def serialize(self):
-        return {
-            "id": self.id,
-            "message": self.message,
-            "chats_id": self.chats_id, #user.name
-            "users_id": self.users_id #user.name
-        }
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "message": self.message,
+#             "chats_id": self.chats_id, #user.name
+#             "users_id": self.users_id #user.name
+#         }
 
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
+#     def save(self):
+#         db.session.add(self)
+#         db.session.commit()
 
-    def update(self):
-        db.session.commit()
+#     def update(self):
+#         db.session.commit()
 
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
+#     def delete(self):
+#         db.session.delete(self)
+#         db.session.commit()
