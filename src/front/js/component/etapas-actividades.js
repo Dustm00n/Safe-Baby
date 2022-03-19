@@ -6,7 +6,7 @@ export const EtapasActividades = (props) => {
             <div className="container-progress col-6 px-0">
                 <div className="card-progress w-80 my-5">
                     <div className="card-body-progress">
-                        <h1 className="title text-center mb-2">{props.titleStage}</h1>
+                        <h1 className="title-stage text-center">{props.titleStage}</h1>
                         <ul className="progress-list">
                             {props.paragraphOne === undefined ? '' : <li className="items">
                                 <button className="item-button">{props.paragraphOne}</button>

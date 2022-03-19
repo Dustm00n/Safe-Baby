@@ -69,7 +69,7 @@ export const Progress = () => {
     return (
         <>
             <div className="col">
-                <div className="row">
+                <div className="row m-0">
                     <EtapasGraficoActividades />
                     <EtapasActividades
                         // {
@@ -107,7 +107,7 @@ export const Progress = () => {
                 </div >
             </div>
             <div className="col">
-                <div className="row">
+                <div className="row m-0">
                     <EtapasActividades
                         // {...infoActividadesBebe.actividades1.map((item) => { return item })}
                         titleStage="Etapa 2 de 3 a 4 meses"
@@ -122,7 +122,7 @@ export const Progress = () => {
                 </div >
             </div>
             <div className="col">
-                <div className="row">
+                <div className="row m-0">
                     <EtapasGraficoActividades />
                     <EtapasActividades
                         // {...infoActividadesBebe.actividades1.map((item) => { return item })}
@@ -134,7 +134,7 @@ export const Progress = () => {
                 </div >
             </div>
             <div className="col">
-                <div className="row">
+                <div className="row m-0">
                     <EtapasActividades
                         // {...infoActividadesBebe.actividades1.map((item) => { return item })}
                         titleStage="Etapa 4 de 6 a 9 meses"
@@ -148,7 +148,7 @@ export const Progress = () => {
                 </div >
             </div>
             <div className="col">
-                <div className="row">
+                <div className="row m-0">
                     <EtapasGraficoActividades />
                     <EtapasActividades
                         // {
