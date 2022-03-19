@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+#---------------------------------------- Model User -----------------------------------------#
 class User(db.Model):
     __tablename__= 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -49,6 +50,7 @@ class User(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+#---------------------------------------- Model Rol ---------------------------------------#
 class Rol(db.Model):
     __tablename__= 'roles'
     id = db.Column(db.Integer, primary_key=True)
@@ -74,6 +76,7 @@ class Rol(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+#---------------------------------------- Model Profile -------------------------------------------#
 class Profile(db.Model):
     __tablename__= 'profiles'
     id = db.Column(db.Integer, primary_key=True)
@@ -105,6 +108,7 @@ class Profile(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+#---------------------------------------- Model DatosBaby --------------------------------------#
 class DatosBaby(db.Model):
     __tablename__= 'datos_baby'
     id = db.Column(db.Integer, primary_key=True)
@@ -142,6 +146,7 @@ class DatosBaby(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+#---------------------------------------- Model Actividad --------------------------#
 class Actividad(db.Model):
     __tablename__= 'actividades'
     id = db.Column(db.Integer, primary_key=True)
@@ -169,32 +174,14 @@ class Actividad(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+#---------------------------------------- Model LogroBebe --------------------------#
 
 class LogroBebe(db.Model):
     __tablename__= 'logros_bebes'    
     actividades_id = db.Column(db.Integer, db.ForeignKey('actividades.id'), nullable=False, primary_key=True)
     datos_baby_id = db.Column(db.Integer, db.ForeignKey('datos_baby.id'), nullable=False, primary_key=True)
 
-    def __repr__(self):
-        return '<LogroBebe %r>' % self.actividades_id
-
-    def serialize(self):
-        return {
-            "actividades_id": self.actividades_id,
-            "datos_baby_id": self.datos_baby_id,
-        }
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def updade(self):
-        db.session.commit(self)
-    
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
-
+#---------------------------------------- Model Etapa --------------------------#
 class Etapa(db.Model):
     __tablename__= 'etapas'    
     actividades_id = db.Column(db.Integer, db.ForeignKey('actividades.id'), nullable=False, primary_key=True)
@@ -225,15 +212,13 @@ class Etapa(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-
+#---------------------------------------- Model Chat --------------------------#
 class Chat(db.Model):
     __tablename__= 'chats'
     id = db.Column(db.Integer, primary_key=True)
     nombre_sala = db.Column(db.String(120), unique=True, nullable=False)
     participantes = db.relationship('User', secondary="participantes_chats")
     Message = db.relationship('Message', backref="chat", lazy=True)
-
-  
 
     def __repr__(self):
         return '<Chat %r>' % self.nombre_sala
@@ -263,26 +248,29 @@ class Chat(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-        
+#---------------------------------------- Model ParticipanteChat --------------------------#      
 class ParticipanteChat(db.Model):
     __tablename__= 'participantes_chats'
     users_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     chat_id = db.Column(db.Integer, db.ForeignKey('chats.id'), nullable=False)
 
- 
+#---------------------------------------- Model Message --------------------------#
 class Message(db.Model):
     __tablename__= 'messages'
     id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.String(120), unique=True, nullable=False)
     chats_id =  db.Column(db.Integer, db.ForeignKey('chats.id'), nullable=False)
     users_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    message = db.Column(db.String(120), unique=True, nullable=False)
 
+    def __repr__(self):
+        return '<Message %r>' % self.message
     
     def serialize(self):
         return {
             "id": self.id,
             "message": self.message,
-            "user": self.user.name
+            "chats_id": self.chats_id, #user.name
+            "users_id": self.users_id #user.name
         }
 
     def save(self):

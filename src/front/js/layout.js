@@ -46,9 +46,7 @@ const Layout = () => {
 						<Route exact path="/Agenda" component={Agenda} />
 						<Route path="/citas" component={Citas} />
 						<Route path="/perfil" component={Perfil} />
-						<Route>
-							<NotFound />
-						</Route>
+						<Route component={NotFound} />
 					</Switch>
 					<Footer />
 				</ScrollToTop>
