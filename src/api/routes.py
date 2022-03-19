@@ -158,29 +158,38 @@ def signup():
         profile.users_id = user.id
         profile.avatar = upload["secure_url"]
         profile.save()
-        
+
+        if not check_password_hash(user.password, password): return jsonify({"msg": "email/password son incorrectos"}), 400
+
+        access_token = create_access_token(identity=user.id)
+
+        data = {
+            "access_token": access_token,
+            "user": user.serialize()
+        }
+
         # if user: return jsonify({"form": request.form, "files": avatar.filename}), 201
 
-        if user: return jsonify(user.serialize()), 201
+        if user: return jsonify(data), 201
     
 #---------------------------Ruta de login----------------------------------------#
-@api.route('/login', methods=['POST'])
+@api.route('/login', methods=['GET','POST'])
 def login():
 
     if request.method == 'POST':
 
-        email = request.json.get('email')
-        password = request.json.get('password')
+        email = request.form['email']
+        password = request.form['password']
         
         if not email: return jsonify({"msg": "Email del usuario es requerido!"}), 400
         if not password: return jsonify({"msg": "Password es requerido!"}), 400
 
         user = User.query.filter_by(email=email).first()
 
-        if not user: return jsonify({"msg": "email/password son incorrectos"}), 40
-        if not check_password_hash(user.password, password): return jsonify({"msg": "email/password son incorrectos"}), 40
+        if not user: return jsonify({"msg": "email/password son incorrectos"}), 400
+        if not check_password_hash(user.password, password): return jsonify({"msg": "email/password son incorrectos"}), 400
 
-        create_access_token = create_access_token(identity=user.id)
+        access_token = create_access_token(identity=user.id)
 
         data = {
             "access_token": access_token,

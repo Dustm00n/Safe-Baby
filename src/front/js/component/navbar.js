@@ -1,8 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "../../styles/navbar.css";
+import React, { useContext } from "react";
 import LogoBebe from "../../img/logo-nuevo-safe baby.png";
+import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
+
+import "../../styles/navbar.css";
+
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+	const history = useHistory();
 	return (
 		<nav className="navbar navbar py-3">
 			<Link to="/Home">
@@ -35,9 +41,7 @@ export const Navbar = () => {
 					</Link>
 				</div>
 				<div className="">
-					<Link to="/">
-						<button className="btn btn-navbar">Logout</button>
-					</Link>
+					<button onClick={() => actions.logOut(history)} className="btn btn-navbar">Logout</button>
 				</div>
 			</div>
 		</nav>

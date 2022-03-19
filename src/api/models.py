@@ -31,9 +31,9 @@ class User(db.Model):
             # "roles_id":self.roles_id,
             "profile":self.profile.serialize(), #antes era self.proile.serialize()
             # "role":self.role.serialize(),  #antes era self.role.serialize()
-            "datos_babies":self.get_datos_babies()
-            #"chats": self.get_chats()
-            #"messages": self.get_messages() 
+            "datos_babies":self.get_datos_babies(),
+            #"chats": self.get_chats(),
+            #"messages": self.get_messages(), 
             
             # do not serialize the password, its a security breach
         }
