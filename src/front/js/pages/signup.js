@@ -12,6 +12,7 @@ export const SignUp = () => {
         apellido: "",
         email: "",
         password: "",
+        rol: "",
         avatar: null
     })
 
@@ -50,6 +51,9 @@ export const SignUp = () => {
         if (!registerform.password) {
             errors.password = "Password es requerido!";
         }
+        if (!registerform.rol) {
+            errors.rol = "Tu distinción es requerido!";
+        }
         return errors;
     }
 
@@ -57,11 +61,12 @@ export const SignUp = () => {
         e.preventDefault();
         setRegisterErrors(handleValidate(registerform));
         let formData = new FormData();
-        formData.append('nombre', registerform.nombre)
-        formData.append('apellido', registerform.apellido)
-        formData.append('email', registerform.email)
-        formData.append('password', registerform.password)
-        formData.append('avatar', registerform.avatar)
+        formData.append('nombre', registerform.nombre);
+        formData.append('apellido', registerform.apellido);
+        formData.append('email', registerform.email);
+        formData.append('password', registerform.password);
+        formData.append('rol', registerform.rol);
+        formData.append('avatar', registerform.avatar);
         actions.signUp(formData, history);
         e.target.reset();
     }
@@ -116,6 +121,22 @@ export const SignUp = () => {
                                 onChange={(e) => { handleChange(e) }} />
                         </div>
                         <p className="errors-signup">{registerErrors.password}</p>
+                        <div className="mb-3">
+                            <select
+                                className="form-select"
+                                aria-label="Default select example"
+                                id="rol"
+                                name="rol"
+                                onChange={(e) => { handleChange(e) }}
+                            >
+                                <option placeholder="Selecciona tu distinción">Selecciona tu distinción</option>
+                                <option value="mama">Mamá</option>
+                                <option value="papa">Papá</option>
+                                <option value="niñera">Niñera</option>
+                                <option value="niñero">Niñero</option>
+                            </select>
+                        </div>
+                        <p className="errors-signup">{registerErrors.rol}</p>
                         <div className="mb-3">
                             <input
                                 type="file"

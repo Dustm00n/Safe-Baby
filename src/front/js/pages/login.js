@@ -43,8 +43,8 @@ export const Login = () => {
     e.preventDefault();
     setLoginErrors(handleValidate(loginform))
     let formData = new FormData();
-    formData.append('email', loginform.email)
-    formData.append('password', loginform.password)
+    formData.append('email', loginform.email);
+    formData.append('password', loginform.password);
     actions.login(formData, history);
     e.target.reset();
   }
@@ -55,12 +55,10 @@ export const Login = () => {
         <div className="form-container-login">
           <h1 className="title-login">Login</h1>
           <form className="form-login" onSubmit={(e) => handleSubmit(e)}>
-            <p className="errors-login">{loginErrors.username}</p>
             <div className="mb-3">
               <input
                 type="email"
                 className="form-control"
-                aria-describedby="emailHelp"
                 id="email"
                 name="email"
                 placeholder="Email"

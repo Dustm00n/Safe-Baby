@@ -6,7 +6,6 @@ import ScrollToTop from "./component/scrollToTop";
 import PrivateRoute from './component/private-routes';
 
 import { NotFound } from './pages/not-found';
-import { Navbar } from "./component/navbar";
 import { Home } from "./pages/home";
 import { Login } from "./pages/login";
 import { SignUp } from "./pages/signup";
@@ -38,7 +37,7 @@ const Layout = () => {
 						<PrivateRoute exact path="/startprogress" component={StartProgress} />
 						<PrivateRoute exact path="/progress" component={Progress} />
 						<PrivateRoute exact path="/foro" component={Mainchat} />
-						<PrivateRoute exact path="/Agenda" component={Agenda} />
+						<PrivateRoute exact path="/agenda" component={Agenda} />
 						<PrivateRoute path="/citas" component={Citas} />
 						<PrivateRoute path="/perfil" component={Perfil} />
 						<Route component={NotFound} />

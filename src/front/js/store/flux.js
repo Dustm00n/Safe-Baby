@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       register: null,
+      baby: {},
       url: "https://3001-dustm00n-safebaby-38b27hfp9tt.ws-us38.gitpod.io"
     },
     actions: {
@@ -68,6 +69,20 @@ const getState = ({ getStore, getActions, setStore }) => {
       logOut: (history) => {
         localStorage.removeItem("token")
         history.push("/")
+      },
+      datosBaby: (formData, history) => {
+        const { url } = getStore()
+        fetch(`${url}/api/datababies`, {
+          method: 'POST',
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log("FLUX DATABABY", data)
+            setStore({ baby: data })
+            history.push("/progress")
+          })
+          .catch(error => console.log("HA OCURRIDO UN ERROR", error))
       }
       //-----------------funciones Fetch Fin---------------//
     }
