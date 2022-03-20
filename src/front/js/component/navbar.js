@@ -16,27 +16,27 @@ export const Navbar = () => {
 			</Link>
 			<div className="container-buttons gap-4 d-flex justify-content-end">
 				<div className="">
-					<Link to="/Home">
+					<Link to="/home">
 						<button className="btn btn-navbar text">Inicio</button>
 					</Link>
 				</div>
 				<div className="">
-					<Link to="/Progress">
+					<Link to="/startprogress">
 						<button className="btn btn-navbar">Progreso</button>
 					</Link>
 				</div>
 				<div className="">
-					<Link to="/Foro">
+					<Link to="/foro">
 						<button className="btn btn-navbar">Chat</button>
 					</Link>
 				</div>
 				<div className="">
-					<Link to="/Citas">
+					<Link to="/citas">
 						<button className="btn btn-navbar">Citas</button>
 					</Link>
 				</div>
 				<div className="">
-					<Link to="/Perfil">
+					<Link to="/perfil">
 						<button className="btn btn-navbar">Perfil</button>
 					</Link>
 				</div>
