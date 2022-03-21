@@ -71,7 +71,7 @@ def signup():
         profile = Profile()
         profile.nombre = nombre
         profile.apellido = apellido
-        profile.users_id = user_id
+        profile.users_id = user.id
         profile.avatar = upload["secure_url"]
         profile.save()
 
