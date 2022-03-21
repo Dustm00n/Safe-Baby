@@ -12,7 +12,7 @@ export const SignUp = () => {
         apellido: "",
         email: "",
         password: "",
-        rol: "",
+        // rol: "",
         avatar: null
     })
 
@@ -51,9 +51,12 @@ export const SignUp = () => {
         if (!registerform.password) {
             errors.password = "Password es requerido!";
         }
-        if (!registerform.rol) {
-            errors.rol = "Tu distinción es requerido!";
-        }
+        // if (!/^.*\.(jpg|JPG|png|PNG)$/.test(registerform.avatar)) {
+        //     errors.avatar = 'Solo puede ser archivos .jpg o .png'
+        // }
+        // if (!registerform.rol) {
+        //     errors.rol = "Tu distinción es requerido!";
+        // }
         return errors;
     }
 
@@ -65,7 +68,7 @@ export const SignUp = () => {
         formData.append('apellido', registerform.apellido);
         formData.append('email', registerform.email);
         formData.append('password', registerform.password);
-        formData.append('rol', registerform.rol);
+        // formData.append('rol', registerform.rol);
         formData.append('avatar', registerform.avatar);
         actions.signUp(formData, history);
         e.target.reset();
@@ -121,7 +124,7 @@ export const SignUp = () => {
                                 onChange={(e) => { handleChange(e) }} />
                         </div>
                         <p className="errors-signup">{registerErrors.password}</p>
-                        <div className="mb-3">
+                        {/* <div className="mb-3">
                             <select
                                 className="form-select"
                                 aria-label="Default select example"
@@ -136,7 +139,7 @@ export const SignUp = () => {
                                 <option value="niñero">Niñero</option>
                             </select>
                         </div>
-                        <p className="errors-signup">{registerErrors.rol}</p>
+                        <p className="errors-signup">{registerErrors.rol}</p> */}
                         <div className="mb-3">
                             <input
                                 type="file"
@@ -146,6 +149,7 @@ export const SignUp = () => {
                                 placeholder="avatar"
                                 onChange={(e) => { handleChangeFile(e) }} />
                         </div>
+                        <p className="errors-signup">{registerErrors.avatar}</p>
                         <button type="submit" className="btn btn-signup d-grid gap-2 col-6 mx-auto">Sign up</button>
                     </form>
                 </div>

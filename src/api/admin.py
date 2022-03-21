@@ -4,7 +4,7 @@ from flask_admin import Admin
 from .models import db, User
 from .models import db, Profile
 from .models import db, Rol
-from .models import db, UserRole
+# from .models import db, UserRole
 from .models import db, DatosBaby
 from .models import db, LogroBebe
 from .models import db, Actividad
@@ -25,7 +25,7 @@ def setup_admin(app):
     admin.add_view(ModelView(User, db.session))
     admin.add_view(ModelView(Profile, db.session))
     admin.add_view(ModelView(Rol, db.session))
-    admin.add_view(ModelView(UserRole, db.session))
+    # admin.add_view(ModelView(UserRole, db.session))
     admin.add_view(ModelView(DatosBaby, db.session))
     admin.add_view(ModelView(LogroBebe, db.session))
     admin.add_view(ModelView(Actividad, db.session))
