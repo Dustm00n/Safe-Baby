@@ -1,0 +1,12 @@
+.card-postforo {
+  margin-top: 25px;
+  margin-left: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 5px 2px #5e75796e;
+  border-radius: 5px;
+}
+.card-body-postforo {
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+}

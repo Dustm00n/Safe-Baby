@@ -1,0 +1,25 @@
+.container-profile {
+  display: flex;
+  justify-content: center;
+  background-image: url(https://cdn.pixabay.com/photo/2016/11/19/14/28/bed-1839564_960_720.jpg);
+  background-image: cover;
+  align-items: center;
+  height: 300px;
+}
+.card-profile {
+  width: 200px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  margin-left: 600px;
+}
+
+.card-nombre {
+  margin-left: 65px;
+}
+
+.Foto-Perfil {
+  border-radius: 350px;
+  max-width: 250px;
+  max-height: 250px;
+}

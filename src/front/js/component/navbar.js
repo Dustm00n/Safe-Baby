@@ -1,32 +1,47 @@
-import React from "react";
+import React, { useContext } from "react";
+import LogoBebe from "../../img/logo-nuevo-safe baby.png";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
+
+import "../../styles/navbar.css";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+	const history = useHistory();
 	return (
-		<nav className="navbar navbar">
-			<div className="container">
-				<Link to="/Home">
-					<span className="navbar-brand mb-0 h1">logo</span>
-				</Link>
+		<nav className="navbar navbar py-3">
+			<Link to="/Home">
+				<img className="navbar-brand" src={LogoBebe} />
+			</Link>
+			<div className="container-buttons gap-4 d-flex justify-content-end">
 				<div className="">
-					<Link to="/Home">
-						<button className="btn btn-primary fs-6 text">inicio</button>
+					<Link to="/home">
+						<button className="btn btn-navbar text">Inicio</button>
 					</Link>
 				</div>
 				<div className="">
-					<Link to="/Process">
-						<button className="btn btn-primary">proceso</button>
+					<Link to="/startprogress">
+						<button className="btn btn-navbar">Progreso</button>
 					</Link>
 				</div>
 				<div className="">
-					<Link to="/Foro">
-						<button className="btn btn-primary">foro</button>
+					<Link to="/foro">
+						<button className="btn btn-navbar">Chat</button>
 					</Link>
 				</div>
-				<div className="ml-auto">
-					<Link to="/Citas">
-						<button className="btn btn-primary">citas</button>
+				<div className="">
+					<Link to="/citas">
+						<button className="btn btn-navbar">Citas</button>
 					</Link>
+				</div>
+				<div className="">
+					<Link to="/perfil">
+						<button className="btn btn-navbar">Perfil</button>
+					</Link>
+				</div>
+				<div className="">
+					<button onClick={() => actions.logOut(history)} className="btn btn-navbar">Logout</button>
 				</div>
 			</div>
 		</nav>

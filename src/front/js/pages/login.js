@@ -1,43 +1,84 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-
 import { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
+import "../../styles/login.css";
+/* import { firebaseConfig } from "../component/firebase"; */
+import { NavbarLoginSignup } from '../component/navbar-login-signup';
+
 
 export const Login = () => {
-	const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
-		</div>
-	);
+  const history = useHistory();
+
+  const [loginform, setLoginForm] = useState({
+    email: "",
+    password: ""
+  })
+
+  const [loginErrors, setLoginErrors] = useState({})
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const newState = { ...loginform };
+    newState[name] = value;
+    setLoginForm(newState);
+  }
+
+  const handleValidate = (loginform) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!loginform.email) {
+      errors.email = "Email es requerido!";
+    } else if (!regex.test(loginform.email)) {
+      errors.email = "Tu correo no es valido!";
+    }
+    if (!loginform.password) {
+      errors.password = "Password es requerido!";
+    }
+    return errors;
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoginErrors(handleValidate(loginform))
+    let formData = new FormData();
+    formData.append('email', loginform.email);
+    formData.append('password', loginform.password);
+    actions.login(formData, history);
+    e.target.reset();
+  }
+  return (
+    <>
+      <NavbarLoginSignup />
+      <div className="main-login">
+        <div className="form-container-login">
+          <h1 className="title-login">Login</h1>
+          <form className="form-login" onSubmit={(e) => handleSubmit(e)}>
+            <div className="mb-3">
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+                placeholder="Email"
+                onChange={(e) => { handleChange(e) }} />
+            </div>
+            <p className="errors-login">{loginErrors.email}</p>
+            <div className="mb-3">
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                name="password"
+                placeholder="Password"
+                onChange={(e) => { handleChange(e) }} />
+              <p className="errors-login">{loginErrors.password}</p>
+            </div>
+            <button type="submit" className="btn button-login d-grid gap-2 col-6 mx-auto">Login</button>
+          </form>
+        </div>
+      </div>
+    </>
+  );
 };
-
-export default Login;

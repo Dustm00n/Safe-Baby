@@ -1,0 +1,70 @@
+.main-signup {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  background-image: url("https://www.telemundo.com/sites/nbcutelemundo/files/styles/fit-1240w/public/images/article/cover/2019/10/16/familia-con-bebe.jpg?ramen_itok=iqwQftIcTf");
+  background-size: cover;
+  background-attachment: fixed;
+}
+.form-container-signup {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 11em auto;
+  padding: 20px;
+  width: 400px;
+  height: 100%;
+  /* background-color: #8dc1c9; */
+  background: #5abae7;
+
+  border-radius: 10px;
+  line-height: 10px;
+  /* box-shadow: 0 4px 6px 2px #5e757946; */
+}
+
+.title-signup {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+}
+
+.form-control {
+  background-color: #f0e4e4;
+  color: #c46f82;
+}
+.errors-signup {
+  margin: 15px 15px 15px 0px;
+  color: #aa0909;
+}
+
+.form-control::placeholder {
+  color: #c46f82;
+}
+
+.btn-signup {
+  margin: 20px;
+  background-color: #d0f0ff;
+  color: #266a8a;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 2px 5px 2px #5e75796e;
+}
+.btn-signup:hover {
+  margin: 20px;
+  background-color: #6ed6e9;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 2px 5px 2px #5e75796e;
+}
+.btn-signup:active {
+  margin: 20px;
+  background-color: #70eaff;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 2px 5px 2px #5e75796e;
+}

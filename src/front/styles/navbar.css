@@ -1,0 +1,57 @@
+.navbar {
+  /*color original del proyecto*/
+  /* background: #8dc1c9; */
+
+  background: #5abae7;
+}
+.navbar-brand {
+  width: 60px;
+  margin-left: 40px;
+  padding: 5px;
+  border-radius: 100%;
+  background-color: #4b97bb9f;
+  box-shadow: 0 0 10px 1px #19a6be83;
+}
+.navbar-brand:hover {
+  width: 60px;
+  margin-left: 40px;
+  padding: 5px;
+  border-radius: 100%;
+  transition: 0.25s;
+  background-color: #ee869d;
+  box-shadow: 0 0 10px 1px #19a6be83;
+}
+.navbar-brand:active {
+  width: 60px;
+  margin-left: 40px;
+  padding: 5px;
+  border-radius: 100%;
+  transition: 0.25s;
+  background-color: #ff93ab;
+  box-shadow: 0 0 10px 1px #19a6be83;
+  transition: 0.001s;
+}
+.container-buttons {
+  margin-right: 50px;
+}
+.btn-navbar {
+  width: 100px;
+  color: #c46f82;
+  background-color: #f0e4e4;
+  border: none;
+}
+
+.btn-navbar:hover {
+  width: 100px;
+  color: #f0e4e4;
+  background-color: #d47c8f;
+  border: none;
+}
+
+.btn-navbar:active {
+  width: 100px;
+  color: #fffbfb;
+  background-color: #ff93ab;
+  border: none;
+  transition: 0.001s;
+}

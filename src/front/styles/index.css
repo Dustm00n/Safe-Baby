@@ -1,5 +1,52 @@
-.navbar,
-.footer{
-    background: #8DC1C9;
+/* tipofrafía seleccioanda para el proyecto */
+@import url("https://fonts.googleapis.com/css2?family=Praise&family=Rubik:wght@300;400&family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  font-family: spartan;
+}
+.container-button {
+  text-align: center;
+}
+.backhome-button {
+  width: 120px;
+  text-align: center;
+  border-radius: 5px;
+  color: #c46f82;
+  background-color: #f0e4e4;
+}
+.backhome-button:hover {
+  width: 120px;
+  text-align: center;
+  border-radius: 5px;
+  color: #f0e4e4;
+  background-color: #c46f82;
+}
+.backhome-button:active {
+  width: 120px;
+  text-align: center;
+  border-radius: 5px;
+  color: #fffbfb;
+  background-color: #ee869d;
 }
 
+body {
+  background: rgb(251, 237, 246);
+  background: linear-gradient(
+    90deg,
+    rgba(251, 237, 246, 0.55) 0%,
+    rgba(255, 242, 250, 0.3) 53%,
+    rgba(251, 237, 246, 0.5522584033613445) 100%
+  );
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f0e4e4;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb {
+  width: 12px;
+  /* border: #0a8ca0; */
+  background-color: #ec9bad;
+  border-radius: 2px;
+}

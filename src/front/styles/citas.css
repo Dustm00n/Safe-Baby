@@ -1,0 +1,62 @@
+.calendar-container {
+  height: 100%;
+  background-color: red;
+}
+table {
+  background-color: rgb(173, 98, 98);
+}
+.form-container-main {
+  margin-bottom: 50px;
+  height: 100%;
+  background-color: rgb(112, 47, 47);
+}
+.frame {
+  height: 100%;
+}
+
+.Calendario {
+  margin: 0 auto;
+  width: 100rem;
+  height: auto;
+}
+.contenedor-evento {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.agregar-titulo,
+.boton-agregar-evento,
+.start-date-picker,
+.end-date-picker {
+  margin: 10px;
+  height: 35px;
+  width: 23.8em;
+  /* background: #5abae7d5; */
+  background-color: #ffdfe6ad;
+  border-color: red;
+  border-radius: 3px;
+  border-style: hidden;
+  /* color: #0a425cd5; */
+  color: #7e7975;
+  box-shadow: 1px 1px 10px 1px rgba(66, 53, 53, 0.034);
+}
+.titulo-calendario,
+.subtitulo-calendario {
+  margin: 2rem;
+  text-align: center;
+  color: rgb(148, 53, 53);
+}
+.boton-agregar-evento:hover {
+  margin: 10px;
+  height: 35px;
+  width: 23.8em;
+  /* background: #5abae7d5; */
+  background-color: #b6697a;
+  border-color: red;
+  border-radius: 3px;
+  border-style: hidden;
+  /* color: #0a425cd5; */
+  color: #e7dfd8;
+  box-shadow: 1px 1px 10px 1px rgba(66, 53, 53, 0.034);
+}
