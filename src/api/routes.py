@@ -441,8 +441,6 @@ def etapas(id=None):
     else:
         return jsonify({"msg": "No existen etapas"}), 400
 
-#--------------------------- Agrega una Ruta si es necesario ----------------------------------------#
-
 #---------------------------------------- Chat ----------------------------------------#
 
 @api.route('/chats', methods=['GET'])
