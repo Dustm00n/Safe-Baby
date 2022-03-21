@@ -10,7 +10,7 @@ const Profile = () => {
                 <div className="card-profile">
                     <div className="card-body-profile">
                         <img src={Perfil} className="Foto-Perfil" />
-                        <h6 className="card-nombre mb-2 text-muted">dustm00n</h6>
+                        <h6 className="card-nombre mb-2 text-muted">Hizis Orellana </h6>
                     </div>
                 </div>
             </div>

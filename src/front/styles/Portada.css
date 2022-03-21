@@ -1,9 +1,8 @@
 .container-profile {
   display: flex;
   justify-content: center;
-  background-image: url("https://media.giphy.com/media/TxVVB6PfWMjE4/giphy.gif");
-  background-size: cover;
-  background-attachment: fixed;
+  background-image: url(https://cdn.pixabay.com/photo/2016/11/19/14/28/bed-1839564_960_720.jpg);
+  background-image: cover;
   align-items: center;
   height: 300px;
 }
@@ -16,7 +15,7 @@
 }
 
 .card-nombre {
-  margin-left: 85px;
+  margin-left: 65px;
 }
 
 .Foto-Perfil {
