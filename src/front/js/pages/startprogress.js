@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/startprogress.css";
 import { Navbar } from "../component/navbar";
@@ -119,7 +119,9 @@ export const StartProgress = () => {
                       onChange={(e) => { handleChange(e) }} />
                   </div>
                   <p className="errors-babyform">{babyErrorsForm.estatura}</p>
-                  <button type="submit" className="btn button-baby d-grid gap-2 col-6 mx-auto">Siguiente</button>
+                  <Link to="/progress">
+                    <button type="submit" className="btn button-baby d-grid gap-2 col-6 mx-auto">Siguiente</button>
+                  </Link>
                 </form>
               </div>
             </div>
