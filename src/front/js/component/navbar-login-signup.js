@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoBebe from "../../img/logo-bebe.png";
+import LogoBebe from "../../img/logo-nuevo-safe baby.png";
 import { Link } from "react-router-dom";
 import "../../styles/landingpage-intro.css";
 

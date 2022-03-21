@@ -14,10 +14,12 @@
   padding: 20px;
   width: 400px;
   height: 100%;
-  background-color: #8dc1c9;
+  /* background-color: #8dc1c9; */
+  background: #5abae7;
+
   border-radius: 10px;
   line-height: 10px;
-  box-shadow: 0 4px 6px 2px #5e757946;
+  /* box-shadow: 0 4px 6px 2px #5e757946; */
 }
 
 .title-signup {
@@ -35,7 +37,7 @@
 }
 .errors-signup {
   margin: 15px 15px 15px 0px;
-  color: #d1022f;
+  color: #aa0909;
 }
 
 .form-control::placeholder {
@@ -44,8 +46,8 @@
 
 .btn-signup {
   margin: 20px;
-  background-color: #b7e1e8;
-  color: #699298;
+  background-color: #d0f0ff;
+  color: #266a8a;
   font-weight: bold;
   border: none;
   box-shadow: 0 2px 5px 2px #5e75796e;

@@ -1,9 +1,7 @@
 .container-profile {
   display: flex;
   justify-content: center;
-  background-image: url(../img/portada-babys.jpg);
-  background-size: cover;
-  background-attachment: fixed;
+  background-image: url(../img/portada-babys-niño.jpg);
   align-items: center;
   height: 300px;
 }

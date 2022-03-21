@@ -32,14 +32,31 @@ table {
   margin: 10px;
   height: 35px;
   width: 23.8em;
-  background-color: #ee869d;
-  border: none;
+  /* background: #5abae7d5; */
+  background-color: #ffdfe6ad;
+  border-color: red;
   border-radius: 3px;
-  color: #8b3c4d;
+  border-style: hidden;
+  /* color: #0a425cd5; */
+  color: #7e7975;
+  box-shadow: 1px 1px 10px 1px rgba(66, 53, 53, 0.034);
 }
 .titulo-calendario,
 .subtitulo-calendario {
   margin: 2rem;
   text-align: center;
   color: rgb(148, 53, 53);
+}
+.boton-agregar-evento:hover {
+  margin: 10px;
+  height: 35px;
+  width: 23.8em;
+  /* background: #5abae7d5; */
+  background-color: #b6697a;
+  border-color: red;
+  border-radius: 3px;
+  border-style: hidden;
+  /* color: #0a425cd5; */
+  color: #e7dfd8;
+  box-shadow: 1px 1px 10px 1px rgba(66, 53, 53, 0.034);
 }

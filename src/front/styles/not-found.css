@@ -1,0 +1,21 @@
+.fondo-titulo-not-found {
+  height: auto;
+  width: 100%;
+  opacity: 0.2;
+  z-index: -50;
+}
+.box-animated h1 {
+  position: absolute;
+  left: 25%;
+  padding: 10rem;
+  margin: 0 auto;
+  width: 50%;
+  font-size: 6rem;
+  font-weight: bolder;
+  color: rgb(240, 132, 45);
+  text-align: center;
+  align-content: center;
+  animation: bounceInRight;
+  animation-duration: 2.5s;
+  z-index: 50;
+}

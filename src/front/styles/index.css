@@ -38,3 +38,15 @@ body {
     rgba(251, 237, 246, 0.5522584033613445) 100%
   );
 }
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f0e4e4;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb {
+  width: 12px;
+  /* border: #0a8ca0; */
+  background-color: #ec9bad;
+  border-radius: 2px;
+}

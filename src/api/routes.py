@@ -2,7 +2,16 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Profile, Rol, DatosBaby, Actividad, LogroBebe, Etapa, Participante, Chat, Mensaje
+from api.models import db, User
+from api.models import db, Profile
+from api.models import db, Rol
+from api.models import db, DatosBaby
+from api.models import db, Actividad
+from api.models import db, LogroBebe
+from api.models import db, Etapa
+# from api.models import db, ParticipanteChat
+# from api.models import db, Chat
+# from api.models import db, Message
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import JWTManager, get_jwt_identity, create_access_token, jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,100 +23,24 @@ import cloudinary.uploader
 api = Blueprint('api', __name__)
 
 #------------------------Ruta de usuarios----------------------------------------#
-# @api.route('/users', methods=['GET','POST'])
-# @api.route('/users/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-# # @jwt_required()
-# def users(id=None):
-
-#     if request.method == 'GET':
-#         if id is not None:
-#             user = User.query.get(id)
-#             if not user: return jsonify({"msg": "Usuario no encontrado"}), 404
-#         else:
-#             user = User.query.all()
-#             user = list(map(lambda x: x.serialize(), user))
-#             return jsonify(user), 200
-
-#     if request.method == 'POST':
-#         if id is None:
-#             # email = request.json.get('email')
-#             # password = request.json.get('password')
-#             # roles_id = request.json.get('roles_id')
-#             # nombre = request.json.get('nombre')
-#             # apellido = request.json.get('apellido')
-#             # avatar = request.json.get('avatar')
-
-#             email = request.form['email']
-#             password = request.form['password']
-#             roles_id = request.form['roles_id']
-#             nombre = request.form['nombre']
-#             apellido = request.form['apellido']
-#             avatar = request.files['avatar']
-
-#             cloudinary.uploader.upload(avatar,
-#                 folder = "avatars", 
-#                 public_id = nombre + "_" + avatar.filename,
-#                 overwrite = True, 
-#                 resource_type = "image"
-#             )
-
-#             user = User.query.filter_by(email=email).first()
-
-#             if not email: return jsonify({"msg": "Email del usuario es requerido!"}), 400
-#             if not password: return jsonify({"msg": "Password es requerido!"}), 400
-#             if not nombre: return jsonify({"msg": "nombre es requerido!"}), 400
-#             if not apellido: return jsonify({"msg": "apellido es requerido!"}), 400
-#             if not roles_id: return jsonify({"msg": "roles_id es requerido!"}), 400
-#             if not avatar: return jsonify({"msg": "Avatar es requerido!"}), 400
-            
-#             user = User()
-#             user.email = email
-#             user.password = generate_password_hash(password)
-#             user.roles_id = roles_id
-#             user.save()
-
-#             profile = Profile()
-#             profile.nombre = nombre
-#             profile.apellido = apellido
-#             profile.avatar = upload["url"]
-#             profile.users_id = user.id
-#             profile.save()
-
-#             if user: return jsonify({"status": "Exitoso", "user": user.serialize(),}), 201
-    
-#     if request.method == 'DELETE':
-#         if id is not None:
-#             user = User.query.get(id)
-#             user.delete()
-#             user.save()
-#             return jsonify({"msg": "El usuario ha sido eliminado"}, {}), 200
-
-#         else:
-#             user = User.query.all()
-#             user.delete()
-#             user.save()
-#             return jsonify({"msg": "Todos los usuarios han sido eliminados"}, {}), 200
-
-#---------------------------Ruta de registro----------------------------------------#
-@api.route('/signup', methods=['GET'])
+@api.route('/users', methods=['GET'])
 def get_all_users():
 
-    user = User.query.all()
-    user = list(map(lambda x: x.serialize(), user))
+    all_users = User.query.all()
+    all_users = list(map(lambda x: x.serialize(), all_users))
+    return jsonify({"msg": "Todos los suarios han sido econtrados"}, all_users), 200
 
-    return jsonify(user), 200
+@api.route('/users/delete', methods=['DELETE'])
+def delete_all_users():
 
-# @api.route('/signup/<int:id>', methods=['GET'])
-# def get_user_signuped(id = None):
+    users = User.query.all()
+    for user in users:
+        user.delete()
 
-#     user = User.query.get(id)
+    return jsonify({"msg": "Usuarios han sido eliminados"}), 200
 
-#     if not user: return jsonify({"msg": "Usuario no encontrado"}), 404
-
-#     return jsonify(user), 200
-    
+#---------------------------Ruta de registro----------------------------------------#  
 @api.route('/signup', methods=['POST'])
-# @jwt_required()
 def signup():
     
         email = request.form['email']
@@ -141,29 +74,38 @@ def signup():
         profile.users_id = user.id
         profile.avatar = upload["secure_url"]
         profile.save()
-        
+
+        if not check_password_hash(user.password, password): return jsonify({"msg": "email/password son incorrectos"}), 400
+
+        access_token = create_access_token(identity=user.id)
+
+        data = {
+            "access_token": access_token,
+            "user": user.serialize()
+        }
+
         # if user: return jsonify({"form": request.form, "files": avatar.filename}), 201
 
-        if user: return jsonify(user.serialize()), 201
+        if user: return jsonify(data), 201
     
 #---------------------------Ruta de login----------------------------------------#
-@api.route('/login', methods=['POST'])
+@api.route('/login', methods=['GET','POST'])
 def login():
 
     if request.method == 'POST':
 
-        email = request.json.get('email')
-        password = request.json.get('password')
+        email = request.form['email']
+        password = request.form['password']
         
         if not email: return jsonify({"msg": "Email del usuario es requerido!"}), 400
         if not password: return jsonify({"msg": "Password es requerido!"}), 400
 
         user = User.query.filter_by(email=email).first()
 
-        if not user: return jsonify({"msg": "email/password son incorrectos"}), 401
-        if not check_password_hash(user.password, password): return jsonify({"msg": "email/password son incorrectos"}), 401
+        if not user: return jsonify({"msg": "email/password son incorrectos"}), 400
+        if not check_password_hash(user.password, password): return jsonify({"msg": "email/password son incorrectos"}), 400
 
-        create_access_token = create_access_token(identity=user.id)
+        access_token = create_access_token(identity=user.id)
 
         data = {
             "access_token": access_token,
@@ -178,6 +120,7 @@ def login():
 #---------------------------Ruta de Roles----------------------------------------#
 @api.route('/roles', methods=['GET', 'POST'])
 @api.route('/roles/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# @jwt_required()
 def roles(id = None):
 
     if request.method == 'GET':
@@ -228,7 +171,7 @@ def profiles(id=None):
         if id is not None:
 
             all_profiles = Profile.query.all()
-            all_all_profiles = list(map(lambda x: x.serialize(), all_profiles))
+            all_profiles = list(map(lambda x: x.serialize(), all_profiles))
             return jsonify(all_profiles)
     
     if request.method == 'POST':
@@ -282,67 +225,101 @@ def profiles(id=None):
             
 #---------------------------Ruta de Datos del Bebé----------------------------------------#
 @api.route('/datababies', methods=['GET', 'POST'])
-@api.route('/datababies/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def datababies(id=None):
-    
+def data_babies():
+
     if request.method == 'GET':
-        if id is not None:
-            data_bebes = DatosBaby.query.all()
-            data_bebes = list(map(lambda x: x.serialize(), data_bebes))
-            return jsonify(data_bebes)   
+        data_babies = DatosBaby.query.all()
+        data_babies = list(map(lambda x: x.serialize(), data_babies))
+        return jsonify(data_babies)   
 
     if request.method == 'POST':
-        if id is None:
-            nombre = request.form['nombre']
-            apellido = request.form['apellido']
-            edad = request.form['edad']
-            genero = request.form['genero']
-            estatura = request.form['estatura']
-            users_id = request.form['users_id']
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        edad = request.form['edad']
+        genero = request.form['genero']
+        estatura = request.form['estatura']
+        users_id = request.form['users_id']
 
-            if not nombre: return jsonify({"msg": "Nombre del bebé es requerido!"}), 400
-            if not apellido: return jsonify({"msg": "Apellido del bebé requerido!"}), 400
-            if not edad: return jsonify({"msg": "Edad es requerido!"}), 400
-            if not genero: return jsonify({"msg": "Genero es requerido!"}), 400
-            if not estatura: return jsonify({"msg": "Estatura es requerido!"}), 400
+        if not nombre: return jsonify({"msg": "Nombre del bebé es requerido!"}), 400
+        if not apellido: return jsonify({"msg": "Apellido del bebé requerido!"}), 400
+        if not edad: return jsonify({"msg": "Edad es requerido!"}), 400
+        if not genero: return jsonify({"msg": "Genero es requerido!"}), 400
+        if not estatura: return jsonify({"msg": "Estatura es requerido!"}), 400
 
-            data_bebes = DatosBaby()
-            data_bebes.nombre = nombre
-            data_bebes.apellido = apellido
-            data_bebes.edad = edad
-            data_bebes.genero = genero
-            data_bebes.estatura = estatura
-            data_bebes.users_id = users_id
-            data_bebes.save()
+        data_babies = DatosBaby()
+        data_babies.nombre = nombre
+        data_babies.apellido = apellido
+        data_babies.edad = edad
+        data_babies.genero = genero
+        data_babies.estatura = estatura
+        data_babies.users_id = users_id
+        data_babies.save()
+        
+        return jsonify(data_babies.serialize()), 200
+
+# @api.route('/datababies/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# # @jwt_required()
+# def data_baby_id(id=None):
+    
+#     if request.method == 'GET':
+#         if id is not None:
+#             data_bebes = DatosBaby.query.all()
+#             data_bebes = list(map(lambda x: x.serialize(), data_bebes))
+#             return jsonify(data_bebes)   
+
+#     if request.method == 'POST':
+#         if id is None:
+#             nombre = request.form['nombre']
+#             apellido = request.form['apellido']
+#             edad = request.form['edad']
+#             genero = request.form['genero']
+#             estatura = request.form['estatura']
+#             users_id = request.form['users_id']
+
+#             if not nombre: return jsonify({"msg": "Nombre del bebé es requerido!"}), 400
+#             if not apellido: return jsonify({"msg": "Apellido del bebé requerido!"}), 400
+#             if not edad: return jsonify({"msg": "Edad es requerido!"}), 400
+#             if not genero: return jsonify({"msg": "Genero es requerido!"}), 400
+#             if not estatura: return jsonify({"msg": "Estatura es requerido!"}), 400
+
+#             data_bebes = DatosBaby()
+#             data_bebes.nombre = nombre
+#             data_bebes.apellido = apellido
+#             data_bebes.edad = edad
+#             data_bebes.genero = genero
+#             data_bebes.estatura = estatura
+#             data_bebes.users_id = users_id
+#             data_bebes.save()
             
-            return jsonify(data_bebes.serialize()), 200
+#             return jsonify(data_bebes.serialize()), 200
 
-    if request.method == 'PUT':
-        if id is not None:
-            nombre = request.json('nombre')
-            apellido = request.json('apellido')
-            edad = request.json('edad')
-            genero = request.json('genero')
-            estatura = request.json('estatura')
-            users_id = request.json('users_id')
+#     if request.method == 'PUT':
+#         if id is not None:
+#             nombre = request.json('nombre')
+#             apellido = request.json('apellido')
+#             edad = request.json('edad')
+#             genero = request.json('genero')
+#             estatura = request.json('estatura')
+#             users_id = request.json('users_id')
 
-            data_bebes = DatosBaby()
-            data_bebes.nombre = nombre
-            data_bebes.apellido = apellido
-            data_bebes.edad = edad
-            data_bebes.genero = genero
-            data_bebes.estatura = estatura
-            data_bebes.users_id = users_id
-            data_bebes.update()
+#             data_bebes = DatosBaby()
+#             data_bebes.nombre = nombre
+#             data_bebes.apellido = apellido
+#             data_bebes.edad = edad
+#             data_bebes.genero = genero
+#             data_bebes.estatura = estatura
+#             data_bebes.users_id = users_id
+#             data_bebes.update()
             
-            return jsonify(data_bebes.serialize()), 200
-    else:
-        return jsonify({"msg": "Datos del bebe no existen"}, {}), 400
+#             return jsonify(data_bebes.serialize()), 200
+#     else:
+#         return jsonify({"msg": "Datos del bebe no existen"}, {}), 400
 
 
 #---------------------------Ruta de Logros del Bebé----------------------------------------#
 @api.route('/logrosbebes', methods=['GET', 'POST'])
 @api.route('/logrosbebes/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# @jwt_required()
 def logrosbebes(id=None):
 
     if request.method == 'GET':
@@ -353,8 +330,8 @@ def logrosbebes(id=None):
 
     if request.method == 'POST':
         if id is None:
-            etapas.request.json('etapas')
-            descripcion.request.json('descripcion')
+            etapas.request.json.get('etapas')
+            descripcion.request.json.get('descripcion')
 
             if not etapas: return jsonify({"msg": "Etapa es requerida"}), 400
             if not descripcion: return jsonify({"msg": "Descripción es requerida"}), 400
@@ -371,7 +348,25 @@ def logrosbebes(id=None):
     
 #---------------------------Ruta de Actividades del Bebé----------------------------------------#
 @api.route('/actividades', methods=['GET', 'POST'])
+def creat_actividad():
+
+    if request.method == 'POST':
+        etapas = request.json.get('etapas')
+        descripcion = request.json.get('descripcion')
+
+        if not etapas: return jsonify({"msg": "Etapa es requerida"}), 400
+        if not descripcion: return jsonify({"msg": "Descripción es requerida"}), 400
+
+        actividades = Actividad()
+        actividades.etapas = etapas
+        actividades.descripcion = descripcion
+        actividades.save()
+
+        return jsonify(actividades.serialize()), 200
+
+
 @api.route('/actividades/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# @jwt_required()
 def actividades(id=None):
 
     if request.method == 'GET':
@@ -399,7 +394,30 @@ def actividades(id=None):
 
 #---------------------------Ruta de Etapas de las actividades----------------------------------------#
 @api.route('/etapas', methods=['GET', 'POST'])
+def create_etapas():
+
+    if request.method == 'GET':
+        getting_etapas = Etapa.query.all()
+        getting_etapas = list(map(lambda x: x.serialize(), getting_etapas))
+        return jsonify(str(getting_etapas))
+
+    if request.method == 'POST':
+        actividades_id = request.json.get('actividades_id')
+        datos_baby_id = request.json.get('datos_baby_id')
+
+        if not actividades_id: return jsonify({"msg": "ID Actividades es requerida"}), 400
+        if not datos_baby_id: return jsonify({"msg": "ID Datos del Bebé es requerida"}), 400
+
+        numero_etapas = Etapa()
+        numero_etapas.actividades_id = str(actividades_id)
+        numero_etapas.datos_baby_id = str(datos_baby_id)
+        numero_etapas.save()
+
+        return jsonify(numero_etapas.serialize()), 200
+
+
 @api.route('/etapas/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# @jwt_required()
 def etapas(id=None):
     if request.method == 'GET':
         if id is not None:
@@ -420,6 +438,7 @@ def etapas(id=None):
             return jsonify(numero_etapas)
     else:
         return jsonify({"msg": "No existen etapas"}), 400
+
 #---------------------------Agrega una Ruta si es necesario----------------------------------------#
 
 #----------------------------------------Chat----------------------------------------#
