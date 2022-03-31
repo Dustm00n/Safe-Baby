@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactPlayer from "react-player";
-import "../../styles/home.css"
-import imageUrl from "../../img/bebe-meses.jpeg"
-import imageUrlMeses from "../../img/bebe-pasos.jpeg"
-import imagePasos from "../../img/bebe-9-meses.jpeg"
-import imageDesarollo from "../../img/desarrollo-bebe.jpeg"
-import imageJUegos from "../../img/juegos_didacticos.jpeg"
-import imageMeses from "../../img/mom-and-baby.jpeg"
+import "../../styles/home.css";
+import imageUrl from "../../img/bebe-meses.jpeg";
+import imageUrlMeses from "../../img/bebe-pasos.jpeg";
+import imagePasos from "../../img/bebe-9-meses.jpeg";
+import imageDesarollo from "../../img/desarrollo-bebe.jpeg";
+import imageJUegos from "../../img/juegos_didacticos.jpeg";
+import imageMeses from "../../img/mom-and-baby.jpeg";
 // import { BiSearchAlt } from "react-icons/bi";
 
 
@@ -322,7 +322,6 @@ export const Inicio = (props) => {
                 </ul>
             </div>
         </div>
-
     );
 }
 

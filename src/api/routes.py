@@ -61,8 +61,8 @@ def signup():
         nombre = request.form['nombre']
         apellido = request.form['apellido']
         avatar = request.files['avatar']
+        # rol_name = request.form['rol_name']
         # roles_id = request.form['roles_id']
-        rol_name = request.form['rol_name']
 
         user = User.query.filter_by(email=email).first()
 
@@ -70,7 +70,7 @@ def signup():
         if not password: return jsonify({"msg": "Usuario ya existe"}), 400
         if not nombre: return jsonify({"msg": "Usuario ya existe"}), 400
         if not apellido: return jsonify({"msg": "Usuario ya existe"}), 400
-        if not rol_name: return jsonify({"msg": "Usuario ya existe"}), 400
+        # if not rol_name: return jsonify({"msg": "Usuario ya existe"}), 400
 
         if user: return jsonify({"msg": "Usuario ya existe"}), 400
         # if not roles: return jsonify({"msg": "El rol-id es requerido!"}), 400
@@ -95,10 +95,9 @@ def signup():
         profile.avatar = upload["secure_url"]
         profile.save()
 
-        rol = Rol()
-        rol.rol_name = rol_name
-        rol.users_id = user.id
-        rol.save()
+        # rol = Rol()
+        # rol.rol_name = rol_name
+        # rol.save()
 
         if not check_password_hash(user.password, password): return jsonify({"msg": "email/password son incorrectos"}), 400
 
@@ -144,6 +143,32 @@ def login():
 
 #---------------------------Ruta de Roles----------------------------------------#
 @api.route('/roles', methods=['GET', 'POST'])
+def get_all_roles():
+
+    if request.method == 'GET':
+        all_roles = Rol.query.all()
+        all_roles = list(map(lambda x: x.serialize(), all_roles))
+        return jsonify(all_roles), 200
+
+    if request.method == 'POST':
+        rol_name = request.json.get('rol_name')
+
+        if not rol_name: return jsonify({"msg": "Nombre del ROL es requerido!"}), 400
+
+        roles = Rol()
+        roles.rol_name = rol_name
+        roles.save()
+
+        return jsonify(roles.serialize()), 201
+
+@api.route('/roles/delete', methods=['DELETE'])
+def delete_all_roles():
+
+    roles = Rol.query.all()
+    for rol in roles:
+        rol.delete()
+    return jsonify({"msg": "Todos los roles han sido eliminados"}, {}), 200
+
 @api.route('/roles/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 # @jwt_required()
 def roles(id = None):
@@ -164,7 +189,7 @@ def roles(id = None):
 
             if not rol_name: return jsonify({"msg": "Nombre del ROL es requerido!"}), 400
 
-            roles=Rol()
+            roles = Rol()
             roles.rol_name = rol_name
             roles.save()
 
@@ -252,9 +277,9 @@ def profiles(id=None):
     else: return jsonify({"msg": "Perfil no existe"}),400
             
 #---------------------------Ruta de Datos del Bebé----------------------------------------#
-@api.route('/datababies', methods=['GET', 'POST'])
+@api.route('/datababies', methods=['GET', 'POST', 'DELETE'])
 # @jwt_required()
-def data_babies():
+def data_babies_():
 
     if request.method == 'GET':
         data_babies = DatosBaby.query.all()
@@ -284,6 +309,12 @@ def data_babies():
         data_babies.save()
         
         return jsonify(data_babies.serialize()), 200
+        
+    if request.method == 'DELETE':
+        data_babies = DatosBaby.query.all()
+        data_babies.delete()
+        data_babies.save()
+        return jsonify({"msg": "Todos los bebés han sido eliminados"})   
 
 # @api.route('/datababies/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 # # @jwt_required()

@@ -55,3 +55,17 @@
   border: none;
   transition: 0.001s;
 }
+.navbar-toggler {
+  float: right;
+  color: #f0e4e4;
+  background-color: #d47c8f;
+}
+
+.navbar-collapse {
+  display: inline-flex;
+  justify-content: end;
+}
+.navbar-nav {
+  display: inline-flex;
+  justify-content: end;
+}
