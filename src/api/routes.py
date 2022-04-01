@@ -61,7 +61,7 @@ def signup():
         nombre = request.form['nombre']
         apellido = request.form['apellido']
         avatar = request.files['avatar']
-        # rol_name = request.form['rol_name']
+        rol_name = request.form['rol_name']
         # roles_id = request.form['roles_id']
 
         user = User.query.filter_by(email=email).first()
@@ -70,7 +70,7 @@ def signup():
         if not password: return jsonify({"msg": "Usuario ya existe"}), 400
         if not nombre: return jsonify({"msg": "Usuario ya existe"}), 400
         if not apellido: return jsonify({"msg": "Usuario ya existe"}), 400
-        # if not rol_name: return jsonify({"msg": "Usuario ya existe"}), 400
+        if not rol_name: return jsonify({"msg": "Usuario ya existe"}), 400
 
         if user: return jsonify({"msg": "Usuario ya existe"}), 400
         # if not roles: return jsonify({"msg": "El rol-id es requerido!"}), 400
@@ -95,9 +95,9 @@ def signup():
         profile.avatar = upload["secure_url"]
         profile.save()
 
-        # rol = Rol()
-        # rol.rol_name = rol_name
-        # rol.save()
+        rol = Rol()
+        rol.rol_name = rol_name
+        rol.save()
 
         if not check_password_hash(user.password, password): return jsonify({"msg": "email/password son incorrectos"}), 400
 

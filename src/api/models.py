@@ -16,8 +16,8 @@ class User(db.Model):
     datos_babies = db.relationship("DatosBaby", backref="users", cascade="all, delete") #actualizado
     # chats = db.relationship('Chat', secondary="participantes_chats")
     # messages = db.relationship('Message', backref="user", lazy=True)
-    # roles = db.relationship('Rol', secondary='users_roles', lazy='subquery',
-    #     backref=db.backref('users', lazy=True))
+    roles = db.relationship('Rol', secondary='users_roles', lazy='subquery',
+        backref=db.backref('users', lazy=True))
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -33,7 +33,7 @@ class User(db.Model):
             "id": self.id,
             "email": self.email,
             # "roles_id":self.roles_id,
-            # "roles":self.roles,
+            "roles":self.roles,
             "profile":self.profile.serialize(), #antes era self.proile.serialize()
             "datos_babies":self.get_datos_babies(),
             
