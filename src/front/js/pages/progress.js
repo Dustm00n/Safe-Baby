@@ -11,22 +11,21 @@ export const Progress = () => {
             <Navbar />
             <div className="col">
                 <div className="row m-0">
-                    <EtapasGraficoActividades>
-                        <EtapasActividades
-                            titleStage="Etapa Inicial de 0 a 2 meses"
-                            paragraphOne="El bebé puede levantar y voltear la cabeza cuando está acostado boca arriba."
-                            paragraphTwo="El bebé empuña la mano y flexiona los brazos."
-                            paragraphThree="El cuello no es capaz de sostener la cabeza al jalar al niño para sentarlo."
-                            paragraphFour="Reflejo de Babinski, los dedos de los pies se abren hacia afuera en forma de abanico cuando hay roce en la planta del pie."
-                            paragraphFive="Reflejo de Moro (reflejo del sobresalto), extiende los brazos y luego los dobla y los empuja hacia el cuerpo con un breve llanto; a menudo desencadenado por sonidos fuertes o movimientos súbitos."
-                            paragraphSix={`Reflejo prensil palmar, el bebé cierra los dedos y "agarra" el dedo de la madre.`}
-                            paragraphSeven="Reflejo postural, la pierna se extiende cuando se toca la planta del pie."
-                            paragraphEight="Reflejo prensil plantar, el bebé flexiona los dedos y la parte delantera del pie."
-                            paragraphNine="Reflejo de orientación y succión, voltea la cabeza en busca del pezón cuando se le toca la mejilla y comienza a chupar cuando el pezón toca los labios."
-                            paragraphTen="Reflejo de la marcha, da pasos rápidos cuando ambos pies se colocan sobre una superficie, con el cuerpo sostenido."
-                            paragraphEleven="Reflejo tónico del cuello, el brazo izquierdo se extiende cuando el bebé mira hacia la izquierda, mientras que el brazo y la pierna derecha se flexionan hacia adentro, y viceversa."
-                        />
-                    </EtapasGraficoActividades>
+                    <EtapasGraficoActividades />
+                    <EtapasActividades
+                        titleStage="Etapa Inicial de 0 a 2 meses"
+                        paragraphOne="El bebé puede levantar y voltear la cabeza cuando está acostado boca arriba."
+                        paragraphTwo="El bebé empuña la mano y flexiona los brazos."
+                        paragraphThree="El cuello no es capaz de sostener la cabeza al jalar al niño para sentarlo."
+                        paragraphFour="Reflejo de Babinski, los dedos de los pies se abren hacia afuera en forma de abanico cuando hay roce en la planta del pie."
+                        paragraphFive="Reflejo de Moro (reflejo del sobresalto), extiende los brazos y luego los dobla y los empuja hacia el cuerpo con un breve llanto; a menudo desencadenado por sonidos fuertes o movimientos súbitos."
+                        paragraphSix={`Reflejo prensil palmar, el bebé cierra los dedos y "agarra" el dedo de la madre.`}
+                        paragraphSeven="Reflejo postural, la pierna se extiende cuando se toca la planta del pie."
+                        paragraphEight="Reflejo prensil plantar, el bebé flexiona los dedos y la parte delantera del pie."
+                        paragraphNine="Reflejo de orientación y succión, voltea la cabeza en busca del pezón cuando se le toca la mejilla y comienza a chupar cuando el pezón toca los labios."
+                        paragraphTen="Reflejo de la marcha, da pasos rápidos cuando ambos pies se colocan sobre una superficie, con el cuerpo sostenido."
+                        paragraphEleven="Reflejo tónico del cuello, el brazo izquierdo se extiende cuando el bebé mira hacia la izquierda, mientras que el brazo y la pierna derecha se flexionan hacia adentro, y viceversa."
+                    />
                 </div >
             </div>
             <div className="col">
