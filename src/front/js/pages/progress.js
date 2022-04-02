@@ -25,7 +25,6 @@ export const Progress = () => {
                         paragraphNine="Reflejo de orientación y succión, voltea la cabeza en busca del pezón cuando se le toca la mejilla y comienza a chupar cuando el pezón toca los labios."
                         paragraphTen="Reflejo de la marcha, da pasos rápidos cuando ambos pies se colocan sobre una superficie, con el cuerpo sostenido."
                         paragraphEleven="Reflejo tónico del cuello, el brazo izquierdo se extiende cuando el bebé mira hacia la izquierda, mientras que el brazo y la pierna derecha se flexionan hacia adentro, y viceversa."
-
                     />
                 </div >
             </div>

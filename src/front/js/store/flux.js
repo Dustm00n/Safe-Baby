@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       register: null,
       baby: {},
-      url: "https://3001-dustm00n-safebaby-38b27hfp9tt.ws-us38.gitpod.io"
+      url: "https://3001-dustm00n-safebaby-p0kjp37e7z7.ws-us38.gitpod.io"
     },
     actions: {
       //-----------------funciones Fetch Inicio ---------------//

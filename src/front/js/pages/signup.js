@@ -12,7 +12,7 @@ export const SignUp = () => {
         apellido: "",
         email: "",
         password: "",
-        // rol: "",
+        // rol_name: "",
         avatar: null
     })
 
@@ -54,8 +54,8 @@ export const SignUp = () => {
         // if (!/^.*\.(jpg|JPG|png|PNG)$/.test(registerform.avatar)) {
         //     errors.avatar = 'Solo puede ser archivos .jpg o .png'
         // }
-        // if (!registerform.rol) {
-        //     errors.rol = "Tu distinción es requerido!";
+        // if (!registerform.rol_name) {
+        //     errors.rol_name = "Tu distinción es requerido!";
         // }
         return errors;
     }
@@ -68,7 +68,7 @@ export const SignUp = () => {
         formData.append('apellido', registerform.apellido);
         formData.append('email', registerform.email);
         formData.append('password', registerform.password);
-        // formData.append('rol', registerform.rol);
+        // formData.append('rol', registerform.rol_name);
         formData.append('avatar', registerform.avatar);
         actions.signUp(formData, history);
         e.target.reset();
@@ -128,8 +128,8 @@ export const SignUp = () => {
                             <select
                                 className="form-select"
                                 aria-label="Default select example"
-                                id="rol"
-                                name="rol"
+                                id="rol_name"
+                                name="rol_name"
                                 onChange={(e) => { handleChange(e) }}
                             >
                                 <option placeholder="Selecciona tu distinción">Selecciona tu distinción</option>
@@ -139,7 +139,7 @@ export const SignUp = () => {
                                 <option value="niñero">Niñero</option>
                             </select>
                         </div>
-                        <p className="errors-signup">{registerErrors.rol}</p> */}
+                        <p className="errors-signup">{registerErrors.rol_name}</p> */}
                         <div className="mb-3">
                             <input
                                 type="file"

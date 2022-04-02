@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User
 from api.models import db, Profile
 from api.models import db, Rol
+from api.models import db, UserRole
 from api.models import db, DatosBaby
 from api.models import db, Actividad
 from api.models import db, LogroBebe
@@ -28,7 +29,10 @@ def get_all_users():
 
     all_users = User.query.all()
     all_users = list(map(lambda x: x.serialize(), all_users))
-    return jsonify({"msg": "Todos los suarios han sido econtrados"}, all_users), 200
+
+    if not all_users: return jsonify({"msg": "No hay usuarios"}, all_users), 200
+
+    else: return jsonify({"msg": "Todos los suarios han sido econtrados"}, all_users), 200
 
 @api.route('/users/delete', methods=['DELETE'])
 def delete_all_users():
@@ -39,6 +43,15 @@ def delete_all_users():
 
     return jsonify({"msg": "Usuarios han sido eliminados"}), 200
 
+@api.route('/users/delete/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def delete_a_user(id):
+
+    if id is not None:
+        users = User.query.get(id)
+        users.delete()
+
+    return jsonify({"msg": "El usuario ha sido eliminado"}), 200
+
 #---------------------------Ruta de registro----------------------------------------#  
 @api.route('/signup', methods=['POST'])
 def signup():
@@ -48,6 +61,7 @@ def signup():
         nombre = request.form['nombre']
         apellido = request.form['apellido']
         avatar = request.files['avatar']
+        # rol_name = request.form['rol_name']
         # roles_id = request.form['roles_id']
 
         user = User.query.filter_by(email=email).first()
@@ -56,9 +70,10 @@ def signup():
         if not password: return jsonify({"msg": "Usuario ya existe"}), 400
         if not nombre: return jsonify({"msg": "Usuario ya existe"}), 400
         if not apellido: return jsonify({"msg": "Usuario ya existe"}), 400
+        # if not rol_name: return jsonify({"msg": "Usuario ya existe"}), 400
 
         if user: return jsonify({"msg": "Usuario ya existe"}), 400
-        # if not roles_id: return jsonify({"msg": "El rol-id es requerido!"}), 400
+        # if not roles: return jsonify({"msg": "El rol-id es requerido!"}), 400
         
         upload = cloudinary.uploader.upload(avatar,
             folder = "avatars", 
@@ -68,8 +83,8 @@ def signup():
         )
 
         user = User()
-        # user.roles_id = roles_id
         user.email = email
+        # user.roles_id = roles_id
         user.password = generate_password_hash(password)
         user.save()
 
@@ -79,6 +94,10 @@ def signup():
         profile.users_id = user.id
         profile.avatar = upload["secure_url"]
         profile.save()
+
+        # rol = Rol()
+        # rol.rol_name = rol_name
+        # rol.save()
 
         if not check_password_hash(user.password, password): return jsonify({"msg": "email/password son incorrectos"}), 400
 
@@ -124,6 +143,32 @@ def login():
 
 #---------------------------Ruta de Roles----------------------------------------#
 @api.route('/roles', methods=['GET', 'POST'])
+def get_all_roles():
+
+    if request.method == 'GET':
+        all_roles = Rol.query.all()
+        all_roles = list(map(lambda x: x.serialize(), all_roles))
+        return jsonify(all_roles), 200
+
+    if request.method == 'POST':
+        rol_name = request.json.get('rol_name')
+
+        if not rol_name: return jsonify({"msg": "Nombre del ROL es requerido!"}), 400
+
+        roles = Rol()
+        roles.rol_name = rol_name
+        roles.save()
+
+        return jsonify(roles.serialize()), 201
+
+@api.route('/roles/delete', methods=['DELETE'])
+def delete_all_roles():
+
+    roles = Rol.query.all()
+    for rol in roles:
+        rol.delete()
+    return jsonify({"msg": "Todos los roles han sido eliminados"}, {}), 200
+
 @api.route('/roles/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 # @jwt_required()
 def roles(id = None):
@@ -144,20 +189,14 @@ def roles(id = None):
 
             if not rol_name: return jsonify({"msg": "Nombre del ROL es requerido!"}), 400
 
-            roles=Rol()
+            roles = Rol()
             roles.rol_name = rol_name
             roles.save()
 
             return jsonify(roles.serialize()), 201
     
     if request.method == 'DELETE':
-        if id is None:
-            roles = Rol.query.all()
-            roles.delete()
-            roles.save()
-            return jsonify({"msg": "Todos los Roles han sido eliminado"}, {}), 200
-
-        elif id is not None:
+        if id is not None:
             roles = Rol.query.get(id)
             roles.delete()
             roles.save()
@@ -165,6 +204,15 @@ def roles(id = None):
     else:
         return jsonify({"msg": "El ROL no existe"}), 400
 
+#---------------------------Ruta de Colección de Roles----------------------------------------#
+@api.route('/user_roles', methods=['GET'])
+def user_roles():
+
+    all_user_roles = UserRole.query.all()
+    all_user_roles = list(map(lambda x: x.serialize(), all_user_roles))
+    return jsonify(all_user_roles), 200
+
+    return jsonify({"msg": "El ROL no existe"}), 400
 
 #---------------------------Ruta de Perfil----------------------------------------#
 @api.route('/profiles', methods=['GET'])
@@ -229,8 +277,9 @@ def profiles(id=None):
     else: return jsonify({"msg": "Perfil no existe"}),400
             
 #---------------------------Ruta de Datos del Bebé----------------------------------------#
-@api.route('/datababies', methods=['GET', 'POST'])
-def data_babies():
+@api.route('/datababies', methods=['GET', 'POST', 'DELETE'])
+# @jwt_required()
+def data_babies_():
 
     if request.method == 'GET':
         data_babies = DatosBaby.query.all()
@@ -260,6 +309,12 @@ def data_babies():
         data_babies.save()
         
         return jsonify(data_babies.serialize()), 200
+        
+    if request.method == 'DELETE':
+        data_babies = DatosBaby.query.all()
+        data_babies.delete()
+        data_babies.save()
+        return jsonify({"msg": "Todos los bebés han sido eliminados"})   
 
 # @api.route('/datababies/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 # # @jwt_required()
