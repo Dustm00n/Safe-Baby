@@ -64,6 +64,7 @@ export const StartProgress = () => {
     <>
       <Navbar />
       <div className="container-fluid startprogress">
+        <img className="fondo" src="https://i.pinimg.com/originals/9b/6c/55/9b6c55403594f530a08d74380977bbda.jpg" />
         <div className="row">
           <div className="col-6">
             <div className="register-baby">
