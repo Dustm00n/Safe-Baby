@@ -1,11 +1,13 @@
 .fondo-titulo-not-found {
-  height: auto;
+  height: 49.3rem;
   width: 100%;
   opacity: 0.2;
   z-index: -50;
+  object-fit: cover;
 }
 .box-animated h1 {
   position: absolute;
+  top: 25%;
   left: 25%;
   padding: 10rem;
   margin: 0 auto;
