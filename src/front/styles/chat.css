@@ -1,3 +1,13 @@
+.Mainchat {
+  height: 49.3rem;
+}
+.only {
+  width: 55rem;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #ffebef8e;
+  box-shadow: 0px 5px 8px 5px #79303e1a;
+}
 .tittle-chat {
   display: flex;
   justify-content: center;
@@ -8,6 +18,10 @@
 }
 .container-main-foro {
   position: absolute;
+  top: 15rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .joinChatContainer {
@@ -18,7 +32,7 @@
 .fondo-titulo-chat {
   z-index: -10;
   float: right;
-  height: 550px;
+  height: 49.3rem;
   width: 100%;
   opacity: 0.2;
   object-fit: cover;
@@ -50,7 +64,7 @@
   margin-top: 0;
 }
 
-.button-icon {
+/* .button-icon {
   margin-top: 35px;
   margin-left: 25px;
   margin-bottom: 35px;
@@ -60,13 +74,14 @@
   top: 305px;
   border: none;
   color: #c46f82;
-}
+} */
 
 .button-chat {
+  width: 10rem;
   border: 1px solid #a47575;
   border-radius: 10px;
   padding: 5px;
-  margin: 10px;
+  margin: 10px auto;
   margin-top: 0;
   background-color: #f9f0f0;
 }

@@ -17,7 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then(response => response.json())
           .then(data => {
             console.log("FLUX DATA", data)
-            localStorage.setItem("token", data.access_token)
+            localStorage.setItem("token", JSON.stringify(data))
             setStore({ register: data })
             history.push("/home")
           })
@@ -32,7 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then(response => response.json())
           .then(data => {
             console.log(data)
-            localStorage.setItem("token", data.access_token)
+            localStorage.setItem("token", JSON.stringify(data))
             history.push("/home")
           })
           .catch(error => console.log("HA OCURRIDO UN ERROR", error))

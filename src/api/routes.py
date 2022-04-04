@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User
 from api.models import db, Profile
 from api.models import db, Rol
-from api.models import db, UserRole
+# from api.models import db, UserRole
 from api.models import db, DatosBaby
 from api.models import db, Actividad
 from api.models import db, LogroBebe
@@ -61,8 +61,7 @@ def signup():
         nombre = request.form['nombre']
         apellido = request.form['apellido']
         avatar = request.files['avatar']
-        # rol_name = request.form['rol_name']
-        # roles_id = request.form['roles_id']
+        rol_name = request.form['rol_name']
 
         user = User.query.filter_by(email=email).first()
 
@@ -70,10 +69,9 @@ def signup():
         if not password: return jsonify({"msg": "Usuario ya existe"}), 400
         if not nombre: return jsonify({"msg": "Usuario ya existe"}), 400
         if not apellido: return jsonify({"msg": "Usuario ya existe"}), 400
-        # if not rol_name: return jsonify({"msg": "Usuario ya existe"}), 400
+        if not rol_name: return jsonify({"msg": "Usuario ya existe"}), 400
 
         if user: return jsonify({"msg": "Usuario ya existe"}), 400
-        # if not roles: return jsonify({"msg": "El rol-id es requerido!"}), 400
         
         upload = cloudinary.uploader.upload(avatar,
             folder = "avatars", 
@@ -84,7 +82,6 @@ def signup():
 
         user = User()
         user.email = email
-        # user.roles_id = roles_id
         user.password = generate_password_hash(password)
         user.save()
 
@@ -95,9 +92,10 @@ def signup():
         profile.avatar = upload["secure_url"]
         profile.save()
 
-        # rol = Rol()
-        # rol.rol_name = rol_name
-        # rol.save()
+        rol = Rol()
+        rol.rol_name = rol_name
+        rol.users_id = user.id
+        rol.save()
 
         if not check_password_hash(user.password, password): return jsonify({"msg": "email/password son incorrectos"}), 400
 
@@ -110,7 +108,6 @@ def signup():
 
 
         if user: return jsonify(data), 201
-        # if user: return jsonify({"form": request.form, "files": avatar.filename}), 201
     
 #---------------------------Ruta de login----------------------------------------#
 @api.route('/login', methods=['GET','POST'])
@@ -169,40 +166,40 @@ def delete_all_roles():
         rol.delete()
     return jsonify({"msg": "Todos los roles han sido eliminados"}, {}), 200
 
-@api.route('/roles/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-# @jwt_required()
-def roles(id = None):
+# @api.route('/roles/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# # @jwt_required()
+# def roles(id = None):
 
-    if request.method == 'GET':
-        if id is None:
-            all_roles = Rol.query.all()
-            all_roles = list(map(lambda x: x.serialize(), all_roles))
-            return jsonify(all_roles), 200
+#     if request.method == 'GET':
+#         if id is None:
+#             all_roles = Rol.query.all()
+#             all_roles = list(map(lambda x: x.serialize(), all_roles))
+#             return jsonify(all_roles), 200
 
-        elif id is not None:
-            all_roles = Rol.query.get(id)
-            return jsonify(all_roles.serialize()), 200
+#         elif id is not None:
+#             all_roles = Rol.query.get(id)
+#             return jsonify(all_roles.serialize()), 200
 
-    if request.method == 'POST':
-        if id is None:
-            rol_name = request.json.get('rol_name')
+#     if request.method == 'POST':
+#         if id is None:
+#             rol_name = request.json.get('rol_name')
 
-            if not rol_name: return jsonify({"msg": "Nombre del ROL es requerido!"}), 400
+#             if not rol_name: return jsonify({"msg": "Nombre del ROL es requerido!"}), 400
 
-            roles = Rol()
-            roles.rol_name = rol_name
-            roles.save()
+#             roles = Rol()
+#             roles.rol_name = rol_name
+#             roles.save()
 
-            return jsonify(roles.serialize()), 201
+#             return jsonify(roles.serialize()), 201
     
-    if request.method == 'DELETE':
-        if id is not None:
-            roles = Rol.query.get(id)
-            roles.delete()
-            roles.save()
-            return jsonify({"msg": "El ROL ha sido eliminado"}, {}), 200
-    else:
-        return jsonify({"msg": "El ROL no existe"}), 400
+#     if request.method == 'DELETE':
+#         if id is not None:
+#             roles = Rol.query.get(id)
+#             roles.delete()
+#             roles.save()
+#             return jsonify({"msg": "El ROL ha sido eliminado"}, {}), 200
+#     else:
+#         return jsonify({"msg": "El ROL no existe"}), 400
 
 #---------------------------Ruta de Colección de Roles----------------------------------------#
 @api.route('/user_roles', methods=['GET'])

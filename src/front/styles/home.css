@@ -1,5 +1,4 @@
 div.scrollmenu-home {
-  /* margin-bottom: 10rem; */
   overflow: hidden;
 }
 div.scrollmenu-home a {
@@ -81,7 +80,7 @@ div.scrollmenu-home a:hover {
 .card-body-home {
   display: flex;
   flex-wrap: wrap;
-  height: 200px;
+  height: 10rem;
 }
 .parrafoA-home {
   margin-left: 16px;
