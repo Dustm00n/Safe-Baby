@@ -8,11 +8,12 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
 from api.models import db
-from api.routes import api
+from api.routes import api 
 from api.admin import setup_admin
 #from models import Person
 from flask_jwt_extended import JWTManager, get_jwt_identity, create_access_token, jwt_required
 import cloudinary
+
 
 # load_dotenv()
 
@@ -75,3 +76,5 @@ def serve_any_other_file(path):
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
     app.run(host='0.0.0.0', port=PORT, debug=True)
+
+

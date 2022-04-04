@@ -16,7 +16,8 @@ from api.models import db, Etapa
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import JWTManager, get_jwt_identity, create_access_token, jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
-import socketio
+from flask import Flask, render_template
+from flask_socketio import SocketIO, join_room, leave_room
 import cloudinary.uploader
 
 
@@ -497,6 +498,41 @@ def etapas(id=None):
         return jsonify({"msg": "No existen etapas"}), 400
 
 #---------------------------------------- Chat ----------------------------------------#
+""" 
+@app.route("/chat")
+def chat():
+    return render_template('index.html')
+
+@socketio.on('connected')
+def connected(data):
+    print(data)
+
+
+@socketio.on("message")
+def get_message(json, methods=['GET']):
+    print("mensaje:" + str(json))
+    room = json["room"]
+    socketio.emit("response", json, room=room)
+
+
+@socketio.on('join')
+def join_room(data):
+    print("join to: ", data)
+    username = data['username']
+    room = data['room']
+    print(room)
+    join_room(room)
+    socketio.emit("response join", username + " se ha unido a la sala(" + room + ")")
+
+@socketio.on('leave')
+def left_room(data):
+    print("disconnect", data)
+    username = data["username"]
+    room = data["room"]
+    leave_room(room)
+    socketio.emit("response leave", username + " ha dejado la sala(" + room + ")" )
+ """
+ 
 
 @api.route('/chats', methods=['GET'])
 def get_chats():

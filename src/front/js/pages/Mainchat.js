@@ -31,7 +31,8 @@ export function Mainchat() {
                         <img className="fondo-titulo-chat" src="https://i.pinimg.com/originals/9b/6c/55/9b6c55403594f530a08d74380977bbda.jpg" />
                         <div className="container-fluid container-main-foro col-12">
                             <h3 className="tittle-chat">Comparte tu experiencia</h3>
-                            {/* row 1 */}
+
+
                             <div className="row">
                                 <div className="col-2">
                                     <a
