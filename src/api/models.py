@@ -9,15 +9,10 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
     profile = db.relationship("Profile",  backref="users", cascade="all, delete", uselist=False)
-    # roles_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
-    # roles = db.relationship("Rol", cascade="all, delete")
-    # roles = db.relationship("Rol", secondary="users_roles", cascade="all, delete")
-    # roles = db.relationship("Rol", secondary="users_roles", back_populates="users", cascade="all, delete")
+    roles = db.relationship("Rol", backref="users", cascade="all, delete", uselist=False)
     datos_babies = db.relationship("DatosBaby", backref="users", cascade="all, delete") #actualizado
     # chats = db.relationship('Chat', secondary="participantes_chats")
     # messages = db.relationship('Message', backref="user", lazy=True)
-    roles = db.relationship('Rol', secondary='users_roles', lazy='subquery',
-        backref=db.backref('users', lazy=True))
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -32,8 +27,7 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
-            # "roles_id":self.roles_id,
-            "roles":self.roles,
+            "roles":self.roles.serialize(),
             "profile":self.profile.serialize(), #antes era self.proile.serialize()
             "datos_babies":self.get_datos_babies(),
             
@@ -60,7 +54,7 @@ class Rol(db.Model):
     __tablename__= 'roles'
     id = db.Column(db.Integer, primary_key=True)
     rol_name = db.Column(db.String(120), nullable=False)
-    # users = db.relationship("User", secondary="users_roles", back_populates="roles")
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"))
 
     def __repr__(self):
         return '<Rol %r>' % self.rol_name
@@ -69,7 +63,7 @@ class Rol(db.Model):
         return {
             "id": self.id,
             "rol_name": self.rol_name,
-            # "users": self.users
+            "users_id": self.users_id
         }
 
     def save(self):
@@ -84,31 +78,31 @@ class Rol(db.Model):
         db.session.commit()
 
 #---------------------------------------- Model Rol Collection ---------------------------------------#
-class UserRole(db.Model):
-    __tablename__= 'users_roles'
-    # id = db.Column(db.Integer, primary_key=True)
-    roles_id = db.Column(db.Integer, db.ForeignKey('roles.id', ondelete="CASCADE"), primary_key=True)
-    users_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"), primary_key=True)
+# class UserRole(db.Model):
+#     __tablename__= 'users_roles'
+#     id = db.Column(db.Integer, primary_key=True)
+#     roles_id = db.Column(db.Integer, db.ForeignKey('roles.id', ondelete="CASCADE"), primary_key=True)
+#     users_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"), primary_key=True)
 
-    def __repr__(self):
-        return '<Rol %r>' % self.roles_id
+#     def __repr__(self):
+#         return '<Rol %r>' % self.roles_id
 
-    def serialize(self):
-        return {
-            "roles_id": self.roles_id,
-            "users_id": self.users_id
-        }
+#     def serialize(self):
+#         return {
+#             "roles_id": self.roles_id,
+#             "users_id": self.users_id
+#         }
 
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
+#     def save(self):
+#         db.session.add(self)
+#         db.session.commit()
 
-    def updade(self):
-        db.session.commit(self)
+#     def updade(self):
+#         db.session.commit(self)
     
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
+#     def delete(self):
+#         db.session.delete(self)
+#         db.session.commit()
 
 #---------------------------------------- Model Profile -------------------------------------------#
 class Profile(db.Model):

@@ -5,7 +5,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
     const isAuthenticated = () => {
 
-        const token = localStorage.getItem('token');
+        const token = JSON.parse(localStorage.getItem('token'));
+        console.log(token)
         if (token) {
             return true;
         } else return false;

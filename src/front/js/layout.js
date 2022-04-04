@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 // import { Context } from "./store/appContext";
 import injectContext from "./store/appContext";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
@@ -25,6 +25,12 @@ const Layout = () => {
 	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
 	const basename = process.env.BASENAME || "";
 	// const { store, actions } = useContext(Context);
+	// const [isToken, setIsToken] = useState({})
+	// // useEffect(() => {
+	// // }, []);
+	// if (localStorage.getItem('token')) {
+	// 	setIsToken(JSON.parse(localStorage.getItem('token')));
+	// }
 	return (
 		<div>
 			<BrowserRouter basename={basename}>
@@ -34,6 +40,14 @@ const Layout = () => {
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/signup" component={SignUp} />
 						<PrivateRoute exact path="/home" component={Home} />
+						{/* {
+							(isToken.user.roles.rol_name == "Papá" || isToken.user.roles.rol_name == "Mamá") &&
+							<PrivateRoute exact path="/startprogress" component={StartProgress} />
+						}
+						{
+							(isToken.user.roles.rol_name == "Papá" || isToken.user.roles.rol_name == "Mamá") &&
+							<PrivateRoute exact path="/progress" component={Progress} />
+						} */}
 						<PrivateRoute exact path="/startprogress" component={StartProgress} />
 						<PrivateRoute exact path="/progress" component={Progress} />
 						<PrivateRoute exact path="/foro" component={Mainchat} />

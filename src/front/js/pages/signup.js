@@ -12,10 +12,10 @@ export const SignUp = () => {
         apellido: "",
         email: "",
         password: "",
-        // rol_name: "",
+        rol_name: "",
         avatar: null
     })
-
+    console.log(registerform);
     const history = useHistory();
 
     const [registerErrors, setRegisterErrors] = useState({});
@@ -54,9 +54,9 @@ export const SignUp = () => {
         // if (!/^.*\.(jpg|JPG|png|PNG)$/.test(registerform.avatar)) {
         //     errors.avatar = 'Solo puede ser archivos .jpg o .png'
         // }
-        // if (!registerform.rol_name) {
-        //     errors.rol_name = "Tu distinción es requerido!";
-        // }
+        if (!registerform.rol_name) {
+            errors.rol_name = "Tu distinción es requerido!";
+        }
         return errors;
     }
 
@@ -68,7 +68,7 @@ export const SignUp = () => {
         formData.append('apellido', registerform.apellido);
         formData.append('email', registerform.email);
         formData.append('password', registerform.password);
-        // formData.append('rol', registerform.rol_name);
+        formData.append('rol_name', registerform.rol_name);
         formData.append('avatar', registerform.avatar);
         actions.signUp(formData, history);
         e.target.reset();
@@ -124,7 +124,7 @@ export const SignUp = () => {
                                 onChange={(e) => { handleChange(e) }} />
                         </div>
                         <p className="errors-signup">{registerErrors.password}</p>
-                        {/* <div className="mb-3">
+                        <div className="mb-3">
                             <select
                                 className="form-select"
                                 aria-label="Default select example"
@@ -139,7 +139,7 @@ export const SignUp = () => {
                                 <option value="niñero">Niñero</option>
                             </select>
                         </div>
-                        <p className="errors-signup">{registerErrors.rol_name}</p> */}
+                        <p className="errors-signup">{registerErrors.rol_name}</p>
                         <div className="mb-3">
                             <input
                                 type="file"
