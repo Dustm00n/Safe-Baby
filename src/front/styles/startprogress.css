@@ -1,86 +1,104 @@
+.fondo {
+  position: absolute;
+  height: 49.3rem;
+  opacity: 0.2;
+  float: right;
+  object-fit: cover;
+  z-index: -10;
+}
 .register-baby {
+  margin: 2.35rem;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  height: 100%;
+  z-index: 100;
 }
 .form-container-baby {
+  width: 350px;
+  height: auto;
+  padding: 20px;
+  margin: 60px auto;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 60px auto;
-  padding: 20px;
-  width: 350px;
-  background-color: #5abae7;
-  border-radius: 10px;
   line-height: 10px;
+  border-radius: 10px;
+  background-color: #5abae7;
   box-shadow: 0 5px 10px 2px #5e757946;
+  z-index: 100;
 }
-
 .title-baby {
   margin-bottom: 20px;
   justify-content: center;
   font-weight: bold;
   color: white;
+  z-index: 100;
 }
-
 .form-control {
-  background-color: #f0e4e4;
   color: #c46f82;
+  background-color: #f0e4e4;
+  z-index: 100;
 }
-
 .form-control::placeholder {
   color: #c46f82;
+  z-index: 100;
 }
 .errors-babyform {
   margin: 15px 15px 15px 0px;
-  /* color: #d1022f; */
   color: #aa0909;
+  z-index: 100;
 }
 .button-baby {
   margin: 50px;
-  background-color: #b7e1e8;
+  border: none;
   color: #699298;
   font-weight: bold;
-  border: none;
+  background-color: #b7e1e8;
   box-shadow: 0 2px 5px 2px #5e75796e;
+  z-index: 100;
 }
-
 .button-baby:hover {
   margin: 50px;
-  background-color: #6ed6e9;
-  color: #ffffff;
-  font-weight: bold;
   border: none;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #6ed6e9;
   box-shadow: 0 2px 5px 2px #5e75796e;
+  z-index: 100;
 }
 .button-baby:active {
   margin: 50px;
-  background-color: #70eaff;
-  color: #ffffff;
-  font-weight: bold;
   border: none;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #70eaff;
   box-shadow: 0 2px 5px 2px #5e75796e;
+  z-index: 100;
 }
 .card {
   display: flex;
   margin: 200px auto;
   border: none;
-  background-color: #c043430a;
-  box-shadow: 0 2px 5px 2px #3311111e;
+  background-color: #ffebef8e;
+  box-shadow: 0px 5px 8px 5px #79303e1a;
+  z-index: 100;
 }
 .card-body {
   margin: 50px auto;
+  z-index: 100;
 }
 .title {
   font-family: spartan;
   font-weight: 300;
   color: #904b5b;
+  z-index: 100;
 }
 .card-text {
   margin: 50px auto;
   padding: 10px;
+  text-align: justify;
   justify-self: center;
   font-size: 20px;
   font-weight: 500;
   color: #c46f82;
+  z-index: 100;
 }
