@@ -3,7 +3,6 @@ import { io } from "socket.io-client";
 import { useState } from "react";
 import { Chat } from "../component/chat";
 import "../../styles/chat.css"
-// import { AiFillWechat } from "react-icons/ai";
 import { Navbar } from "../component/navbar";
 
 
@@ -30,18 +29,8 @@ export function Mainchat() {
                     <div className="joinChatContainer">
                         <img className="fondo-titulo-chat" src="https://i.pinimg.com/originals/9b/6c/55/9b6c55403594f530a08d74380977bbda.jpg" />
                         <div className="container-fluid container-main-foro">
-                            {/* row 1 */}
                             <div className="row only">
                                 <h3 className="tittle-chat">Comparte tu experiencia</h3>
-                                {/* <div className="col-2">
-                                    <a
-                                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                                        type="button"
-                                        className="button-icon"
-                                    >
-                                        {<AiFillWechat size={150} />}
-                                    </a>
-                                </div> */}
                                 <div className="card-body-chat col">
                                     <h4 className="card-title-chat">Recomendaciones de Usuarios para tu bebé</h4>
                                     <p className="card-text">Aca puedes compartir tu experiencia cuidando a un bebé, y leer recomendaciones de otros usuarios.</p>
