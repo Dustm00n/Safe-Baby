@@ -3,11 +3,11 @@ import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/startprogress.css";
 import { Navbar } from "../component/navbar";
-
+import { Progress } from "./progress";
 export const StartProgress = () => {
 
   const { store, actions } = useContext(Context);
-
+  const [page, setPage] = useState(false);
   const [babyForm, setBabyForm] = useState({
     nombre: "",
     apellido: "",
@@ -15,7 +15,6 @@ export const StartProgress = () => {
     genero: "",
     estatura: ""
   })
-
   const history = useHistory();
 
   let allGood = false;
@@ -59,95 +58,100 @@ export const StartProgress = () => {
     e.preventDefault();
     setErrorsBabyForm(handleValidate(babyForm));
     if (allGood === false) {
-      let formData = new FormData();
-      formData.append('nombre', babyForm.nombre);
-      formData.append('apellido', babyForm.apellido);
-      formData.append('edad', babyForm.edad);
-      formData.append('genero', babyForm.genero);
-      formData.append('estatura', babyForm.estatura);
-      actions.datosBaby(formData, history);
-      e.target.reset();
-      return allGood = true;
-    } else return false;
+      return (allGood = true), setPage(true);
+    }
+    // if (allGood === false) {
+    //   let formData = new FormData();
+    //   formData.append('nombre', babyForm.nombre);
+    //   formData.append('apellido', babyForm.apellido);
+    //   formData.append('edad', babyForm.edad);
+    //   formData.append('genero', babyForm.genero);
+    //   formData.append('estatura', babyForm.estatura);
+    //   actions.datosBaby(formData, history);
+    //   e.target.reset();
+    //   return allGood = true;
+    // } else return false;
   }
 
   return (
     <>
       <Navbar />
-      <div className="container-fluid startprogress">
-        <img className="fondo" src="https://i.pinimg.com/originals/9b/6c/55/9b6c55403594f530a08d74380977bbda.jpg" />
-        <div className="row">
-          <div className="col-6">
-            <div className="register-baby">
-              <div className="form-container-baby">
-                <h1 className="title-baby text-center">Ingresa los datos de tu bebé</h1>
-                <form onSubmit={(e) => handlesubmit(e)}>
-                  <div className="mb-3">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="nombre"
-                      name="nombre"
-                      placeholder="Nombre"
-                      onChange={(e) => { handleChange(e) }} />
-                  </div>
-                  <p className="errors-babyform">{babyErrorsForm.nombre}</p>
-                  <div className="mb-3">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="apellido"
-                      name="apellido"
-                      placeholder="Apellido"
-                      onChange={(e) => { handleChange(e) }} />
-                  </div>
-                  <p className="errors-babyform">{babyErrorsForm.apellido}</p>
-                  <div className="mb-3">
-                    <input type="text"
-                      className="form-control"
-                      id="edad"
-                      name="edad"
-                      placeholder="Edad"
-                      onChange={(e) => { handleChange(e) }} />
-                  </div>
-                  <p className="errors-babyform">{babyErrorsForm.edad}</p>
-                  <div className="mb-3">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="genero"
-                      name="genero"
-                      placeholder="Género"
-                      onChange={(e) => { handleChange(e) }} />
-                  </div>
-                  <p className="errors-babyform">{babyErrorsForm.genero}</p>
-                  <div className="mb-3">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="estatura"
-                      name="estatura"
-                      placeholder="Estatura"
-                      onChange={(e) => { handleChange(e) }} />
-                  </div>
-                  <p className="errors-babyform">{babyErrorsForm.estatura}</p>
-                  {/* <Link to="/progress"> */}
-                  <button type="submit" className="btn button-baby d-grid gap-2 col-6 mx-auto">Siguiente</button>
-                  {/* </Link> */}
-                </form>
+      {page ? <Progress /> :
+        <div className="container-fluid startprogress">
+          <img className="fondo" src="https://i.pinimg.com/originals/9b/6c/55/9b6c55403594f530a08d74380977bbda.jpg" />
+          <div className="row">
+            <div className="col-6">
+              <div className="register-baby">
+                <div className="form-container-baby">
+                  <h1 className="title-baby text-center">Ingresa los datos de tu bebé</h1>
+                  <form onSubmit={(e) => handlesubmit(e)}>
+                    <div className="mb-3">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="nombre"
+                        name="nombre"
+                        placeholder="Nombre"
+                        onChange={(e) => { handleChange(e) }} />
+                    </div>
+                    <p className="errors-babyform">{babyErrorsForm.nombre}</p>
+                    <div className="mb-3">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="apellido"
+                        name="apellido"
+                        placeholder="Apellido"
+                        onChange={(e) => { handleChange(e) }} />
+                    </div>
+                    <p className="errors-babyform">{babyErrorsForm.apellido}</p>
+                    <div className="mb-3">
+                      <input type="text"
+                        className="form-control"
+                        id="edad"
+                        name="edad"
+                        placeholder="Edad"
+                        onChange={(e) => { handleChange(e) }} />
+                    </div>
+                    <p className="errors-babyform">{babyErrorsForm.edad}</p>
+                    <div className="mb-3">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="genero"
+                        name="genero"
+                        placeholder="Género"
+                        onChange={(e) => { handleChange(e) }} />
+                    </div>
+                    <p className="errors-babyform">{babyErrorsForm.genero}</p>
+                    <div className="mb-3">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="estatura"
+                        name="estatura"
+                        placeholder="Estatura"
+                        onChange={(e) => { handleChange(e) }} />
+                    </div>
+                    <p className="errors-babyform">{babyErrorsForm.estatura}</p>
+                    {/* <Link to="/progress"> */}
+                    <button type="submit" className="btn button-baby d-grid gap-2 col-6 mx-auto">Siguiente</button>
+                    {/* </Link> */}
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col-6">
-            <div className="card w-75">
-              <div className="card-body">
-                <h1 className="title text-center">Registra a tu bebé</h1>
-                <p className="card-text">Te recomendamos registrar a tu bebé para que puedas tener un mejor control de las actividades que realice tu bebé y acorde a su edad.</p>
+            <div className="col-6">
+              <div className="card w-75">
+                <div className="card-body">
+                  <h1 className="title text-center">Registra a tu bebé</h1>
+                  <p className="card-text">Te recomendamos registrar a tu bebé para que puedas tener un mejor control de las actividades que realice tu bebé y acorde a su edad.</p>
+                </div>
               </div>
             </div>
-          </div>
-        </div >
-      </div>
+          </div >
+        </div>
+      }
     </>
   );
 

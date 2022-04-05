@@ -2,13 +2,13 @@ import React from "react";
 import { EtapasGraficoActividades } from "../component/etapas-grafico-actividades";
 import { EtapasActividades } from "../component/etapas-actividades";
 import "../../styles/progress.css";
-import { Navbar } from "../component/navbar";
+// import { Navbar } from "../component/navbar";
 
 export const Progress = () => {
 
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="col">
                 <div className="row m-0">
                     <EtapasGraficoActividades />

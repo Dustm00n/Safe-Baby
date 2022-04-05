@@ -294,38 +294,40 @@ def data_babies_():
     #     return jsonify(data_babies.serialize()), 200
         
     if request.method == 'DELETE':
-        data_babies = DatosBaby.query.all()
-        for data_baby in data_babies:
-            data_babies.delete()
-        return jsonify({"msg": "Todos los bebés han sido eliminados"})   
+        all_babies = DatosBaby.query.all()
+        for baby in all_babies:
+            baby.delete()
+    return jsonify({"msg": "Todos los bebés han sido eliminados"})   
 
 @api.route('/datababies/<int:id>', methods=['POST', 'PUT', 'DELETE'])
 # @jwt_required()
 def data_baby_id(id=None):
-
     if request.method == 'POST':
-        nombre = request.form['nombre']
-        apellido = request.form['apellido']
-        edad = request.form['edad']
-        genero = request.form['genero']
-        estatura = request.form['estatura']
+        if id is not None:
+            user = User.query.get(id)
 
-        if not nombre: return jsonify({"msg": "Nombre del bebé es requerido!"}), 400
-        if not apellido: return jsonify({"msg": "Apellido del bebé requerido!"}), 400
-        if not edad: return jsonify({"msg": "Edad es requerido!"}), 400
-        if not genero: return jsonify({"msg": "Genero es requerido!"}), 400
-        if not estatura: return jsonify({"msg": "Estatura es requerido!"}), 400
+            nombre = request.form['nombre']
+            apellido = request.form['apellido']
+            edad = request.form['edad']
+            genero = request.form['genero']
+            estatura = request.form['estatura']
 
-        data_bebes = DatosBaby()
-        data_bebes.nombre = nombre
-        data_bebes.apellido = apellido
-        data_bebes.edad = edad
-        data_bebes.genero = genero
-        data_bebes.estatura = estatura
-        data_bebes.users_id = user.id
-        data_bebes.save()
+            if not nombre: return jsonify({"msg": "Nombre del bebé es requerido!"}), 400
+            if not apellido: return jsonify({"msg": "Apellido del bebé requerido!"}), 400
+            if not edad: return jsonify({"msg": "Edad es requerido!"}), 400
+            if not genero: return jsonify({"msg": "Genero es requerido!"}), 400
+            if not estatura: return jsonify({"msg": "Estatura es requerido!"}), 400
+
+            data_bebes = DatosBaby()
+            data_bebes.nombre = nombre
+            data_bebes.apellido = apellido
+            data_bebes.edad = edad
+            data_bebes.genero = genero
+            data_bebes.estatura = estatura
+            data_bebes.users_id = user.id
+            data_bebes.save()
         
-        return jsonify(data_bebes.serialize()), 200
+            return jsonify(data_bebes.serialize()), 200
 
     if request.method == 'PUT':
         if id is not None:
@@ -355,6 +357,7 @@ def data_baby_id(id=None):
             return jsonify({"msg": "Un bebé ha sido eliminado"})  
     else:
         return jsonify({"msg": "Datos del bebe no existen"}, {}), 400
+    return f'datababies {id}'
 
 #---------------------------Ruta de Logros del Bebé----------------------------------------#
 @api.route('/logrosbebes', methods=['GET', 'POST'])

@@ -45,15 +45,18 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       datosBaby: (formData, history) => {
         const { url } = getStore()
-        fetch(`${url}/api/datababies`, {
+        fetch(`${url}/api/datababies/<int:id>`, {
           method: 'POST',
           body: formData
         })
           .then(response => response.json())
           .then(data => {
-            localStorage.setItem("token", JSON.stringify(data))
-            setStore({ baby: data })
-            history.push("/progress")
+            console.log("FLUX DATA", data)
+            if (current_user == JSON.stringify(data)) {
+              localStorage.getItem("token", JSON.stringify(data))
+              setStore({ baby: data })
+              history.push("/progress")
+            }
           })
           .catch(error => console.log("HA OCURRIDO UN ERROR", error))
       }
