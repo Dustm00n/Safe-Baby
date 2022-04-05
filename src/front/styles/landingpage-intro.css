@@ -2,7 +2,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  background-image: url("https://3000-dustm00n-safebaby-p0kjp37e7z7.ws-us38.gitpod.io/pexels-daniel-reche-1556706.jpg");
+  background-image: url("https://3000-dustm00n-safebaby-p0kjp37e7z7.ws-us38.gitpod.io/baby-intro.jpg");
   background-size: cover;
   background-attachment: fixed;
 }
@@ -45,14 +45,12 @@
   background-color: #f0e4e4;
   border: none;
 }
-
 .btn-navbar-intro:hover {
   width: 100px;
   color: #f0e4e4;
   background-color: #c46f82;
   border: none;
 }
-
 .btn-navbar-intro:active {
   width: 100px;
   color: #fffbfb;
@@ -60,7 +58,7 @@
   border: none;
 }
 .content-explanation {
-  margin: 10rem auto;
+  margin: 8.5rem auto;
   padding: 1.5rem;
   display: flex;
   justify-content: center;

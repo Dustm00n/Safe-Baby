@@ -7,7 +7,9 @@ export const NavbarLoginSignup = () => {
     return (
         <>
             <nav className="navbar py-3">
-                <img className="navbar-brand-intro" src={LogoBebe} />
+                <Link to="/">
+                    <img className="navbar-brand-intro" src={LogoBebe} />
+                </Link>
                 <div className="navbar-container-intro gap-4 d-flex justify-content-end">
                     <div className="button-link-login">
                         <Link to="/login">

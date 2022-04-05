@@ -5,6 +5,7 @@ import "../../styles/startprogress.css";
 import { Navbar } from "../component/navbar";
 
 export const StartProgress = () => {
+
   const { store, actions } = useContext(Context);
 
   const [babyForm, setBabyForm] = useState({
@@ -16,6 +17,8 @@ export const StartProgress = () => {
   })
 
   const history = useHistory();
+
+  let allGood = false;
 
   const [babyErrorsForm, setErrorsBabyForm] = useState({})
 
@@ -31,18 +34,23 @@ export const StartProgress = () => {
     const errors = {};
     if (!babyForm.nombre) {
       errors.nombre = "Nombre del bebé es requerido!";
+      allGood = true;
     }
     if (!babyForm.apellido) {
       errors.apellido = "El apellido del bebé es requerido!";
+      allGood = true;
     }
     if (!babyForm.edad) {
       errors.edad = "La edad del bebé es requerido!";
+      allGood = true;
     }
     if (!babyForm.genero) {
       errors.genero = "El género del bebé es requerido!";
+      allGood = true;
     }
     if (!babyForm.estatura) {
       errors.estatura = "La estatura del bebé es requerido!";
+      allGood = true;
     }
     return errors;
   }
@@ -50,14 +58,17 @@ export const StartProgress = () => {
   const handlesubmit = (e) => {
     e.preventDefault();
     setErrorsBabyForm(handleValidate(babyForm));
-    let formData = new FormData();
-    formData.append('nombre', babyForm.nombre);
-    formData.append('apellido', babyForm.apellido);
-    formData.append('edad', babyForm.edad);
-    formData.append('genero', babyForm.genero);
-    formData.append('estatura', babyForm.estatura);
-    actions.datosBaby(formData, history);
-    e.target.reset();
+    if (allGood === false) {
+      let formData = new FormData();
+      formData.append('nombre', babyForm.nombre);
+      formData.append('apellido', babyForm.apellido);
+      formData.append('edad', babyForm.edad);
+      formData.append('genero', babyForm.genero);
+      formData.append('estatura', babyForm.estatura);
+      actions.datosBaby(formData, history);
+      e.target.reset();
+      return allGood = true;
+    } else return false;
   }
 
   return (
@@ -120,9 +131,9 @@ export const StartProgress = () => {
                       onChange={(e) => { handleChange(e) }} />
                   </div>
                   <p className="errors-babyform">{babyErrorsForm.estatura}</p>
-                  <Link to="/progress">
-                    <button type="submit" className="btn button-baby d-grid gap-2 col-6 mx-auto">Siguiente</button>
-                  </Link>
+                  {/* <Link to="/progress"> */}
+                  <button type="submit" className="btn button-baby d-grid gap-2 col-6 mx-auto">Siguiente</button>
+                  {/* </Link> */}
                 </form>
               </div>
             </div>

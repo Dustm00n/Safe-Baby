@@ -2,8 +2,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      register: null,
-      baby: {},
+      logged: [],
+      register: [],
+      baby: [],
       url: "https://3001-dustm00n-safebaby-p0kjp37e7z7.ws-us38.gitpod.io"
     },
     actions: {
@@ -31,9 +32,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
           .then(response => response.json())
           .then(data => {
-            console.log(data)
+            console.log("FLUX DATA", data)
             localStorage.setItem("token", JSON.stringify(data))
             history.push("/home")
+            setStore({ logged: data })
           })
           .catch(error => console.log("HA OCURRIDO UN ERROR", error))
       },
@@ -49,7 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
           .then(response => response.json())
           .then(data => {
-            console.log("FLUX DATABABY", data)
+            localStorage.setItem("token", JSON.stringify(data))
             setStore({ baby: data })
             history.push("/progress")
           })

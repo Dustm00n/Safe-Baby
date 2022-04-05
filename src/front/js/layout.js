@@ -1,7 +1,6 @@
-import React, { useContext, useState, useEffect } from "react";
-// import { Context } from "./store/appContext";
+import React, { useState, useEffect } from "react";
 import injectContext from "./store/appContext";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import PrivateRoute from './component/private-routes';
 
@@ -19,18 +18,26 @@ import { LandingPageIntro } from "./pages/landingpage-intro";
 import { Agenda } from "./pages/agenda";
 
 
-//create your first component
 const Layout = () => {
-	//the basename is used when your project is published in a subdirectory and not in the root of the domain
-	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
 	const basename = process.env.BASENAME || "";
-	// const { store, actions } = useContext(Context);
-	// const [isToken, setIsToken] = useState({})
-	// // useEffect(() => {
-	// // }, []);
-	// if (localStorage.getItem('token')) {
-	// 	setIsToken(JSON.parse(localStorage.getItem('token')));
-	// }
+	const [isToken, setIsToken] = useState({
+		datos_babies: [],
+		email: "",
+		profile: {
+			apellido: "",
+			avatar: "",
+			nombre: ""
+		},
+		roles: {
+			id: null,
+			rol_name: ""
+		}
+	})
+	useEffect(() => {
+		if (localStorage.getItem('token')) {
+			setIsToken(JSON.parse(localStorage.getItem('token')));
+		}
+	}, []);
 	return (
 		<div>
 			<BrowserRouter basename={basename}>
@@ -39,17 +46,9 @@ const Layout = () => {
 						<Route exact path="/" component={LandingPageIntro} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/signup" component={SignUp} />
-						<PrivateRoute exact path="/home" component={Home} />
-						{/* {
-							(isToken.user.roles.rol_name == "Papá" || isToken.user.roles.rol_name == "Mamá") &&
-							<PrivateRoute exact path="/startprogress" component={StartProgress} />
-						}
-						{
-							(isToken.user.roles.rol_name == "Papá" || isToken.user.roles.rol_name == "Mamá") &&
-							<PrivateRoute exact path="/progress" component={Progress} />
-						} */}
 						<PrivateRoute exact path="/startprogress" component={StartProgress} />
 						<PrivateRoute exact path="/progress" component={Progress} />
+						<PrivateRoute exact path="/home" component={Home} />
 						<PrivateRoute exact path="/foro" component={Mainchat} />
 						<PrivateRoute exact path="/agenda" component={Agenda} />
 						<PrivateRoute path="/citas" component={Citas} />
@@ -65,5 +64,9 @@ const Layout = () => {
 
 export default injectContext(Layout);
 
-
+// {
+// 	isToken.user?.roles?.rol_name == "Papá" ||
+// 	isToken.user?.roles?.rol_name == "Mamá" &&
+// }
+// {console.log("AQUI", isToken.user?.roles?.rol_name)}
 // {store.authentication === true && <Route exact path="/" component={LandingPageIntro} />}
