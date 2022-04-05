@@ -32,7 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
           .then(response => response.json())
           .then(data => {
-            console.log(data)
+            console.log("FLUX DATA", data)
             localStorage.setItem("token", JSON.stringify(data))
             history.push("/home")
             setStore({ logged: data })
@@ -45,13 +45,12 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       datosBaby: (formData, history) => {
         const { url } = getStore()
-        fetch(`${url}/api/datababies/<int:id>`, {
+        fetch(`${url}/api/datababies`, {
           method: 'POST',
           body: formData
         })
           .then(response => response.json())
           .then(data => {
-            console.log("FLUX DATABABY", data)
             localStorage.setItem("token", JSON.stringify(data))
             setStore({ baby: data })
             history.push("/progress")

@@ -199,16 +199,6 @@ def delete_all_roles():
 #     else:
 #         return jsonify({"msg": "El ROL no existe"}), 400
 
-#---------------------------Ruta de Colección de Roles----------------------------------------#
-@api.route('/user_roles', methods=['GET'])
-def user_roles():
-
-    all_user_roles = UserRole.query.all()
-    all_user_roles = list(map(lambda x: x.serialize(), all_user_roles))
-    return jsonify(all_user_roles), 200
-
-    return jsonify({"msg": "El ROL no existe"}), 400
-
 #---------------------------Ruta de Perfil----------------------------------------#
 @api.route('/profiles', methods=['GET'])
 @api.route('/profiles/<int:id>', methods=['GET', 'PUT', 'DELETE'])
@@ -240,7 +230,6 @@ def profiles(id=None):
             if not nombre: return jsonify({"msg": "nombre es requerido!"}), 400
             if not apellido: return jsonify({"msg": "apellido es requerido!"}), 400
             if not avatar: return jsonify({"msg": "avatar es requerido!"}), 400
-            # if not users_id: return jsonify({"msg": "users_id es requerido!"}), 400
 
             profile = Profile()
             profile.nombre = nombre
@@ -315,30 +304,28 @@ def data_babies_():
 def data_baby_id(id=None):
 
     if request.method == 'POST':
-        if id is not None:
-            nombre = request.form['nombre']
-            apellido = request.form['apellido']
-            edad = request.form['edad']
-            genero = request.form['genero']
-            estatura = request.form['estatura']
-            users_id = request.form['users_id']
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        edad = request.form['edad']
+        genero = request.form['genero']
+        estatura = request.form['estatura']
 
-            if not nombre: return jsonify({"msg": "Nombre del bebé es requerido!"}), 400
-            if not apellido: return jsonify({"msg": "Apellido del bebé requerido!"}), 400
-            if not edad: return jsonify({"msg": "Edad es requerido!"}), 400
-            if not genero: return jsonify({"msg": "Genero es requerido!"}), 400
-            if not estatura: return jsonify({"msg": "Estatura es requerido!"}), 400
+        if not nombre: return jsonify({"msg": "Nombre del bebé es requerido!"}), 400
+        if not apellido: return jsonify({"msg": "Apellido del bebé requerido!"}), 400
+        if not edad: return jsonify({"msg": "Edad es requerido!"}), 400
+        if not genero: return jsonify({"msg": "Genero es requerido!"}), 400
+        if not estatura: return jsonify({"msg": "Estatura es requerido!"}), 400
 
-            data_bebes = DatosBaby()
-            data_bebes.nombre = nombre
-            data_bebes.apellido = apellido
-            data_bebes.edad = edad
-            data_bebes.genero = genero
-            data_bebes.estatura = estatura
-            data_bebes.users_id = users_id
-            data_bebes.save()
-            
-            return jsonify(data_bebes.serialize()), 200
+        data_bebes = DatosBaby()
+        data_bebes.nombre = nombre
+        data_bebes.apellido = apellido
+        data_bebes.edad = edad
+        data_bebes.genero = genero
+        data_bebes.estatura = estatura
+        data_bebes.users_id = user.id
+        data_bebes.save()
+        
+        return jsonify(data_bebes.serialize()), 200
 
     if request.method == 'PUT':
         if id is not None:

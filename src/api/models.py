@@ -77,33 +77,6 @@ class Rol(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-#---------------------------------------- Model Rol Collection ---------------------------------------#
-# class UserRole(db.Model):
-#     __tablename__= 'users_roles'
-#     id = db.Column(db.Integer, primary_key=True)
-#     roles_id = db.Column(db.Integer, db.ForeignKey('roles.id', ondelete="CASCADE"), primary_key=True)
-#     users_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"), primary_key=True)
-
-#     def __repr__(self):
-#         return '<Rol %r>' % self.roles_id
-
-#     def serialize(self):
-#         return {
-#             "roles_id": self.roles_id,
-#             "users_id": self.users_id
-#         }
-
-#     def save(self):
-#         db.session.add(self)
-#         db.session.commit()
-
-#     def updade(self):
-#         db.session.commit(self)
-    
-#     def delete(self):
-#         db.session.delete(self)
-#         db.session.commit()
-
 #---------------------------------------- Model Profile -------------------------------------------#
 class Profile(db.Model):
     __tablename__= 'profiles'

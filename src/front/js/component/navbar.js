@@ -49,23 +49,13 @@ export const Navbar = () => {
 							isToken.user?.roles?.rol_name == "Mamá" ||
 							isToken.user?.roles?.rol_name !== "Niñera" ||
 							isToken.user?.roles?.rol_name !== "Niñero" &&
-							<li className="nav-item">
-								<Link to="/startprogress">
-									<button className="btn btn-navbar">Progreso</button>
-								</Link>
-							</li> &&
-							<li className="nav-item">
 								<Link to="/startprogress">
 									<button className="btn btn-navbar">Progreso</button>
 								</Link>
 							</li>
 						} */}
 						{/* {console.log("AQUI", isToken.user?.roles?.rol_name)} */}
-						<li className="nav-item">
-							<Link to="/startprogress">
-								<button className="btn btn-navbar">Progreso</button>
-							</Link>
-						</li>
+
 						<li className="nav-item">
 							<Link to="/startprogress">
 								<button className="btn btn-navbar">Progreso</button>
