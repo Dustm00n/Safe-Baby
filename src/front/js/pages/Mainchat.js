@@ -5,8 +5,6 @@ import { Chat } from "../component/chat";
 import "../../styles/chat.css"
 import { Navbar } from "../component/navbar";
 
-
-
 const socket = io.connect("http://localhost:3001");
 
 export function Mainchat() {
@@ -62,7 +60,6 @@ export function Mainchat() {
                 ) : (
                     <Chat socket={socket} username={username} room={room} />
                 )}
-
             </div>
         </>
     );

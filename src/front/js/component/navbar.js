@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import LogoBebe from "../../img/logo-nuevo-safe baby.png";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
@@ -9,6 +9,24 @@ import "../../styles/navbar.css";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
+	const [isToken, setIsToken] = useState({
+		datos_babies: [],
+		email: "",
+		profile: {
+			apellido: "",
+			avatar: "",
+			nombre: ""
+		},
+		roles: {
+			id: null,
+			rol_name: ""
+		}
+	})
+	useEffect(() => {
+		if (localStorage.getItem('token')) {
+			setIsToken(JSON.parse(localStorage.getItem('token')));
+		}
+	}, []);
 	return (
 		<nav className="navbar navbar-expand-lg py-3">
 			<div className="container-fluid">
@@ -23,6 +41,29 @@ export const Navbar = () => {
 						<li className="nav-item">
 							<Link to="/home">
 								<button className="btn btn-navbar text">Inicio</button>
+							</Link>
+						</li>
+						{/* {
+							isToken.user?.roles?.rol_name !== undefined ||
+							isToken.user?.roles?.rol_name == "Papá" ||
+							isToken.user?.roles?.rol_name == "Mamá" ||
+							isToken.user?.roles?.rol_name !== "Niñera" ||
+							isToken.user?.roles?.rol_name !== "Niñero" &&
+							<li className="nav-item">
+								<Link to="/startprogress">
+									<button className="btn btn-navbar">Progreso</button>
+								</Link>
+							</li> &&
+							<li className="nav-item">
+								<Link to="/startprogress">
+									<button className="btn btn-navbar">Progreso</button>
+								</Link>
+							</li>
+						} */}
+						{/* {console.log("AQUI", isToken.user?.roles?.rol_name)} */}
+						<li className="nav-item">
+							<Link to="/startprogress">
+								<button className="btn btn-navbar">Progreso</button>
 							</Link>
 						</li>
 						<li className="nav-item">
@@ -52,41 +93,5 @@ export const Navbar = () => {
 				</div>
 			</div>
 		</nav>
-
-		// <nav className="navbar navbar py-3">
-		// 	<Link to="/Home">
-		// 		<img className="navbar-brand" src={LogoBebe} />
-		// 	</Link>
-		// 	<div className="container-buttons gap-4 d-flex justify-content-end">
-		// 		<div className="">
-		// 			<Link to="/home">
-		// 				<button className="btn btn-navbar text">Inicio</button>
-		// 			</Link>
-		// 		</div>
-		// 		<div className="">
-		// 			<Link to="/startprogress">
-		// 				<button className="btn btn-navbar">Progreso</button>
-		// 			</Link>
-		// 		</div>
-		// 		<div className="">
-		// 			<Link to="/foro">
-		// 				<button className="btn btn-navbar">Chat</button>
-		// 			</Link>
-		// 		</div>
-		// 		<div className="">
-		// 			<Link to="/citas">
-		// 				<button className="btn btn-navbar">Citas</button>
-		// 			</Link>
-		// 		</div>
-		// 		<div className="">
-		// 			<Link to="/perfil">
-		// 				<button className="btn btn-navbar">Perfil</button>
-		// 			</Link>
-		// 		</div>
-		// 		<div className="">
-		// 			<button onClick={() => actions.logOut(history)} className="btn btn-navbar">Logout</button>
-		// 		</div>
-		// 	</div>
-		// </nav>
 	);
 };
