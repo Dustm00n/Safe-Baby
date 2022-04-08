@@ -8,10 +8,9 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
-    profile = db.relationship("Profile", cascade="all, delete", backref="users", uselist=False)
-    # roles_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
-    # role = db.relationship("Rol")
-    datos_babies = db.relationship("DatosBaby", cascade="all, delete") #actualizado
+    profile = db.relationship("Profile",  backref="users", cascade="all, delete", uselist=False)
+    roles = db.relationship("Rol", backref="users", cascade="all, delete", uselist=False)
+    datos_babies = db.relationship("DatosBaby", backref="users", cascade="all, delete") #actualizado
     # chats = db.relationship('Chat', secondary="participantes_chats")
     # messages = db.relationship('Message', backref="user", lazy=True)
 
@@ -28,10 +27,10 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
-            # "roles_id":self.roles_id,
+            "roles":self.roles.serialize(),
             "profile":self.profile.serialize(), #antes era self.proile.serialize()
-            # "role":self.role.serialize(),  #antes era self.role.serialize()
             "datos_babies":self.get_datos_babies(),
+            
             #"chats": self.get_chats(),
             #"messages": self.get_messages(), 
             
@@ -55,6 +54,7 @@ class Rol(db.Model):
     __tablename__= 'roles'
     id = db.Column(db.Integer, primary_key=True)
     rol_name = db.Column(db.String(120), nullable=False)
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"))
 
     def __repr__(self):
         return '<Rol %r>' % self.rol_name
@@ -62,7 +62,8 @@ class Rol(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "rol_name": self.rol_name
+            "rol_name": self.rol_name,
+            "users_id": self.users_id
         }
 
     def save(self):

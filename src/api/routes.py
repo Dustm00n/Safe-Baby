@@ -19,7 +19,6 @@ import socketio
 import cloudinary.uploader
 
 
-
 api = Blueprint('api', __name__)
 
 #------------------------Ruta de usuarios----------------------------------------#
@@ -28,7 +27,10 @@ def get_all_users():
 
     all_users = User.query.all()
     all_users = list(map(lambda x: x.serialize(), all_users))
-    return jsonify({"msg": "Todos los suarios han sido econtrados"}, all_users), 200
+
+    if not all_users: return jsonify({"msg": "No hay usuarios"}, all_users), 200
+
+    else: return jsonify({"msg": "Todos los suarios han sido econtrados"}, all_users), 200
 
 @api.route('/users/delete', methods=['DELETE'])
 def delete_all_users():
@@ -39,6 +41,15 @@ def delete_all_users():
 
     return jsonify({"msg": "Usuarios han sido eliminados"}), 200
 
+@api.route('/users/delete/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+def delete_a_user(id):
+
+    if id is not None:
+        users = User.query.get(id)
+        users.delete()
+
+    return jsonify({"msg": "El usuario ha sido eliminado"}), 200
+
 #---------------------------Ruta de registro----------------------------------------#  
 @api.route('/signup', methods=['POST'])
 def signup():
@@ -48,17 +59,18 @@ def signup():
         nombre = request.form['nombre']
         apellido = request.form['apellido']
         avatar = request.files['avatar']
-        # roles_id = request.form['roles_id']
+        rol_name = request.form['rol_name']
 
         user = User.query.filter_by(email=email).first()
 
-        if not email: return jsonify({"msg": "Usuario ya existe"}), 400
-        if not password: return jsonify({"msg": "Usuario ya existe"}), 400
-        if not nombre: return jsonify({"msg": "Usuario ya existe"}), 400
-        if not apellido: return jsonify({"msg": "Usuario ya existe"}), 400
+        if not email: return jsonify({"msg": "Usuario ya existe ó el email es requerido"}), 400
+        if not password: return jsonify({"msg": "Usuario ya existe ó el password es requerido"}), 400
+        if not nombre: return jsonify({"msg": "Usuario ya existe ó el nombre es requerido"}), 400
+        if not apellido: return jsonify({"msg": "Usuario ya existe ó el apellido es requerido"}), 400
+        if not rol_name: return jsonify({"msg": "Usuario ya existe ó el rol_name es requerido"}), 400
+        if not avatar: return jsonify({"msg": "Usuario ya existe ó el avatar es requerido"}), 400
 
         if user: return jsonify({"msg": "Usuario ya existe"}), 400
-        # if not roles_id: return jsonify({"msg": "El rol-id es requerido!"}), 400
         
         upload = cloudinary.uploader.upload(avatar,
             folder = "avatars", 
@@ -68,7 +80,6 @@ def signup():
         )
 
         user = User()
-        # user.roles_id = roles_id
         user.email = email
         user.password = generate_password_hash(password)
         user.save()
@@ -80,6 +91,11 @@ def signup():
         profile.avatar = upload["secure_url"]
         profile.save()
 
+        rol = Rol()
+        rol.rol_name = rol_name
+        rol.users_id = user.id
+        rol.save()
+
         if not check_password_hash(user.password, password): return jsonify({"msg": "email/password son incorrectos"}), 400
 
         access_token = create_access_token(identity=user.id)
@@ -89,9 +105,7 @@ def signup():
             "user": user.serialize()
         }
 
-
         if user: return jsonify(data), 201
-        # if user: return jsonify({"form": request.form, "files": avatar.filename}), 201
     
 #---------------------------Ruta de login----------------------------------------#
 @api.route('/login', methods=['GET','POST'])
@@ -124,47 +138,66 @@ def login():
 
 #---------------------------Ruta de Roles----------------------------------------#
 @api.route('/roles', methods=['GET', 'POST'])
-@api.route('/roles/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-# @jwt_required()
-def roles(id = None):
+def get_all_roles():
 
     if request.method == 'GET':
-        if id is None:
-            all_roles = Rol.query.all()
-            all_roles = list(map(lambda x: x.serialize(), all_roles))
-            return jsonify(all_roles), 200
-
-        elif id is not None:
-            all_roles = Rol.query.get(id)
-            return jsonify(all_roles.serialize()), 200
+        all_roles = Rol.query.all()
+        all_roles = list(map(lambda x: x.serialize(), all_roles))
+        return jsonify(all_roles), 200
 
     if request.method == 'POST':
-        if id is None:
-            rol_name = request.json.get('rol_name')
+        rol_name = request.json.get('rol_name')
 
-            if not rol_name: return jsonify({"msg": "Nombre del ROL es requerido!"}), 400
+        if not rol_name: return jsonify({"msg": "Nombre del ROL es requerido!"}), 400
 
-            roles=Rol()
-            roles.rol_name = rol_name
-            roles.save()
+        roles = Rol()
+        roles.rol_name = rol_name
+        roles.save()
 
-            return jsonify(roles.serialize()), 201
+        return jsonify(roles.serialize()), 201
+
+@api.route('/roles/delete', methods=['DELETE'])
+def delete_all_roles():
+
+    roles = Rol.query.all()
+    for rol in roles:
+        rol.delete()
+    return jsonify({"msg": "Todos los roles han sido eliminados"}, {}), 200
+
+# @api.route('/roles/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+# # @jwt_required()
+# def roles(id = None):
+
+#     if request.method == 'GET':
+#         if id is None:
+#             all_roles = Rol.query.all()
+#             all_roles = list(map(lambda x: x.serialize(), all_roles))
+#             return jsonify(all_roles), 200
+
+#         elif id is not None:
+#             all_roles = Rol.query.get(id)
+#             return jsonify(all_roles.serialize()), 200
+
+#     if request.method == 'POST':
+#         if id is None:
+#             rol_name = request.json.get('rol_name')
+
+#             if not rol_name: return jsonify({"msg": "Nombre del ROL es requerido!"}), 400
+
+#             roles = Rol()
+#             roles.rol_name = rol_name
+#             roles.save()
+
+#             return jsonify(roles.serialize()), 201
     
-    if request.method == 'DELETE':
-        if id is None:
-            roles = Rol.query.all()
-            roles.delete()
-            roles.save()
-            return jsonify({"msg": "Todos los Roles han sido eliminado"}, {}), 200
-
-        elif id is not None:
-            roles = Rol.query.get(id)
-            roles.delete()
-            roles.save()
-            return jsonify({"msg": "El ROL ha sido eliminado"}, {}), 200
-    else:
-        return jsonify({"msg": "El ROL no existe"}), 400
-
+#     if request.method == 'DELETE':
+#         if id is not None:
+#             roles = Rol.query.get(id)
+#             roles.delete()
+#             roles.save()
+#             return jsonify({"msg": "El ROL ha sido eliminado"}, {}), 200
+#     else:
+#         return jsonify({"msg": "El ROL no existe"}), 400
 
 #---------------------------Ruta de Perfil----------------------------------------#
 @api.route('/profiles', methods=['GET'])
@@ -197,7 +230,6 @@ def profiles(id=None):
             if not nombre: return jsonify({"msg": "nombre es requerido!"}), 400
             if not apellido: return jsonify({"msg": "apellido es requerido!"}), 400
             if not avatar: return jsonify({"msg": "avatar es requerido!"}), 400
-            # if not users_id: return jsonify({"msg": "users_id es requerido!"}), 400
 
             profile = Profile()
             profile.nombre = nombre
@@ -229,13 +261,47 @@ def profiles(id=None):
     else: return jsonify({"msg": "Perfil no existe"}),400
             
 #---------------------------Ruta de Datos del Bebé----------------------------------------#
-@api.route('/datababies', methods=['GET', 'POST'])
-def data_babies():
-
+@api.route('/datababies', methods=['GET', 'DELETE'])
+# @jwt_required()
+def data_babies_():
     if request.method == 'GET':
         data_babies = DatosBaby.query.all()
         data_babies = list(map(lambda x: x.serialize(), data_babies))
         return jsonify(data_babies)   
+
+    # if request.method == 'POST':
+    #     nombre = request.form['nombre']
+    #     apellido = request.form['apellido']
+    #     edad = request.form['edad']
+    #     genero = request.form['genero']
+    #     estatura = request.form['estatura']
+
+    #     if not nombre: return jsonify({"msg": "Nombre del bebé es requerido!"}), 400
+    #     if not apellido: return jsonify({"msg": "Apellido del bebé requerido!"}), 400
+    #     if not edad: return jsonify({"msg": "Edad es requerido!"}), 400
+    #     if not genero: return jsonify({"msg": "Genero es requerido!"}), 400
+    #     if not estatura: return jsonify({"msg": "Estatura es requerido!"}), 400
+
+    #     data_babies = DatosBaby()
+    #     data_babies.nombre = nombre
+    #     data_babies.apellido = apellido
+    #     data_babies.edad = edad
+    #     data_babies.genero = genero
+    #     data_babies.estatura = estatura
+    #     data_babies.users_id = user.id
+    #     data_babies.save()
+        
+    #     return jsonify(data_babies.serialize()), 200
+        
+    if request.method == 'DELETE':
+        data_babies = DatosBaby.query.all()
+        for data_baby in data_babies:
+            data_babies.delete()
+        return jsonify({"msg": "Todos los bebés han sido eliminados"})   
+
+@api.route('/datababies/<int:id>', methods=['POST', 'PUT', 'DELETE'])
+# @jwt_required()
+def data_baby_id(id=None):
 
     if request.method == 'POST':
         nombre = request.form['nombre']
@@ -250,75 +316,45 @@ def data_babies():
         if not genero: return jsonify({"msg": "Genero es requerido!"}), 400
         if not estatura: return jsonify({"msg": "Estatura es requerido!"}), 400
 
-        data_babies = DatosBaby()
-        data_babies.nombre = nombre
-        data_babies.apellido = apellido
-        data_babies.edad = edad
-        data_babies.genero = genero
-        data_babies.estatura = estatura
-        data_babies.users_id = user.id
-        data_babies.save()
+        data_bebes = DatosBaby()
+        data_bebes.nombre = nombre
+        data_bebes.apellido = apellido
+        data_bebes.edad = edad
+        data_bebes.genero = genero
+        data_bebes.estatura = estatura
+        data_bebes.users_id = user.id
+        data_bebes.save()
         
-        return jsonify(data_babies.serialize()), 200
+        return jsonify(data_bebes.serialize()), 200
 
-# @api.route('/datababies/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-# # @jwt_required()
-# def data_baby_id(id=None):
+    if request.method == 'PUT':
+        if id is not None:
+            nombre = request.json('nombre')
+            apellido = request.json('apellido')
+            edad = request.json('edad')
+            genero = request.json('genero')
+            estatura = request.json('estatura')
+            users_id = request.json('users_id')
+
+            data_bebes = DatosBaby()
+            data_bebes.nombre = nombre
+            data_bebes.apellido = apellido
+            data_bebes.edad = edad
+            data_bebes.genero = genero
+            data_bebes.estatura = estatura
+            data_bebes.users_id = users_id
+            data_bebes.update()
+            
+            return jsonify(data_bebes.serialize()), 200
     
-#     if request.method == 'GET':
-#         if id is not None:
-#             data_bebes = DatosBaby.query.all()
-#             data_bebes = list(map(lambda x: x.serialize(), data_bebes))
-#             return jsonify(data_bebes)   
-
-#     if request.method == 'POST':
-#         if id is None:
-#             nombre = request.form['nombre']
-#             apellido = request.form['apellido']
-#             edad = request.form['edad']
-#             genero = request.form['genero']
-#             estatura = request.form['estatura']
-#             users_id = request.form['users_id']
-
-#             if not nombre: return jsonify({"msg": "Nombre del bebé es requerido!"}), 400
-#             if not apellido: return jsonify({"msg": "Apellido del bebé requerido!"}), 400
-#             if not edad: return jsonify({"msg": "Edad es requerido!"}), 400
-#             if not genero: return jsonify({"msg": "Genero es requerido!"}), 400
-#             if not estatura: return jsonify({"msg": "Estatura es requerido!"}), 400
-
-#             data_bebes = DatosBaby()
-#             data_bebes.nombre = nombre
-#             data_bebes.apellido = apellido
-#             data_bebes.edad = edad
-#             data_bebes.genero = genero
-#             data_bebes.estatura = estatura
-#             data_bebes.users_id = users_id
-#             data_bebes.save()
-            
-#             return jsonify(data_bebes.serialize()), 200
-
-#     if request.method == 'PUT':
-#         if id is not None:
-#             nombre = request.json('nombre')
-#             apellido = request.json('apellido')
-#             edad = request.json('edad')
-#             genero = request.json('genero')
-#             estatura = request.json('estatura')
-#             users_id = request.json('users_id')
-
-#             data_bebes = DatosBaby()
-#             data_bebes.nombre = nombre
-#             data_bebes.apellido = apellido
-#             data_bebes.edad = edad
-#             data_bebes.genero = genero
-#             data_bebes.estatura = estatura
-#             data_bebes.users_id = users_id
-#             data_bebes.update()
-            
-#             return jsonify(data_bebes.serialize()), 200
-#     else:
-#         return jsonify({"msg": "Datos del bebe no existen"}, {}), 400
-
+    if request.method == 'DELETE':
+        if id is not None:
+            data_babies = DatosBaby.query.get(id)
+            for data_baby in data_babies:
+                data_babies.delete()
+            return jsonify({"msg": "Un bebé ha sido eliminado"})  
+    else:
+        return jsonify({"msg": "Datos del bebe no existen"}, {}), 400
 
 #---------------------------Ruta de Logros del Bebé----------------------------------------#
 @api.route('/logrosbebes', methods=['GET', 'POST'])
@@ -443,19 +479,19 @@ def etapas(id=None):
 
 #---------------------------------------- Chat ----------------------------------------#
 
-@api.route('/chats', methods=['GET'])
-def get_chats():
-    chats = Chat.query.all()
-    chats = list(map(lambda x: x.serialize(), chats))
-    return jsonify(chats), 200
+# @api.route('/chats', methods=['GET'])
+# def get_chats():
+#     chats = Chat.query.all()
+#     chats = list(map(lambda x: x.serialize(), chats))
+#     return jsonify(chats), 200
     
-@api.route('/send-message/<int:user_id>', methods=['GET'])
-def send_message(user_id):
-    user = User.query.get(user_id)
-    newMessage = Message()
-    newMessage.message = "Hola mundo " + str(len(Message.query.all()))
-    newMessage.users_id = user.id
-    user.chats[0].messages.append(newMessage)
-    user.save()
-    return jsonify(user.serialize()), 201
+# @api.route('/send-message/<int:user_id>', methods=['GET'])
+# def send_message(user_id):
+#     user = User.query.get(user_id)
+#     newMessage = Message()
+#     newMessage.message = "Hola mundo " + str(len(Message.query.all()))
+#     newMessage.users_id = user.id
+#     user.chats[0].messages.append(newMessage)
+#     user.save()
+#     return jsonify(user.serialize()), 201
     

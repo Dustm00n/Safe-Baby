@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useHistory } from "react-router-dom";
 import "../../styles/login.css";
-/* import { firebaseConfig } from "../component/firebase"; */
 import { NavbarLoginSignup } from '../component/navbar-login-signup';
 
 
@@ -10,7 +9,7 @@ export const Login = () => {
   const { store, actions } = useContext(Context);
 
   const history = useHistory();
-
+  let allGood = false;
   const [loginform, setLoginForm] = useState({
     email: "",
     password: ""
@@ -30,11 +29,13 @@ export const Login = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     if (!loginform.email) {
       errors.email = "Email es requerido!";
+      allGood = true;
     } else if (!regex.test(loginform.email)) {
       errors.email = "Tu correo no es valido!";
     }
     if (!loginform.password) {
       errors.password = "Password es requerido!";
+      allGood = true;
     }
     return errors;
   }
@@ -42,11 +43,14 @@ export const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoginErrors(handleValidate(loginform))
-    let formData = new FormData();
-    formData.append('email', loginform.email);
-    formData.append('password', loginform.password);
-    actions.login(formData, history);
-    e.target.reset();
+    if (allGood === false) {
+      let formData = new FormData();
+      formData.append('email', loginform.email);
+      formData.append('password', loginform.password);
+      actions.login(formData, history);
+      e.target.reset();
+      return allGood = true;
+    } else return false;
   }
   return (
     <>

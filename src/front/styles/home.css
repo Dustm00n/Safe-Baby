@@ -1,5 +1,4 @@
 div.scrollmenu-home {
-  margin-bottom: 10rem;
   overflow: hidden;
 }
 div.scrollmenu-home a {
@@ -13,8 +12,6 @@ div.scrollmenu-home a:hover {
   background-color: #777;
 }
 .titulo-home {
-  /* margin: 10px 10px 0px 20px; */
-  /* color: #5e8287; */
   margin-top: 2rem;
   margin-bottom: 2rem;
   color: #2a93bd;
@@ -80,9 +77,14 @@ div.scrollmenu-home a:hover {
   color: #904b5b;
   background-color: #f0e4e4;
 }
+.card-body-home {
+  display: flex;
+  flex-wrap: wrap;
+  height: 10rem;
+}
 .parrafoA-home {
   margin-left: 16px;
-  height: 220px;
+  height: 100%;
   font-size: 1rem;
   display: block;
   text-align: justify;
@@ -91,15 +93,41 @@ div.scrollmenu-home a:hover {
 }
 .parrafoA-home::-webkit-scrollbar {
   width: 12px;
-  /* border: #0a8ca096; */
   background-color: #f55b5b10;
   border-radius: 2px;
 }
 .parrafoA-home::-webkit-scrollbar-thumb {
   width: 12px;
-  /* border: #0a8ca0; */
   background-color: #a00a0a10;
   border-radius: 2px;
+}
+.button-toggle {
+  margin: 0 auto;
+  width: 120px;
+  height: 40px;
+  color: #611c2b;
+  background-color: #d47c8f;
+  border: none;
+  border-radius: 5px;
+}
+.button-toggle:hover {
+  margin: 0 auto;
+  width: 120px;
+  height: 40px;
+  color: #f0e4e4;
+  background-color: #d47c8f;
+  border: none;
+  border-radius: 5px;
+}
+.button-toggle:active {
+  margin: 0 auto;
+  width: 120px;
+  height: 40px;
+  color: #fffbfb;
+  background-color: #ff93ab;
+  border: none;
+  border-radius: 5px;
+  transition: 0.001s;
 }
 .img-fluid {
   padding: 10px;

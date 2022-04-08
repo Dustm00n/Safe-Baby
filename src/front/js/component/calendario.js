@@ -48,22 +48,24 @@ function Calendario() {
     }
 
     return (
-        <div className="Calendario">
-            <h1 className="titulo-calendario">Calendario</h1>
-            <h2 className="subtitulo-calendario">Agrega Nuevo evento</h2>
-            <div className="contenedor-evento">
-                <input className="agregar-titulo" type="text" placeholder="Add Title" style={{ width: "20%", marginRight: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
-                <div>
-                    <DatePicker className="start-date-picker" placeholderText="Start Date" style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
+        <div className="main-calendar ">
+            <div className="Calendario">
+                <h1 className="titulo-calendario">Calendario</h1>
+                <h2 className="subtitulo-calendario">Agrega Nuevo evento</h2>
+                <div className="contenedor-evento">
+                    <input className="agregar-titulo" type="text" placeholder="Add Title" style={{ width: "20%", marginRight: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
+                    <div>
+                        <DatePicker className="start-date-picker" placeholderText="Start Date" style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
+                    </div>
+                    <div>
+                        <DatePicker className="end-date-picker" placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
+                    </div>
+                    <button className="boton-agregar-evento" stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>
+                        Agregar evento
+                    </button>
                 </div>
-                <div>
-                    <DatePicker className="end-date-picker" placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
-                </div>
-                <button className="boton-agregar-evento" stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>
-                    Agregar evento
-                </button>
+                <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} />
             </div>
-            <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} />
         </div>
     );
 }
